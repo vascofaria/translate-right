@@ -1,8 +1,14 @@
-drop table utilizador 					cascade;
-drop table utilizador_qualificado 		cascade;
-drop table proposta_correcao 			cascade;	
-drop table anomalia 					cascade;
-drop table item 						cascade;
+drop table local_publico          cascade;
+drop table item                   cascade;
+drop table anomalia               cascade;
+drop table anomalia_traducao      cascade;
+drop table duplicado              cascade;
+drop table utilizador             cascade;
+drop table utilizador_qualificado cascade;
+drop table utilizador_regular     cascade;
+drop table incidencia             cascade;
+drop table proposta_correcao      cascade;
+drop table correcao               cascade;
 
 ----------------------------------------
 -- Table Creation
@@ -13,63 +19,92 @@ drop table item 						cascade;
 --   1. pk_table for names of primary key constraints
 --   2. fk_table_another for names of foreign key constraints
 
-create table utilizador (
-	u_email  	varchar(80)	   not null unique,
-	u_password	varchar(80)	   not null,
-	constraint 	pk_utilizador  primary key (u_email)
-);
-
-create table proposta_correcao (
-	pc_nro		varchar(80)		not null unique,
-	pc_data_hora    varchar(80)		not null,
-	pc_texto	varchar(80)		not null,
-	u_email		varchar(80)		not null,
-	constraint	pk_proposta_correcao  	primary key (pc_nro),
-	constraint	fk_proposta_correcao 	foreign key (u_email) references utilizador(u_email)
-);
-
-create table anomalia (
-	a_id		varchar(80)	not null unique,
-	a_zona 		varchar(80)	not null,
-	a_imagem	varchar(80)	not null,
-	a_lingua	varchar(80)	not null,
-	a_descricao	varchar(80)	not null,
-	a_ts		varchar(80)	not null,
-	constraint 	pk_anomalia  	primary key (a_id)
+create table local_publico (
+	lp_latitude  decimal(2, 6)  not null,
+	lp_longitude decimal(3, 6)  not null,
+	lp_nome      varchar(80)    not null,
+	constraint pk_local_publico primary key (lp_latitude, lp_longitude)
 );
 
 create table item (
-	i_id		varchar(80)	not null unique,
-	i_descricao 	varchar(80)	not null,
-	i_localizacao	varchar(80)	not null,
-	lp_coordenadas	varchar(80)	not null,
-	constraint 	pk_item		primary key (i_id)
+	i_id          varchar(5)         not null unique,
+	i_descricao   varchar(80)        not null,
+	i_localizacao varchar(80)        not null,
+	lp_latitude   decimal(2, 6)      not null,
+	lp_longitude  decimal(3, 6)      not null,
+	constraint    pk_item            primary key (i_id),
+	constraint    fk_i_local_publico foreign key (lp_latitude, lp_longitude) references local_publico(lp_latitude, lp_longitude)
 );
 
-----------------------------------------
--- Populate Relations 
-----------------------------------------
+create table anomalia (
+	a_id                   varchar(5)   not null unique,
+	a_zona                 varchar(80)  not null,
+	a_imagem               varchar(80)  not null,
+	a_lingua               varchar(80)  not null,
+	a_ts                   varchar(80)  not null,
+	a_descricao            varchar(80)  not null,
+	a_tem_anomalia_redacao boolean      not null,
+	constraint pk_anomalia primary key (a_id)
+);
 
-insert into utilizador values ('bruno@gmail.com',	 'bruno');
-insert into utilizador values ('vasco@gmail.com',	 'vasco');
-insert into utilizador values ('rui@gmail.com',		 'rui');
-insert into utilizador values ('nikoleta@gmail.com', 'nikoleta');
+create table anomalia_traducao (
+	a_id       varchar(5)  not null unique,
+	at_zona2   varchar(80) not null,
+	at_lingua2 varchar(80) not null,
+	constraint pk_anomalia_traducao primary key (a_id),
+	constraint fk_at_anomalia       foreign key (a_id) references anomalia(a_id)
+);
 
-insert into proposta_correcao values ('1', '2019', 'feito pelo bruno', 	  'bruno@gmail.com');
-insert into proposta_correcao values ('2', '2013', 'feita pela nikoleta', 'nikoleta@gmail.com');
-insert into proposta_correcao values ('3', '2019', 'feito pelo bruno',    'bruno@gmail.com');
-insert into proposta_correcao values ('4', '2020', 'feito pelo vasco',    'vasco@gmail.com');
-insert into proposta_correcao values ('5', '2019', 'feito pelo bruno',    'bruno@gmail.com');
+create table duplicado (
+	i_id1 varchar(5) not null,
+	i_id2 varchar(5) not null,
+	constraint pk_duplicado primary key (i_id1, i_id2),
+	constraint fk_d_item1   foreign key (i_id1) references item(i_id),
+	constraint fk_d_item2   foreign key (i_id2) references item(i_id)
+);
 
-insert into anomalia values ('1', 'anomalia - zona1', 'anomalia - imagem1', 'pt', 'anomalia - descricao1', 'ts1');
-insert into anomalia values ('2', 'anomalia - zona2', 'anomalia - imagem2', 'anomalia - lingua2', 'anomalia - descricao2', 'ts2');
-insert into anomalia values ('3', 'anomalia - zona3', 'anomalia - imagem3', 'pt', 'anomalia - descricao3', 'ts3');
-insert into anomalia values ('4', 'anomalia - zona4', 'anomalia - imagem4', 'anomalia - lingua4', 'anomalia - descricao4', 'ts4');
-insert into anomalia values ('5', 'anomalia - zona5', 'anomalia - imagem5', 'anomalia - lingua5', 'anomalia - descricao5', 'ts5');
+create table utilizador (
+	u_email    varchar(80)   not null unique,
+	u_password varchar(80)   not null,
+	constraint pk_utilizador primary key (u_email)
+);
 
-insert into item values ('1', 'item - descricao1', 'item - localizacao1', 'item - coordenadas1');
-insert into item values ('2', 'item - descricao2', 'item - localizacao2', 'item - coordenadas2');
-insert into item values ('3', 'item - descricao3', 'item - localizacao3', 'item - coordenadas3');
-insert into item values ('4', 'item - descricao4', 'item - localizacao4', 'item - coordenadas4');
-insert into item values ('5', 'item - descricao5', 'item - localizacao5', 'item - coordenadas5');
-insert into item values ('6', 'item - descricao6', 'item - localizacao6', 'item - coordenadas6');
+create table utilizador_qualificado (
+	u_email varchar(80)                  not null unique,
+	constraint pk_utilizador_qualificado primary key (u_email)
+	constraint fk_uq_utilizador          foreign key (u_email) references utilizador(u_email)
+);
+
+create table utilizador_regular (
+	u_email varchar(80)              not null unique,
+	constraint pk_utilizador_regular primary key (u_email)
+	constraint fk_ur_utilizador      foreign key (u_email) references utilizador(u_email)
+);
+
+create table incidencia (
+	a_id     varchar(5)         not null,
+	i_id     varchar(5)         not null,
+	u_email  varchar(80)        not null,
+	constraint pk_incidencia    primary key (a_id),
+	constraint fk_ic_anomalia   foreign key (a_id)    references anomalia(a_id),
+	constraint fk_ic_item       foreign key (i_id)    references item(i_id),
+	constraint fk_ic_utilizador foreign key (u_email) references utilizador(u_email)
+);
+
+create table proposta_correcao (
+	pc_nro       varchar(80) not null unique,
+	pc_data_hora varchar(80) not null,
+	pc_texto     varchar(80) not null,
+	u_email      varchar(80) not null,
+	constraint   pk_proposta_correcao         primary key (u_email, pc_nro),
+	constraint   fk_pc_utilizador_qualificado foreign key (u_email) references utilizador_qualificado(u_email)
+);
+
+create table correcao (
+	u_email varchar(80) not null,
+	pc_nro  varchar(80) not null,
+	a_id    varchar(5)  not null,
+	constraint pk_correcao            primary key (u_email, pc_nro, a_id),
+	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro),
+	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id)
+);
