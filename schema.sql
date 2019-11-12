@@ -27,7 +27,7 @@ create table local_publico (
 );
 
 create table item (
-	i_id          varchar(5)         not null unique,
+	i_id          smallint           not null unique,
 	i_descricao   varchar(80)        not null,
 	i_localizacao varchar(80)        not null,
 	lp_latitude   decimal(2, 6)      not null,
@@ -37,7 +37,7 @@ create table item (
 );
 
 create table anomalia (
-	a_id                   varchar(5)   not null unique,
+	a_id                   smallint     not null unique,
 	a_zona                 varchar(80)  not null,
 	a_imagem               varchar(80)  not null,
 	a_lingua               varchar(80)  not null,
@@ -48,7 +48,7 @@ create table anomalia (
 );
 
 create table anomalia_traducao (
-	a_id       varchar(5)  not null unique,
+	a_id       smallint    not null unique,
 	at_zona2   varchar(80) not null,
 	at_lingua2 varchar(80) not null,
 	constraint pk_anomalia_traducao primary key (a_id),
@@ -56,8 +56,8 @@ create table anomalia_traducao (
 );
 
 create table duplicado (
-	i_id1 varchar(5) not null,
-	i_id2 varchar(5) not null,
+	i_id1 smallint not null,
+	i_id2 smallint not null,
 	constraint pk_duplicado primary key (i_id1, i_id2),
 	constraint fk_d_item1   foreign key (i_id1) references item(i_id),
 	constraint fk_d_item2   foreign key (i_id2) references item(i_id)
@@ -82,8 +82,8 @@ create table utilizador_regular (
 );
 
 create table incidencia (
-	a_id     varchar(5)         not null,
-	i_id     varchar(5)         not null,
+	a_id     smallint           not null,
+	i_id     smallint           not null,
 	u_email  varchar(80)        not null,
 	constraint pk_incidencia    primary key (a_id),
 	constraint fk_ic_anomalia   foreign key (a_id)    references anomalia(a_id),
@@ -92,7 +92,7 @@ create table incidencia (
 );
 
 create table proposta_correcao (
-	pc_nro       varchar(80) not null unique,
+	pc_nro       smallint    not null unique,
 	pc_data_hora varchar(80) not null,
 	pc_texto     varchar(80) not null,
 	u_email      varchar(80) not null,
@@ -102,8 +102,8 @@ create table proposta_correcao (
 
 create table correcao (
 	u_email varchar(80) not null,
-	pc_nro  varchar(80) not null,
-	a_id    varchar(5)  not null,
+	pc_nro  smallint    not null,
+	a_id    smallint    not null,
 	constraint pk_correcao            primary key (u_email, pc_nro, a_id),
 	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro),
 	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id)
