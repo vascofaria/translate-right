@@ -2,6 +2,28 @@
 -- Populate Relations 
 ----------------------------------------
 
+insert into local_publico() values ();
+
+insert into item() values ();
+
+insert into anomalia() values ();
+
+insert into anomalia_traducao() values ();
+
+insert into duplicado() values ();
+
+insert into utilizador() values ();
+
+insert into utilizador_qualificado() values ();
+
+insert into utilizador_regular() values ();
+
+insert into incidencia() values ();
+
+insert into proposta_correcao() values ();
+
+insert into correcao() values ();
+
 insert into utilizador values ('bruno@gmail.com',	 'bruno');
 insert into utilizador values ('vasco@gmail.com',	 'vasco');
 insert into utilizador values ('rui@gmail.com',		 'rui');
