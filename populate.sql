@@ -46,23 +46,42 @@ insert into duplicado(i_id1, i_id2)
 	values (4, 5);
 
 insert into utilizador(u_email, u_password) 
-	values ();
+	values ('nikoleta@gmail.com', 'nika');
 insert into utilizador(u_email, u_password) 
-	values ();
+	values ('vasco@gmail.com', 'vasco');
 insert into utilizador(u_email, u_password) 
-	values ();
+	values ('bruno@gmail.com', 'bruno');
 insert into utilizador(u_email, u_password) 
-	values ();
+	values ('rui@gmail.com', 'rui');
+insert into utilizador(u_email, u_password)
+	values ('zemanel@gmail.com', 'ze');
 
 insert into utilizador_qualificado(u_email)
-	values ();
+	values ('nikoleta@gmail.com');
 insert into utilizador_qualificado(u_email)
-	values ();
+	values ('vasco@gmail.com');
+insert into utilizador_qualificado(u_email)
+	values ('bruno@gmail.com');
+insert into utilizador_qualificado(u_email)
+	values ('rui@gmail.com');
 
-insert into utilizador_regular(u_email) values ();
+insert into utilizador_regular(u_email)
+	values ('zemanel@gmail.com');
 
-insert into incidencia() values ();
+insert into incidencia(a_id,i_id,u_email) values (1,2,'nikoleta@gmail.com');
+insert into incidencia(a_id,i_id,u_email) values (2,4,'vasco@gmail.com'   );
+insert into incidencia(a_id,i_id,u_email) values (3,5,'bruno@gmail.com'   );
+insert into incidencia(a_id,i_id,u_email) values (4,3,'vasco@gmail.com'   );
+insert into incidencia(a_id,i_id,u_email) values (5,1,'rui@gmail.com'     );
 
-insert into proposta_correcao() values ();
+insert into proposta_correcao(pc_nro, pc_data_hora,pc_texto,u_email) values (1,'2016-01-09 06:59:34', 'Chegar para a direita', 'bruno@gmail.com'   );
+insert into proposta_correcao(pc_nro, pc_data_hora,pc_texto,u_email) values (2,'2017-02-18 02:40:01', 'Alterar para amarelo' , 'nikoleta@gmail.com');
+insert into proposta_correcao(pc_nro, pc_data_hora,pc_texto,u_email) values (3,'2018-03-27 10:07:56', 'Mais comprido'        , 'vasco@gmail.com'   );
+insert into proposta_correcao(pc_nro, pc_data_hora,pc_texto,u_email) values (4,'2019-04-31 15:34:14', 'Rodar 90'             , 'rui@gmail.com'     );
+insert into proposta_correcao(pc_nro, pc_data_hora,pc_texto,u_email) values (5,'2020-05-01 20:23:12', 'Aumentar ampliação'   , 'bruno@gmail.com'   );
 
-insert into correcao() values ();
+insert into correcao(u_email,pc_nro,a_id) values ('bruno@gmail.com'    ,1,5);
+insert into correcao(u_email,pc_nro,a_id) values ('nikoleta@gmail.com' ,2,2);
+insert into correcao(u_email,pc_nro,a_id) values ('vasco@gmail.com'    ,3,4);
+insert into correcao(u_email,pc_nro,a_id) values ('rui@gmail.com'      ,4,1);
+insert into correcao(u_email,pc_nro,a_id) values ('bruno@gmail.com'    ,5,3); 
