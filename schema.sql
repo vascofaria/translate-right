@@ -71,13 +71,13 @@ create table utilizador (
 
 create table utilizador_qualificado (
 	u_email varchar(80)                  not null unique,
-	constraint pk_utilizador_qualificado primary key (u_email)
+	constraint pk_utilizador_qualificado primary key (u_email),
 	constraint fk_uq_utilizador          foreign key (u_email) references utilizador(u_email)
 );
 
 create table utilizador_regular (
 	u_email varchar(80)              not null unique,
-	constraint pk_utilizador_regular primary key (u_email)
+	constraint pk_utilizador_regular primary key (u_email),
 	constraint fk_ur_utilizador      foreign key (u_email) references utilizador(u_email)
 );
 
