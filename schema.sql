@@ -20,8 +20,8 @@ drop table correcao               cascade;
 --   2. fk_table_another for names of foreign key constraints
 
 create table local_publico (
-	lp_latitude  decimal(2, 6)  not null,
-	lp_longitude decimal(3, 6)  not null,
+	lp_latitude  decimal(8, 6)  not null,
+	lp_longitude decimal(9, 6)  not null,
 	lp_nome      varchar(80)    not null,
 	constraint pk_local_publico primary key (lp_latitude, lp_longitude)
 );
@@ -30,8 +30,8 @@ create table item (
 	i_id          smallint           not null unique,
 	i_descricao   varchar(80)        not null,
 	i_localizacao varchar(80)        not null,
-	lp_latitude   decimal(2, 6)      not null,
-	lp_longitude  decimal(3, 6)      not null,
+	lp_latitude   decimal(8, 6)      not null,
+	lp_longitude  decimal(9, 6)      not null,
 	constraint    pk_item            primary key (i_id),
 	constraint    fk_i_local_publico foreign key (lp_latitude, lp_longitude) references local_publico(lp_latitude, lp_longitude)
 );
