@@ -25,15 +25,15 @@ insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
 	values (5, 'Aula de Surf', 'Cabo Verde', 3.789033, 67.789873);
 
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (1, '34, 12', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', 1);
+	values (1, '34, 12', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (2, '12, 54', '&&%#', 'eng', '2019-11-15 12:50:56', 'Mal traduzido', 0);
+	values (2, '12, 54', '&&%#', 'eng', '2019-11-15 12:50:56', 'Mal traduzido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (3, '4, 6', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', 0);
+	values (3, '4, 6', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (4, '10, 78', '$$#$', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', 0);
+	values (4, '10, 78', '$$#$', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (5, '3, 59', '#$$#$', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', 0);
+	values (5, '3, 59', '#$$#$', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
 
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
 	values (2, '31, 48', 'pt');
