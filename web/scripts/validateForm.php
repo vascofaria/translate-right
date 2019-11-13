@@ -19,7 +19,10 @@
 			}
 
 			if (empty($_POST["pass"])) {
-				$password = "Password is required";
+				$passwordErr = "Password is required";
+			}
+			else {
+				$password = $_POST["email"];
 			}
 		}
 
