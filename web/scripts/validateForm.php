@@ -2,8 +2,10 @@
 
 <body>
 	<?php  
-		$email = $password = "";
-		$emailErr = $passwordErr = "";
+		$email = "";
+		$password = "";
+		$emailErr = "";
+		$passwordErr = "";
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
