@@ -18,6 +18,17 @@
         $result = $db->prepare($sql);
         $result->execute();
 
+        echo("<table class='table'><thead class='thead-dark'><tr><th scope='col'>E-mail</th><th scope='col'>Password</th><tr/><thead/><tbody>");
+        foreach($result as $row) {
+          echo("<tr>");
+          echo("<td>{$row['email']}</td>");
+          echo("<td>{$row['password']}</td>");
+          echo("<tr/>");
+        }
+        echo("<tbody/><table/>");
+
+        $db = null;
+
       } catch (PDOException $e) {
         echo("<p>ERROR: {$e->getMessage()}</p>");
       }
