@@ -22,7 +22,7 @@
 				$passwordErr = "Password is required";
 			}
 			else {
-				$password = $_POST["email"];
+				$password = $_POST["pass"];
 			}
 		}
 
