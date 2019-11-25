@@ -4,8 +4,8 @@
 	<?php  
 		$email = "";
 		$password = "";
-		$emailErr = "";
-		$passwordErr = "";
+		$emailErr = false;
+		$passwordErr = false;
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -26,6 +26,10 @@
 			else {
 				$password = $_POST["pass"];
 			}
+
+			if (!$emailErr && !$passwordErr) {
+				header("Location: ./index.html");
+			}
 		}
 
 		function test_input($data) {
@@ -34,9 +38,6 @@
   			$data = htmlspecialchars($data);
  			return $data;
 		}
-
-		echo $email
-		echo $password
 	?>
 </body>
 
