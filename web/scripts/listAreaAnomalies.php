@@ -9,7 +9,7 @@
       <div class="alert alert-success">
         <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
       </div>
-      <form id="anomalies-form">
+      <form id="anomalies-form" action="usecase.php">
     
         <div class="input-group mb-3 m-anomaly-form-component">
           <div class="input-group-prepend">
