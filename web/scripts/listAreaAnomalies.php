@@ -4,7 +4,21 @@
     <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
   </head>
   <body>
-    <div id="anomalies-form">
+
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/right-alignment.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Translate Right
+      </a>
+      <form class="form-inline my-2 my-lg-0" action="./index.html">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go back</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" action="../index.html">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+      </form>
+    </nav>
+
+    <div id="anomalies-form-by-area">
 
       <div class="alert alert-success">
         <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>

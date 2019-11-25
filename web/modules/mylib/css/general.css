@@ -21,7 +21,7 @@
   margin: 5%;
 }
 
-#anomalies-form {
+#anomalies-form-by-area {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 20%;
