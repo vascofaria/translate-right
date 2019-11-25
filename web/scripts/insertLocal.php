@@ -15,6 +15,24 @@
       			</div>
     		</div>
  		</div>
+ 		<div class="form-row">
+    		<div class="col-md-4 mb-3">
+    			<label for="validationCustom01">Longitude</label>
+      			<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+      			<div class="valid-feedback">
+        			Looks good!
+      			</div>
+    		</div>
+ 		</div>
+ 		<div class="form-row">
+    		<div class="col-md-4 mb-3">
+    			<label for="validationCustom01">Latitude</label>
+      			<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+      			<div class="valid-feedback">
+        			Looks good!
+      			</div>
+    		</div>
+ 		</div>
   		<button class="btn btn-primary" type="submit">Submit form</button>
 	</form>
 
