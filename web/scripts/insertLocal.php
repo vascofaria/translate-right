@@ -1,9 +1,23 @@
 <html>
 <head>
-	
+	<link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
 </head>
 
 <body>
+	<form class="needs-validation" novalidate>
+  		<div class="form-row">
+    		<div class="col-md-4 mb-3">
+    			<label for="validationCustom01">First name</label>
+      			<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+      			<div class="valid-feedback">
+        			Looks good!
+      			</div>
+    		</div>
+ 		</div>
+  		<button class="btn btn-primary" type="submit">Submit form</button>
+	</form>
+
 	<?php
 		try {
 			$host     = "db.ist.utl.pt";
