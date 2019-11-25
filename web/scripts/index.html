@@ -16,9 +16,9 @@
       </form>
     </nav>
 
-      <div class="card-group">
+      <div class="card-group m-group-card">
 
-        <div class="card">
+        <div class="card m-card">
           <img src="../assets/team.png" class="card-img-top m-img-menu" alt="...">
           <div class="card-body">
             <h5 class="card-title">User</h5>
@@ -29,26 +29,29 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card m-card">
           <img src="../assets/place.png" class="card-img-top m-img-menu" alt="...">
           <div class="card-body">
             <h5 class="card-title">Local</h5>
             <p class="card-text">Select any action you want to do on locals.</p>
-            <form action="insertLocal.php" method="POST">
+            <form action="insertLocal.php" method="GET">
               <button class="btn btn-outline-dark m-choice" type="submit">Insert Local</button>
+            </form>
+            <form action="deleteLocal.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Delete Local</button>
             </form>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card m-card">
           <img src="../assets/problem.png" class="card-img-top m-img-menu" alt="...">
           <div class="card-body">
             <h5 class="card-title">Anomaly</h5>
             <p class="card-text">Select any action you want to do on anomalies.</p>
-            <form action="insertAnomaly.php" method="POST">
+            <form action="insertAnomaly.php" method="GET">
               <button class="btn btn-outline-dark m-choice" type="submit">Insert Anomaly</button>
             </form>
-            <form action="insertItem.php" method="POST">
+            <form action="insertItem.php" method="GET">
               <button class="btn btn-outline-dark m-choice" type="submit">Insert Item</button>
             </form>
             <form action="listAreaAnomalies.php" method="GET">
@@ -57,19 +60,37 @@
             <form action="listTimeAnomalies.php" method="GET">
               <button class="btn btn-outline-dark m-choice" type="submit">List Time Anomlies</button>
             </form>
+            <form action="deleteAnomaly.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Delete Anomaly</button>
+            </form>
+            <form action="deleteItem.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Delete Item</button>
+            </form>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card m-card">
           <img src="../assets/solved.png" class="card-img-top m-img-menu" alt="...">
           <div class="card-body">
             <h5 class="card-title">Correction</h5>
             <p class="card-text">Select any action you want to do on corrections.</p>
-            <form action="insertCorrection.php" method="POST">
+            <form action="insertCorrection.php" method="GET">
               <button class="btn btn-outline-dark m-choice" type="submit">Insert Correction</button>
             </form>
-            <form action="insertCorrectionProposal.php" method="POST">
+            <form action="insertCorrectionProposal.php" method="GET">
               <button class="btn btn-outline-dark m-choice" type="submit">Insert Correction Proposal</button>
+            </form>
+            <form action="updateCorrection.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Update Correction</button>
+            </form>
+            <form action="updateCorrectinProposal.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Update Correction Proposal</button>
+            </form>
+            <form action="deleteCorrection.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Delete Correction</button>
+            </form>
+            <form action="deleteCorrectionProposal.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">Delete Correction Proposal</button>
             </form>
           </div>
         </div>

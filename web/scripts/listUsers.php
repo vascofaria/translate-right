@@ -18,7 +18,7 @@
         $result = $db->prepare($sql);
         $result->execute();
 
-        echo("<table class='table'>");
+        echo("<table class='table m-table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
               echo("<th scope='col'>E-mail</th>");
