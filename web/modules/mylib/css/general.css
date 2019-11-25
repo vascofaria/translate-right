@@ -20,3 +20,18 @@
 .m-table {
   margin: 5%;
 }
+
+#anomalies-form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 2%;
+}
+
+.m-submit-btn {
+  height: 40px;
+  width: 100px;
+  align-items: center;
+}
