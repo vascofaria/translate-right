@@ -1,14 +1,79 @@
 <!DOCTYPE html>
 <html>
+  <head>
+      <link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
+  </head>
   <body>
-    <form action="listTimeAnomalies.php" method="GET">
-      <input type="submit" value="List Time Anomlies">
-    </form>
-    <form action="listAreaAnomalies.php" method="GET">
-      <input type="submit" value="List Area Anomlies">
-    </form>
-    <form action="listUsers.php" method="GET">
-      <input type="submit" value="List Users">
-    </form>
+
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/right-alignment.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Translate Right
+      </a>
+      <form class="form-inline my-2 my-lg-0" action="../index.html">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+      </form>
+    </nav>
+
+      <div class="card-group">
+
+        <div class="card">
+          <img src="../assets/team.png" class="card-img-top m-img-menu" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">User</h5>
+            <p class="card-text">Select any action you want to do on users.</p>
+            <form action="listUsers.php" method="GET">
+              <input class="btn btn-outline-dark m-choice" type="submit" value="List Users">
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../assets/place.png" class="card-img-top m-img-menu" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Local</h5>
+            <p class="card-text">Select any action you want to do on locals.</p>
+            <form action="insertLocal.php" method="POST">
+              <button class="btn btn-outline-dark m-choice" type="submit">Insert Local</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../assets/problem.png" class="card-img-top m-img-menu" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Anomaly</h5>
+            <p class="card-text">Select any action you want to do on anomalies.</p>
+            <form action="insertAnomaly.php" method="POST">
+              <button class="btn btn-outline-dark m-choice" type="submit">Insert Anomaly</button>
+            </form>
+            <form action="insertItem.php" method="POST">
+              <button class="btn btn-outline-dark m-choice" type="submit">Insert Item</button>
+            </form>
+            <form action="listAreaAnomalies.php" method="GET">
+              <input class="btn btn-outline-dark m-choice" type="submit" value="List Area Anomlies">
+            </form>
+            <form action="listTimeAnomalies.php" method="GET">
+              <button class="btn btn-outline-dark m-choice" type="submit">List Time Anomlies</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../assets/solved.png" class="card-img-top m-img-menu" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Correction</h5>
+            <p class="card-text">Select any action you want to do on corrections.</p>
+            <form action="insertCorrection.php" method="POST">
+              <button class="btn btn-outline-dark m-choice" type="submit">Insert Correction</button>
+            </form>
+            <form action="insertCorrectionProposal.php" method="POST">
+              <button class="btn btn-outline-dark m-choice" type="submit">Insert Correction Proposal</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
   </body>
 </html>
