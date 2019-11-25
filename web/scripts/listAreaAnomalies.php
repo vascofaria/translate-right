@@ -9,7 +9,7 @@
       <div class="alert alert-success">
         <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
       </div>
-      <form id="anomalies-form">
+      <form id="anomalies-form" action="">
     
         <div class="input-group mb-3 m-anomaly-form-component">
           <div class="input-group-prepend">
@@ -39,13 +39,13 @@
           <input type="text" class="form-control">
         </div>
 
-        <button class="btn btn-primary m-submit-btn" type="submit">List</button>
+        <button class="btn btn-primary m-submit-btn" type="submit" name="stest">List</button>
       </form>
     </div>
 
     <div id="anomalies-table" class="m-table">
       <?php
-      function fillTable() {
+      if (isset($_POST['stest'])) {
         try {
           $host = "db.ist.utl.pt";
           $user = "ist189559";
