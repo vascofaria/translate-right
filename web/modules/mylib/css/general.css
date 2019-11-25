@@ -11,3 +11,12 @@
   height: 300px;
   align-self: center;
 }
+
+.m-group-card {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.m-table {
+  margin: 5%;
+}
