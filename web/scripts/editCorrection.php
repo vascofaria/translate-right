@@ -64,9 +64,9 @@
             echo("<tbody>");
               foreach($result as $row) {
                 echo("<tr><form action='' method='PATCH'>");
-                echo("<td><input type='text' name='newEmail' value='"."$row['u_email']"."'></td>");
-                echo("<td><input type='text' name='newPcNro' value='"."$row['pc_nro']" ."'></td>");
-                echo("<td><input type='text' name='newAId'   value='"."$row['a_id']"   ."'></td>");
+                echo("<td><input type='text' name='newEmail' value='"."{$row['u_email']}"."'></td>");
+                echo("<td><input type='text' name='newPcNro' value='"."{$row['pc_nro']}" ."'></td>");
+                echo("<td><input type='text' name='newAId'   value='"."{$row['a_id']}"   ."'></td>");
                 echo("<td>
                     <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit'>
                         Edit
