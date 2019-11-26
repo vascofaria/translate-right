@@ -6,7 +6,7 @@
 
 <body>
     <?php
-        if (isset($_PATCH['submit-edit'])) {
+        if (isset($_POST['submit-edit'])) {
             try {
 
                 $host     = "db.ist.utl.pt";
@@ -14,9 +14,9 @@
                 $password = "idxi1356";
                 $dbname   = $user;
 
-                $email=$_PATCH['newEmail'];
-                $pcnro=$_PATCH['newPcNro'];
-                $aid=$_PATCH['newAId'];
+                $email=$_POST['newEmail'];
+                $pcnro=$_POST['newPcNro'];
+                $aid=$_POST['newAId'];
 
                  echo("<p>$email</p>");
 
@@ -63,7 +63,7 @@
             echo("<thead/>");
             echo("<tbody>");
               foreach($result as $row) {
-                echo("<tr><form action='' method='PATCH'>");
+                echo("<tr><form action='' method='POST'>");
                 echo("<td><input type='text' name='newEmail' value='"."{$row['u_email']}"."'></td>");
                 echo("<td><input type='text' name='newPcNro' value='"."{$row['pc_nro']}" ."'></td>");
                 echo("<td><input type='text' name='newAId'   value='"."{$row['a_id']}"   ."'></td>");
