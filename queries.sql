@@ -31,7 +31,15 @@ COUNT(*) = (
 ) as E;
 
 -- 3.
+SELECT u_email, lp_longitude FROM (
+  incidencia
+  NATURAL JOIN
+  (SELECT * FROM item WHERE lp_longitude > 39.336775) as locals
+  NATURAL JOIN
+  (SELECT * FROM anomalia WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2020-01-01 00:00:00') as dates
+);
 
+SELECT * FROM local_publico WHERE lp_longitude > 39.336775;
 
 -- 4.
 
