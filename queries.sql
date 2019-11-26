@@ -16,7 +16,7 @@ SELECT lp_nome, lp_latitude, lp_longitude FROM (
 );
 
 -- 2.
-SELECT * FROM incidencia NATURAL JOIN anomalia WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2019-07-01 00:00:00';
+SELECT * FROM incidencia NATURAL JOIN anomalia WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2019-07-01 00:00:00' AND a_tem_anomalia_redacao;
 
 -- 3.
 
