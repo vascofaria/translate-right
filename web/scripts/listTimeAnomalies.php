@@ -9,7 +9,7 @@
         <img src="../assets/right-alignment.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Translate Right
       </a>
-      <form class="form-inline my-2 my-lg-0" action="./index.html">
+      <form class="form-inline my-2 my-lg-0" action="./index.html" style="float: right">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go back</button>
       </form>
       <form class="form-inline my-2 my-lg-0" action="../index.html">
@@ -39,6 +39,7 @@
           <input type="text" class="form-control" name="to_time">
         </div>
 
+        <button class="btn btn-primary m-submit-btn" type="submit" name="submit-time">List</button>
       </form>
     </div>
 
