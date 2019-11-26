@@ -69,7 +69,7 @@ insert into utilizador_regular(u_email)
 	values ('zemanel@gmail.com');
 
 insert into incidencia(a_id,i_id,u_email) values (1,2,'nikoleta@gmail.com');
-insert into incidencia(a_id,i_id,u_email) values (2,4,'vasco@gmail.com'   );
+insert into incidencia(a_id,i_id,u_email) values (2,4,'zemanel@gmail.com'   );
 insert into incidencia(a_id,i_id,u_email) values (3,5,'bruno@gmail.com'   );
 insert into incidencia(a_id,i_id,u_email) values (4,3,'vasco@gmail.com'   );
 insert into incidencia(a_id,i_id,u_email) values (5,1,'rui@gmail.com'     );
