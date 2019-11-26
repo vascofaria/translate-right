@@ -13,19 +13,19 @@
                 $user     = "ist189559";
                 $password = "idxi1356";
                 $dbname   = $user;
-$oldemail=$_POST['oldEmail'];
-                $email=$_POST['newEmail'];
-                $pcnro=$_POST['newPcNro'];
-                $aid=$_POST['newAId'];
-
-                 echo("<p>$email</p>");
-echo("<p>$oldemail</p>");
+                
+                $oldEmail=$_POST['oldEmail'];
+                $oldPcNro=$_POST['oldPcNro'];
+                $oldAId=$_POST['oldAId'];
+                $newEmail=$_POST['newEmail'];
+                $newPcNro=$_POST['newPcNro'];
+                $newAId=$_POST['newAId'];
 
 
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-               // $sql = "UPDATE correcao SET u_email=$email, pc_nro=$pcnro, a_id=$aid WHERE   ";
+                $sql = "UPDATE correcao SET u_email=$newEmail, pc_nro=$newPcNro, a_id=$newAId WHERE u_email=$oldEmail AND pc_nro=$oldPcNro AND a_id=$oldAId;  ";
 
                 $result = $db->prepare($sql);
                 $result->execute();
@@ -66,10 +66,12 @@ echo("<p>$oldemail</p>");
             echo("<tbody>");
               foreach($result as $row) {
                 echo("<tr><form action='' method='POST'>");
-                echo("<td><input type='hidden' name='oldEmail' value='"."{$row['u_email']}"."'></td>");
-                echo("<td><input type='text' name='newEmail' value='"."{$row['u_email']}"."'></td>");
-                echo("<td><input type='text' name='newPcNro' value='"."{$row['pc_nro']}" ."'></td>");
-                echo("<td><input type='text' name='newAId'   value='"."{$row['a_id']}"   ."'></td>");
+                echo("<td><input type='hidden' name='oldEmail' value='"."{$row['u_email']}"."'>");
+                echo("<input type='text' name='newEmail' value='"."{$row['u_email']}"."'></td>");
+                echo("<td><input type='text' name='oldPcNro' value='"."{$row['pc_nro']}" ."'>");
+                echo("<input type='text' name='newPcNro' value='"."{$row['pc_nro']}" ."'></td>");
+                echo("<td><input type='text' name='oldAId'   value='"."{$row['a_id']}"   ."'>");
+                echo("<input type='text' name='newAId'   value='"."{$row['a_id']}"   ."'></td>");
                 echo("<td>
                     <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
                         Edit
