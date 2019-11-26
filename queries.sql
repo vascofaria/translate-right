@@ -1,20 +1,24 @@
 -- 1.
-SELECT * FROM (
-  SELECT lp_latitude, lp_longitude, COUNT(*) as cnt FROM (
-    SELECT a_id, lp_latitude, lp_longitude FROM (
-      Item NATURAL JOIN (SELECT a_id, i_id FROM Incidencia)
-    )
-  ) group by lp_latitude, lp_longitude
-) HAVING cnt=max(cnt);
+SELECT lp_nome, lp_latitude, lp_longitude FROM (
+	local_publico NATURAL JOIN (
+		SELECT lp_latitude, lp_longitude FROM (
+			item NATURAL JOIN (SELECT a_id, i_id FROM incidencia) AS A
+		) GROUP BY lp_latitude, lp_longitude
+		HAVING
+		count(*) = (
+			SELECT MAX(D.CNT) FROM (
+				SELECT COUNT(*) AS CNT FROM (
+					item NATURAL JOIN (SELECT a_id, i_id FROM incidencia) AS B
+				) AS C GROUP BY (lp_latitude, lp_longitude)
+			) AS D
+		)
+	) as E
+);
 
 -- 2.
-
+	SELECT * from incidencia NATURAL JOIN anomalia
 
 -- 3.
 
 
 -- 4.
-
-
-
-SELECT a_id, lp_latitude, lp_longitude FROM Item NATURAL JOIN (SELECT a_id, i_id FROM Incidencia) as A;
