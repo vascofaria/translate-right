@@ -27,7 +27,7 @@ insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values (1, '0034, 0012', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (2, '0012, 0054', '&&%#', 'eng', '2019-11-15 12:50:56', 'Mal traduzido', false);
+	values (2, '0012, 0054', '&&%#', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values (3, '0004, 0006', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)

@@ -16,7 +16,19 @@ SELECT lp_nome, lp_latitude, lp_longitude FROM (
 );
 
 -- 2.
-SELECT * FROM incidencia NATURAL JOIN anomalia WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2019-07-01 00:00:00' AND a_tem_anomalia_redacao;
+SELECT u_email FROM (
+  SELECT u_email FROM (
+    incidencia NATURAL JOIN anomalia NATURAL JOIN anomalia_traducao NATURAL JOIN utilizador_regular
+  ) AS A WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2019-07-01 00:00:00' GROUP BY u_email
+HAVING
+COUNT(*) = (
+  SELECT MAX(C.cnt) FROM (
+    SELECT COUNT(*) AS cnt FROM (
+      incidencia NATURAL JOIN anomalia NATURAL JOIN anomalia_traducao NATURAL JOIN utilizador_regular
+    ) AS B WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2019-07-01 00:00:00' GROUP BY (u_email)
+  ) AS C
+  )
+) as E;
 
 -- 3.
 
