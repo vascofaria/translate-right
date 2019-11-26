@@ -5,9 +5,17 @@
 </head>
 
 <body>
-	<form class="needs-validation" novalidate>
-  		<div class="form-row">
-    		<div class="col-md-4 mb-3">
+	<form 
+		class="needs-validation" 
+		novalidate 
+		style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
+  		<div class="form-group row">
+            <div class="col-sm-10">
+                <label style="width:100%; text-align: center;"><h4>Insert Local</h4></label>
+            </div>
+        </div>
+  		<div class="form-group row">
+    		<div class="col-sm-10">
     			<label for="validationCustom01">Local name</label>
       			<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
       			<div class="valid-feedback">
@@ -15,19 +23,19 @@
       			</div>
     		</div>
  		</div>
- 		<div class="form-row">
-    		<div class="col-md-4 mb-3">
+ 		<div class="form-group row">
+    		<div class="col-sm-10">
     			<label for="validationCustom01">Longitude</label>
-      			<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+      			<input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
       			<div class="valid-feedback">
         			Looks good!
       			</div>
     		</div>
  		</div>
- 		<div class="form-row">
-    		<div class="col-md-4 mb-3">
+ 		<div class="form-group row">
+    		<div class="col-sm-10">
     			<label for="validationCustom01">Latitude</label>
-      			<input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+      			<input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
       			<div class="valid-feedback">
         			Looks good!
       			</div>
