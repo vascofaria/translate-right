@@ -70,10 +70,16 @@
           $query = makeQuery();
           $result = $db->prepare($query);
 
-          $result->bindValue(':latitude1',  $_POST['lat1']);
-          $result->bindValue(':longitude1', $_POST['long1']);
-          $result->bindValue(':latitude2',  $_POST['lat2']);
-          $result->bindValue(':longitude2', $_POST['long2']);
+          $result->bindParam(':latitude1',  $lat1);
+          $result->bindParam(':longitude1', $long1);
+          $result->bindParam(':latitude2',  $lat2);
+          $result->bindParam(':longitude2', $long2);
+
+          $lat1  = $_POST['lat1'];
+          $long1 = $_POST['long1'];
+          $lat2  = $_POST['lat2'];
+          $long2 = $_POST['long2'];
+
           $result->execute();
 
           echo("<table class='table'>");
