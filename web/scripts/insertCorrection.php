@@ -45,6 +45,27 @@
         <button class="btn btn-primary" type="submitButton">Submit form</button>
     </form>
 
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
 	<?php
         if (isset($_POST['submitButton'])) {
     		try {
@@ -57,8 +78,12 @@
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		
             	$query = makeQuery($_POST['email'], $_POST['number'], $_POST['anomalyId'])
-
             	$result = $db->prepare($sql);
+
+                $result->bindValue(':email',     $_POST['email']);
+                $result->bindValue(':num',       $_POST['num']);
+                $result->bindValue(':anomalyId', $_POST['anomalyId']);
+
                 $result->execute();
 
             	$db = null;
@@ -69,7 +94,7 @@
         }
 
         function makeQuery($email, $number, $anomalyId) {
-            $query = "INSERT INTO correcao(u_email, pc_nro, a_id) values ($email, $number, $anomalyId);";
+            $query = "INSERT INTO correcao(u_email, pc_nro, a_id) values (:email, :num, :anomalyId);";
             return $query;
         }
 	?>

@@ -18,7 +18,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Local name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" name="name" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Local name" value="" name="name" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
