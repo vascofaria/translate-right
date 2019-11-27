@@ -67,7 +67,38 @@
         })();
     </script>
 
-	
+	<?php
+        if (isset($_POST['submitButton'])) {
+    		try {
+    			$host     = "db.ist.utl.pt";
+           		$user     = "ist189559";
+            	$password = "idxi1356";
+            	$dbname   = $user;
+    		
+            	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+            	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    		
+            	$query = makeQuery()
+            	$result = $db->prepare($sql);
+
+                $result->bindValue(':email',     $_POST['email']);
+                $result->bindValue(':num',       $_POST['number']);
+                $result->bindValue(':anomalyId', $_POST['anomalyId']);
+
+                $result->execute();
+
+            	$db = null;
+    		}
+    		catch (PDOException $e) {
+            	echo("<p>ERROR: {$e->getMessage()}</p>");
+            }
+        }
+
+        function makeQuery() {
+            $query = "INSERT INTO correcao(u_email, pc_nro, a_id) values (:email, :num, :anomalyId);";
+            return $query;
+        }
+	?>
 </body>
 
 </html>
