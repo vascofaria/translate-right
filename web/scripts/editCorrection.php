@@ -21,6 +21,9 @@
                 $newPcNro=$_POST['newPcNro'];
                 $newAId=$_POST['newAId'];
 
+                echo('$oldAId');
+                echo('$newAId');
+
 
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
