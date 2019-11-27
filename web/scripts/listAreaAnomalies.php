@@ -70,17 +70,11 @@
           $query = makeQuery();
           $result = $db->prepare($query);
 
-          $result->bindParam(':latitude1',  $lat1);
-          $result->bindParam(':longitude1', $long1);
-          $result->bindParam(':latitude2',  $lat2);
-          $result->bindParam(':longitude2', $long2);
-
-          $lat1  = $_POST['lat1'];
-          $long1 = $_POST['long1'];
-          $lat2  = $_POST['lat2'];
-          $long2 = $_POST['long2'];
-
-          $result->execute();
+          //$result->bindValue(':latitude1',  $_POST['lat1']);
+          //$result->bindValue(':longitude1', $_POST['long1']);
+          //$result->bindValue(':latitude2',  $_POST['lat2']);
+          //$result->bindValue(':longitude2', $_POST['long2']);
+          $result->execute(array($_POST['lat1'], $_POST['long1'], $_POST['lat2'], $_POST['long2']));
 
           echo("<table class='table'>");
             echo("<thead class='thead-dark'>");
@@ -119,7 +113,8 @@
       }
 
       function makeQuery() {
-        $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
+        //$query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
+        $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >=? AND SUBSTRING(a_zona, 1, 4)::int8 <=? AND SUBSTRING(a_zona, 7, 4)::int8 >=? AND SUBSTRING(a_zona, 7, 4)::int8 <=?;";
         return $query;
       }
       ?>
