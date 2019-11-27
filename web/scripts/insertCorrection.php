@@ -28,7 +28,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Number</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Number" value="" name="number" required>
+                <input type="number" class="form-control" id="validationCustom01" placeholder="Number" value="" name="number" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -37,7 +37,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Anomaly Id</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Anomaly Id" value="" name="anomalyId" required>
+                <input type="number" class="form-control" id="validationCustom01" placeholder="Anomaly Id" value="" name="anomalyId" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
