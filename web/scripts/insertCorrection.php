@@ -79,7 +79,7 @@
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		
             	$query = makeQuery()
-            	$result = $db->prepare($sql);
+            	$result = $db->prepare($query);
 
                 $result->bindValue(':email',     $_POST['email']);
                 $result->bindValue(':num',       $_POST['number']);
