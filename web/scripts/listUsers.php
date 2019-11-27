@@ -29,23 +29,20 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $query = makeQuery();
+        $query = "SELECT * FROM utilizador;";
         $result = $db->prepare($query);
-
         $result->execute();
 
         echo("<table class='table m-table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
               echo("<th scope='col'>E-mail</th>");
-              echo("<th scope='col'>Password</th>");
             echo("<tr/>");
           echo("<thead/>");
           echo("<tbody>");
             foreach($result as $row) {
               echo("<tr>");
               echo("<td>{$row['u_email']}</td>");
-              echo("<td>{$row['u_password']}</td>");
               echo("<tr/>");
             }
           echo("<tbody/>");
@@ -55,11 +52,6 @@
 
       } catch (PDOException $e) {
         echo("<p>ERROR: {$e->getMessage()}</p>");
-      }
-
-      function makeQuery() {
-        $query = "SELECT * FROM utilizador;";
-        return $query;
       }
     ?>
   </body>

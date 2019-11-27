@@ -67,7 +67,7 @@
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $query = makeQuery();
+          $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
           $result = $db->prepare($query);
 
           //$result->bindValue(':latitude1',  $_POST['lat1']);
@@ -110,12 +110,6 @@
         } catch (PDOException $e) {
           echo("<p>ERROR: {$e->getMessage()}</p>");
         }
-      }
-
-      function makeQuery() {
-        //$query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
-        $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >=? AND SUBSTRING(a_zona, 1, 4)::int8 <=? AND SUBSTRING(a_zona, 7, 4)::int8 >=? AND SUBSTRING(a_zona, 7, 4)::int8 <=?;";
-        return $query;
       }
       ?>
     </div>
