@@ -65,10 +65,10 @@
             echo("<tbody>");
               foreach($result as $row) {
                 echo("<tr><form action='' method='POST'>");
-                echo("<td><input type='readonly' name='PcNro'    disabled value='"."{$row['pc_nro']}"."'></td>");
-                echo("<td><input type='readonly' name='DataHora' disabled value='"."{$row['pc_data_hora']}" ."'></td>");
-                echo("<td><input type='text' name='Texto'             value='"."{$row['pc_texto']}"   ."'></td>");
-                echo("<td><input type='readonly' name='UEmail'   disabled value='"."{$row['u_email']}"   ."'></td>");
+                echo("<td><input type='readonly' name='PcNro'    style='border:none' value='"."{$row['pc_nro']}"."'></td>");
+                echo("<td><input type='readonly' name='DataHora' style='border:none' value='"."{$row['pc_data_hora']}" ."'></td>");
+                echo("<td><input type='text'     name='Texto'    value='"."{$row['pc_texto']}"   ."'></td>");
+                echo("<td><input type='readonly' name='UEmail'   style='border:none' value='"."{$row['u_email']}"   ."'></td>");
                 echo("<td>
                     <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
                         Edit
