@@ -28,15 +28,15 @@ insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
 
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('0034, 0012', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
-insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
+insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('0012, 0054', '&&%#', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
-insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
+insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('0004, 0006', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
-insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
+insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('0010, 0078', '$$#$', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
-insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
+insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('0003, 0059', '#$$#$', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
-insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
+insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('0007, 0038', '#$##$', 'pt', '2019-01-01 10:00:00', 'Frase', false);
 
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
