@@ -76,7 +76,7 @@
             
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "olaaaaaaa";
+            
                 $query = makeQuery($_POST['latitude'], $_POST['longitude'], $_POST['name']);
                 echo $query;
                 $result = $db->prepare($sql);
