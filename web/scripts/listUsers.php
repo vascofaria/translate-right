@@ -17,12 +17,9 @@
     </nav>
 
     <?php
-      if (isset($_COOKIE['userID'])) {
-        echo('<p>$_COOKIE['userID']</p>')
-      }
-    ?>
-
-    <?php
+      //if (isset($_COOKIE['userID'])) {
+      //  echo("<p>{$_COOKIE['userID']}</p>");
+      //}
       try {
         $host = "db.ist.utl.pt";
         $user = "ist189559";
