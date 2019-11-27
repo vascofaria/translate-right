@@ -57,7 +57,7 @@
     <?php
         if (isset($_POST['submitButton'])) {
             try {
-                $host     = "db.ist.utl.pt";
+                $host     = "db.ist.tecnico.ulisboa.pt";
                 $user     = "ist189559";
                 $password = "idxi1356";
                 $dbname   = $user;
