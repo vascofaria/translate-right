@@ -67,7 +67,7 @@
                 echo("<tr><form action='' method='POST'>");
                 echo("<td><input type='readonly' name='PcNro'    value='"."{$row['pc_nro']}"."'></td>");
                 echo("<td><input type='readonly' name='DataHora' value='"."{$row['pc_data_hora']}" ."'></td>");
-                echo("<td><input type='text'     name='Text'     value='"."{$row['pc_texto']}"   ."'></td>");
+                echo("<td><input type='text'     name='Texto'     value='"."{$row['pc_texto']}"   ."'></td>");
                 echo("<td><input type='readonly' name='UEmail'   value='"."{$row['u_email']}"   ."'></td>");
                 echo("<td>
                     <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
