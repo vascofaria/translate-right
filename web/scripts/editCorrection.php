@@ -28,7 +28,7 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-                $sql = "UPDATE correcao SET u_email=$newEmail, pc_nro=$newPcNro, a_id=$newAId WHERE u_email='$oldEmail' AND pc_nro=$oldPcNro AND a_id=$oldAId;";
+                $sql = "UPDATE correcao SET u_email='$newEmail', pc_nro=$newPcNro, a_id=$newAId WHERE u_email='$oldEmail' AND pc_nro=$oldPcNro AND a_id=$oldAId;";
 
                 $result = $db->prepare($sql);
                 $result->execute();
