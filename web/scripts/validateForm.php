@@ -29,6 +29,9 @@
 
 			if (!$emailErr && !$passwordErr) {
 				header("Location: ./index.html");
+				$cookieName = "userID";
+				$cookieValue = $email;
+				setcookie($cookieName, $cookieValue, time() + (86400), '/'); // 1 day
 			}
 		}
 
