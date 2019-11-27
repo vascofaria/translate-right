@@ -34,19 +34,25 @@ COUNT(*) = (
 SELECT DISTINCT u_email FROM (
   incidencia
   NATURAL JOIN
-  (SELECT * FROM item WHERE lp_longitude > 39.336775) as locals
+  (SELECT * FROM item WHERE lp_latitude > 39.336775) as locals
   NATURAL JOIN
   (SELECT * FROM anomalia WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2020-01-01 00:00:00') as dates
 ) AS A GROUP BY (u_email)
 HAVING
 COUNT(*) = (
-  SELECT COUNT(*) as cnt FROM local_publico WHERE lp_longitude > 39.336775
+  SELECT COUNT(*) as cnt FROM local_publico WHERE lp_latitude > 39.336775
 );
 
-SELECT * FROM local_publico WHERE lp_longitude > 39.336775;
+
+
 
 -- 4.
-
+SELECT A.u_email FROM 
+  (correcao NATURAL JOIN proposta_correcao) AS correcoes INNER JOIN 
+  (SELECT * FROM (
+    incidencia NATURAL JOIN anomalia NATURAL JOIN utilizador_qualificado NATURAL JOIN item
+  ) WHERE lp_latitude < 39.336775 AND a_ts >= '2019-01-01 00:00:00' AND a_ts < '2020-01-01 00:00:00') as A
+ON correcoes.a_id = A.a_id AND correcoes.u_email != A.u_email;
 
 
 -- MAX ONE
