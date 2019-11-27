@@ -75,7 +75,10 @@
           $long1 = $_POST['long1'];
           $lat2  = $_POST['lat2'];
           $long2 = $_POST['long2'];
-          echo($lat1, $long1, $lat2, $long2);
+          echo('<p>{$lat1}</p>');
+          echo('<p>{$long1}</p>');
+          echo('<p>{$lat2}</p>');
+          echo('<p>{$long2}</p>');
           //$result->bindValue(':longitude1', $_POST['long1']);
           //$result->bindValue(':latitude2',  $_POST['lat2']);
           //$result->bindValue(':longitude2', $_POST['long2']);
