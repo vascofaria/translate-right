@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <!--
     <form 
         class="needs-validation" 
         method="POST"
@@ -66,7 +67,8 @@
             }, false);
         })();
     </script>
-
+    -->
+    <p>ola</p>
 	<?php
         if (isset($_POST['submitButton'])) {
     		try {
