@@ -78,8 +78,8 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query = makeQuery();
-                $result = pg_prepare("myQuery", $query);
-                $result = pg_execute("myQuery", array($_POST['latitude'], $_POST['longitude'], $_POST['name']));
+                $result = $db->prepare($query);
+                $result->execute(array($_POST['latitude'], $_POST['longitude'], $_POST['name']));
 
                 $db = null;
             }
