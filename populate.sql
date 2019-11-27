@@ -13,31 +13,31 @@ insert into local_publico(lp_latitude, lp_longitude, lp_nome)
 insert into local_publico(lp_latitude, lp_longitude, lp_nome)
 	values (3.789033, 67.789873, 'Praia');
 
-insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
-	values (1, 'Pica das 7', 'Rua do Cairo', 12.890234, 12.897932);
-insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
-	values (2, 'Jola a 60 centimos', 'Arco do Cego', 14.234234, 127.382310);
-insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
-	values (3, 'Loja de Malas', 'Malópia', 35.123543, 120.749342);
-insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
-	values (4, 'Espetáculo de Luzes', 'Alameda', 45.234123, 156.789324);
-insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
-	values (5, 'Aula de Surf', 'Cabo Verde', 3.789033, 67.789873);
-insert into item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude)
-	values (6, 'Aula de Código', 'Alameda', 35.123543, 120.749342);
+insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
+	values ('Pica das 7', 'Rua do Cairo', 12.890234, 12.897932);
+insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
+	values ('Jola a 60 centimos', 'Arco do Cego', 14.234234, 127.382310);
+insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
+	values ('Loja de Malas', 'Malópia', 35.123543, 120.749342);
+insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
+	values ('Espetáculo de Luzes', 'Alameda', 45.234123, 156.789324);
+insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
+	values ('Aula de Surf', 'Cabo Verde', 3.789033, 67.789873);
+insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
+	values ('Aula de Código', 'Alameda', 35.123543, 120.749342);
 
+insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
+	values ('0034, 0012', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (1, '0034, 0012', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
+	values ('0012, 0054', '&&%#', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (2, '0012, 0054', '&&%#', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
+	values ('0004, 0006', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (3, '0004, 0006', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
+	values ('0010, 0078', '$$#$', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (4, '0010, 0078', '$$#$', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
+	values ('0003, 0059', '#$$#$', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
 insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (5, '0003, 0059', '#$$#$', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
-insert into anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values (6, '0007, 0038', '#$##$', 'pt', '2019-01-01 10:00:00', 'Frase', false);
+	values ('0007, 0038', '#$##$', 'pt', '2019-01-01 10:00:00', 'Frase', false);
 
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
 	values (2, '0031, 0048', 'pt');
