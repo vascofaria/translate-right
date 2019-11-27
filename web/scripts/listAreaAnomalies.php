@@ -75,8 +75,7 @@
           $long1 = $_POST['long1'];
           $lat2  = $_POST['lat2'];
           $long2 = $_POST['long2'];
-          console.debug('lo');
-          console.log($lat1, $long1, $lat2, $long2);
+          echo($lat1, $long1, $lat2, $long2);
           //$result->bindValue(':longitude1', $_POST['long1']);
           //$result->bindValue(':latitude2',  $_POST['lat2']);
           //$result->bindValue(':longitude2', $_POST['long2']);
