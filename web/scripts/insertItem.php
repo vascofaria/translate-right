@@ -91,9 +91,9 @@
                 $result = $db->prepare($query);
 
                 $result->bindValue(':description', $_POST['description']);
-                $result->bindValue(':location',    floatval($_POST['location']));
+                $result->bindValue(':location',    $_POST['location']);
                 $result->bindValue(':latitude',    floatval($_POST['latitude']));
-                $result->bindValue(':longitude',   $_POST['longitude']);
+                $result->bindValue(':longitude',   floatval($_POST['longitude']));
 
                 $result->execute();
 
