@@ -77,7 +77,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
                 $query = makeQuery($_POST['latitude'], $_POST['longitude'], $_POST['name']);
-
+                echo $query;
                 $result = $db->prepare($sql);
                 $result->execute();
 
