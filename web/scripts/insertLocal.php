@@ -79,8 +79,7 @@
                 echo $_POST['latitude'];
                 $query = makeQuery();
                 $result = $db->prepare($query);
-                $result->execute();
-                $result = pg_execute(array($_POST['latitude'], $_POST['longitude'], $_POST['name']));
+                $result->execute(array($_POST['latitude'], $_POST['longitude'], $_POST['name']));
 
                 $db = null;
             }
