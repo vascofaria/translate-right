@@ -76,10 +76,15 @@
             
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo $_POST['latitude'];
+               
                 $query = makeQuery();
                 $result = $db->prepare($query);
-                $result->execute(array($_POST['latitude'], $_POST['longitude'], $_POST['name']));
+
+                $result->bindValue(':latitude',  $_POST['latitude']);
+                $result->bindValue(':longitude', $_POST['longitude']);
+                $result->bindValue(':name',      $_POST['name']);
+
+                $result->execute();
 
                 $db = null;
             }
@@ -89,7 +94,7 @@
         }
 
         function makeQuery() {
-            $query = "INSERT INTO local_publico(lp_latitude, lp_longitude, lp_nome) VALUES ($1, $2, $3);";
+            $query = "INSERT INTO local_publico(lp_latitude, lp_longitude, lp_nome) VALUES (:latitude, :longitude, :name);";
             return $query;
         }
     ?>
