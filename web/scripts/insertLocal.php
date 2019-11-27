@@ -78,7 +78,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 echo $_POST['latitude'];
                 $query = makeQuery();
-                $result = $db->prepare("SELECT * FROM local_publico");
+                $result = $db->prepare($query);
                 $result->execute();
                 #$result = pg_execute($db, "myQuery", array($_POST['latitude'], $_POST['longitude'], $_POST['name']));
 
