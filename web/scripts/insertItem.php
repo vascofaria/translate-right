@@ -6,7 +6,8 @@
 
 <body>
     <form 
-        class="needs-validation" 
+        class="needs-validation"
+        method="POST" 
         novalidate 
         style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
         <div class="form-group row">
