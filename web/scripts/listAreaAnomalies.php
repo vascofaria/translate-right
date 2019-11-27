@@ -25,28 +25,28 @@
         <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
       </div>
       <form id="anomalies-form" action="" method="POST">
-    
+
         <div class="input-group mb-3 m-anomaly-form-component">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Latitude 1:</>
           </div>
           <input type="text" class="form-control" name="lat1">
         </div>
-    
+
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Longitude 1:</>
           </div>
           <input type="text" class="form-control" name="long1">
         </div>
-    
+
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Latitude 2:</>
           </div>
           <input type="text" class="form-control" name="lat2">
         </div>
-    
+
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Longitude 2:</>
@@ -87,10 +87,10 @@
                 echo("<th scope='col'>ID</th>");
                 echo("<th scope='col'>Zona</th>");
                 echo("<th scope='col'>Imagem</th>");
-                echo("<th scope='col'>Lingua</th>");
-                echo("<th scope='col'>TimeStamp</th>");
-                echo("<th scope='col'>Descricao</th>");
-                echo("<th scope='col'>Redacao?</th>");
+                echo("<th scope='col'>Língua</th>");
+                echo("<th scope='col'>Timestamp</th>");
+                echo("<th scope='col'>Descrição</th>");
+                echo("<th scope='col'>Tem Redação?</th>");
               echo("<tr/>");
             echo("<thead/>");
             echo("<tbody>");
@@ -102,7 +102,11 @@
                 echo("<td>{$row['a_lingua']}</td>");
                 echo("<td>{$row['a_ts']}</td>");
                 echo("<td>{$row['a_descricao']}</td>");
-                echo("<td>{$row['a_tem_anomalia_redacao']}</td>");
+                if ($row['a_tem_anomalia_redacao']){
+                  echo("<td>Sim</td>");
+                } else {
+                  echo("<td>Não</td>");
+                }
                 echo("<tr/>");
               }
             echo("<tbody/>");
