@@ -23,7 +23,7 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-                $sql = "UPDATE proposta_correcao SET pc_texto='$Texto'WHERE pc_nro='$PcNro' AND pc_data_hora=$DataHora AND u_email=$UEmail;";
+                $sql = "UPDATE proposta_correcao SET pc_texto='$Texto' WHERE pc_nro=$PcNro AND pc_data_hora='$DataHora' AND u_email='$UEmail';";
 
                 $result = $db->prepare($sql);
                 $result->execute();
