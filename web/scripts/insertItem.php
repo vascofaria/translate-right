@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
 
     <script>
@@ -104,7 +104,7 @@
             }
         }
 
-        function makeQuery($description, $location, $latitude, $longitude) {
+        function makeQuery() {
             $query = "INSERT INTO item(i_descricao, i_localizacao, lp_latitude, lp_longitude) values 
             (:description, :location, :latitude, :longitude);";
             return $query;
