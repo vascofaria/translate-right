@@ -82,7 +82,7 @@
             	$result = $db->prepare($sql);
 
                 $result->bindValue(':email',     $_POST['email']);
-                $result->bindValue(':num',       $_POST['num']);
+                $result->bindValue(':num',       $_POST['number']);
                 $result->bindValue(':anomalyId', $_POST['anomalyId']);
 
                 $result->execute();
