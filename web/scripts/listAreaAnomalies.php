@@ -64,18 +64,16 @@
           $password = "idxi1356";
           $dbname = $user;
 
-          $lat1  = $_POST['lat1'];
-          $long1 = $_POST['long1'];
-          $lat2  = $_POST['lat2'];
-          $long2 = $_POST['long2'];
-
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $sql = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= $lat1 AND SUBSTRING(a_zona, 1, 4)::int8 <= $lat2 AND SUBSTRING(a_zona, 7, 4)::int8 >= $long1 AND SUBSTRING(a_zona, 7, 4)::int8 <= $long2;";
-          // SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 2)::int8 < 10;
+          $query = makeQuery();
+          $result = $db->prepare($query);
 
-          $result = $db->prepare($sql);
+          $result->bindValue(':latitude1',  $_POST['lat1']);
+          $result->bindValue(':longitude1', $_POST['long1']);
+          $result->bindValue(':latitude2',  $_POST['lat2']);
+          $result->bindValue(':longitude2', $_POST['long2']);
           $result->execute();
 
           echo("<table class='table'>");
@@ -112,6 +110,11 @@
         } catch (PDOException $e) {
           echo("<p>ERROR: {$e->getMessage()}</p>");
         }
+      }
+
+      function makeQuery() {
+        $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
+        return $query;
       }
       ?>
     </div>

@@ -29,9 +29,9 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT * FROM utilizador;";
+        $query = makeQuery();
+        $result = $db->prepare($query);
 
-        $result = $db->prepare($sql);
         $result->execute();
 
         echo("<table class='table m-table'>");
@@ -55,6 +55,11 @@
 
       } catch (PDOException $e) {
         echo("<p>ERROR: {$e->getMessage()}</p>");
+      }
+
+      function makeQuery() {
+        $query = "SELECT * FROM utilizador;";
+        return $query;
       }
     ?>
   </body>
