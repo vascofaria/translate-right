@@ -17,7 +17,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Zone</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Zone" value="" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -26,7 +26,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Image</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Image" value="" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -35,7 +35,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Language</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Language" value="" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -44,7 +44,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Description</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Description" value="" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -54,27 +54,31 @@
     </form>
 
 	<?php
-		try {
-			$host     = "db.ist.utl.pt";
-       		$user     = "ist189559";
-        	$password = "idxi1356";
-        	$dbname   = $user;
-		
-        	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-        	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
-        	$query = "";
+        if (isset($_POST['submitButton'])) {
+    		try {
+    			$host     = "db.ist.utl.pt";
+           		$user     = "ist189559";
+            	$password = "idxi1356";
+            	$dbname   = $user;
+    		
+            	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+            	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    		
+            	$query = "";
 
-        	$result = pg_prepare("myQuery", $query);
+            	$result = pg_prepare("myQuery", $query);
 
-        	$db = null;
-		}
-		catch (PDOException $e) {
-        	echo("<p>ERROR: {$e->getMessage()}</p>");
+            	$db = null;
+    		}
+    		catch (PDOException $e) {
+            	echo("<p>ERROR: {$e->getMessage()}</p>");
+            }
         }
 
         function makeQuery($zone, $image, $language, $description) {
-
+            $query = "INSERT INTO anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao) values 
+            (1, '0034, 0012', $image, $language, $des, 'Cartaz com erro', false);";
+            return null;
         }
 	?>
 </body>
