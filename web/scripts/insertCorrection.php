@@ -78,7 +78,7 @@
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		
-            	$query = makeQuery()
+            	$query = makeQuery();
             	$result = $db->prepare($query);
 
                 $result->bindValue(':email',     $_POST['email']);
