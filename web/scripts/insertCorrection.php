@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submitButton">Submit form</button>
+        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
 
     <script>
@@ -78,7 +78,7 @@
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		
-            	$query = makeQuery($_POST['email'], $_POST['number'], $_POST['anomalyId'])
+            	$query = makeQuery()
             	$result = $db->prepare($sql);
 
                 $result->bindValue(':email',     $_POST['email']);
@@ -94,7 +94,7 @@
             }
         }
 
-        function makeQuery($email, $number, $anomalyId) {
+        function makeQuery() {
             $query = "INSERT INTO correcao(u_email, pc_nro, a_id) values (:email, :num, :anomalyId);";
             return $query;
         }
