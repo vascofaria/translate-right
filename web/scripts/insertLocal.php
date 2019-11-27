@@ -17,7 +17,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Local name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" name="name" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -26,7 +26,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Longitude</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" name="longitude" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -35,13 +35,13 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Latitude</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Longitude" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Latitude" value="" name="latitude" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
 
     <script>
@@ -66,30 +66,31 @@
     </script>
 
     <?php
-        try {
-            $host     = "db.ist.utl.pt";
-            $user     = "ist189559";
-            $password = "idxi1356";
-            $dbname   = $user;
-        
-            $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-            $query = makeQuery();
+        if (isset($_POST['submitButton'])) {
+            try {
+                $host     = "db.ist.utl.pt";
+                $user     = "ist189559";
+                $password = "idxi1356";
+                $dbname   = $user;
+            
+                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+                $query = makeQuery($_POST['latitude'], $_POST['longitude'], $_POST['name']);
 
-            $result = pg_prepare("myQuery", $query);
+                $result = $db->prepare($sql);
+                $result->execute();
 
-            $result = $db->prepare($sql);
-            $result->execute();
-
-            $db = null;
-        }
-        catch (PDOException $e) {
-            echo("<p>ERROR: {$e->getMessage()}</p>");
+                $db = null;
+            }
+            catch (PDOException $e) {
+                echo("<p>ERROR: {$e->getMessage()}</p>");
+            }
         }
 
         function makeQuery($latitude, $longitude, $name) {
             $query = "INSERT INTO local_publico(lp_latitude, lp_longitude, lp_nome) VALUES ($latitude, $longitude, $name);";
+            return $query;
         }
     ?>
 </body>
