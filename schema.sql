@@ -27,7 +27,7 @@ create table local_publico (
 );
 
 create table item (
-	i_id          smallint           not null unique,
+	i_id          serial           	 not null unique,
 	i_descricao   varchar(80)        not null,
 	i_localizacao varchar(80)        not null,
 	lp_latitude   decimal(8, 6)      not null,
@@ -37,11 +37,11 @@ create table item (
 );
 
 create table anomalia (
-	a_id                   smallint     not null unique,
+	a_id                   serial     	not null unique,
 	a_zona                 varchar(80)  not null,
 	a_imagem               varchar(80)  not null,
 	a_lingua               varchar(80)  not null,
-	a_ts                   timestamp    not null,
+	a_ts                   timestamp    default current_timestamp,
 	a_descricao            varchar(80)  not null,
 	a_tem_anomalia_redacao boolean      not null,
 	constraint pk_anomalia primary key (a_id)

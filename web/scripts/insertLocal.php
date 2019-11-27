@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
 </head>
@@ -18,7 +19,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Local name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="" name="name" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Local name" value="" name="name" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -76,10 +77,14 @@
             
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "olaaaaaaa";
-                $query = makeQuery($_POST['latitude'], $_POST['longitude'], $_POST['name']);
-                echo $query;
-                $result = $db->prepare($sql);
+               
+                $query = makeQuery();
+                $result = $db->prepare($query);
+
+                $result->bindValue(':latitude',  $_POST['latitude']);
+                $result->bindValue(':longitude', $_POST['longitude']);
+                $result->bindValue(':name',      $_POST['name']);
+
                 $result->execute();
 
                 $db = null;
@@ -89,8 +94,8 @@
             }
         }
 
-        function makeQuery($latitude, $longitude, $name) {
-            $query = "INSERT INTO local_publico(lp_latitude, lp_longitude, lp_nome) VALUES ($latitude, $longitude, $name);";
+        function makeQuery() {
+            $query = "INSERT INTO local_publico(lp_latitude, lp_longitude, lp_nome) VALUES (:latitude, :longitude, :name);";
             return $query;
         }
     ?>

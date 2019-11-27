@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
 </head>
@@ -51,8 +52,29 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 
     <?php
         if (isset($_POST['submitButton'])) {
@@ -64,10 +86,15 @@
             
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-                $query = makeQuery($_POST['description'], $_POST['location'], $_POST['latitude'], $_POST['longitude']);
 
-                $result = $db->prepare($sql);
+                $query = makeQuery();
+                $result = $db->prepare($query);
+
+                $result->bindValue(':description', $_POST['description']);
+                $result->bindValue(':location',    $_POST['location']);
+                $result->bindValue(':latitude',    floatval($_POST['latitude']));
+                $result->bindValue(':longitude',   floatval($_POST['longitude']));
+
                 $result->execute();
 
                 $db = null;
@@ -77,9 +104,9 @@
             }
         }
 
-        function makeQuery($description, $location, $latitude, $longitude) {
-            $query = "INSERT INTO item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude) values 
-            ($description, $location, $latitude, $longitude);";
+        function makeQuery() {
+            $query = "INSERT INTO item(i_descricao, i_localizacao, lp_latitude, lp_longitude) values 
+            (:description, :location, :latitude, :longitude);";
             return $query;
         }
     ?>
