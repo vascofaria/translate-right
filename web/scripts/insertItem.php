@@ -90,7 +90,6 @@
                 $query = makeQuery();
                 $result = $db->prepare($query);
 
-                #$result->bindValue(':id',  '');
                 $result->bindValue(':description', $_POST['description']);
                 $result->bindValue(':location',    $_POST['location']);
                 $result->bindValue(':latitude',    $_POST['latitude']);
@@ -106,8 +105,8 @@
         }
 
         function makeQuery($description, $location, $latitude, $longitude) {
-            $query = "INSERT INTO item(i_id, i_descricao, i_localizacao, lp_latitude, lp_longitude) values 
-            (:id, :description, :location, :latitude, :longitude);";
+            $query = "INSERT INTO item(i_descricao, i_localizacao, lp_latitude, lp_longitude) values 
+            (:description, :location, :latitude, :longitude);";
             return $query;
         }
     ?>
