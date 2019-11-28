@@ -89,7 +89,8 @@
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $query = "SELECT * FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
+          $query = "SELECT anomalia.a_id, anomalia.a_zona, anomalia_traducao.at_zona2, anomalia.a_imagem, anomalia.a_lingua, anomalia_traduacao.at_lingua2, anomalia.a_timestamp, anomalia.a_descricao, anomalia.a_tem_anomalia_redacao
+           FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
           $result = $db->prepare($query);
           $result->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
 
@@ -112,7 +113,7 @@
                 echo("<tr>");
                 echo("<td>{$row['a_id']}</td>");
                 echo("<td>{$row['a_zona']}</td>");
-                if ($row['at_zona']) echo("<td>{$row['at_zona2']}</td>");
+                if ($row['at_zona2']) echo("<td>{$row['at_zona2']}</td>");
                 else echo("<td>--</td>");
                 echo("<td>{$row['a_imagem']}</td>");
                 echo("<td>{$row['a_lingua']}</td>");
