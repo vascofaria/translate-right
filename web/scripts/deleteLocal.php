@@ -17,7 +17,75 @@
       </form>
     </nav>
 
+    <h1 class="m-badge"><span class="badge badge-secondary">Select the Local to delete:</span></h1>
+
+    <?php
+        if (isset($_POST['deleteCorrection'])) {
+            try {
+                $host     = "db.ist.utl.pt";
+                $user     = "ist189559";
+                $password = "idxi1356";
+                $dbname   = $user;
+
+                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $query = "DELETE FROM local_publico WHERE lp_longitude=:lp_longitude AND lp_latitude=:lp_latitude;";
+                $result = $db->prepare($query);
+                $result->bindValue(':lp_longitude',  $_POST['lp_longitude']);
+                $result->bindValue(':lp_latitude',  $_POST['lp_latitude']);
+                $result->execute();
+                $db = null;
+              } catch (PDOException $e) {
+                echo("<p>ERROR: {$e->getMessage()}</p>");
+              }
+        }
+    ?>
+	<?php
+		try {
+			$host     = "db.ist.utl.pt";
+       		$user     = "ist189559";
+        	$password = "idxi1356";
+        	$dbname   = $user;
+
+        	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+        	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $sql = "SELECT * FROM local_publico;";
+          $result = $db->prepare($sql);
+          $result->execute();
 
 
+          echo("<table class='table' style='margin-top: 60px;'>");
+          echo("<thead class='thead-dark'>");
+          echo("<tr>");
+          echo("<th scope='col'>Latitude</th>");
+          echo("<th scope='col'>Longitude</th>");
+          echo("<th scope='col'>Nome</th>");
+          echo("<th scope='col'>Delete</th>");
+          echo("<tr/>");
+          echo("<thead/>");
+          echo("<tbody>");
+            foreach($result as $row) {
+              echo("<tr><form action='' method='POST'>");
+              echo("<td><input type='readonly'   name='lp_latitude'    readonly style='border:none' value='"."{$row['lp_latitude']}"."'></td>");
+              echo("<td><input type='readonly'   name='lp_longitude'   readonly style='border:none' value='"."{$row['lp_longitude']}" ."'></td>");
+              echo("<td><input type='readonly'   name='lp_nome'      readonly style='border:none' value='"."{$row['lp_nome']}"   ."'></td>");
+              echo("<td>
+                  <button class='btn btn-danger m-submit-btn' type='submit' name='deleteCorrection' >
+                      Delete
+                  </button>
+                  </td>");
+              echo("</form><tr/>");
+            }
+          echo("<tbody/>");
+          echo("<table/>");
+
+        	$db = null;
+		}
+		catch (PDOException $e) {
+        	echo("<p>ERROR: {$e->getMessage()}</p>");
+        }
+	?>
 </body>
 </html>

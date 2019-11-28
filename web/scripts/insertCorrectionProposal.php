@@ -17,10 +17,10 @@
       </form>
     </nav>
 
-    <form 
-        class="needs-validation" 
+    <form
+        class="needs-validation"
         method="POST"
-        novalidate 
+        novalidate
         style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
         <div class="form-group row">
             <div class="col-sm-10">
@@ -29,8 +29,8 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label for="validationCustom01">Email</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Email" value="" name="email" required>
+                <label for="validationCustom01">Date</label>
+                <input type="date" class="form-control" id="validationCustom01" placeholder="" value="" name="date" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -38,8 +38,8 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label for="validationCustom01">Number</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Number" value="" name="number" required>
+                <label for="validationCustom01">Hour</label>
+                <input type="time" class="form-control" id="validationCustom01" placeholder="" value="" name="hour" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -47,14 +47,14 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label for="validationCustom01">text</label>
+                <label for="validationCustom01">Text</label>
                 <input type="text" class="form-control" id="validationCustom01" placeholder="Text" value="" name="text" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submitButton">Submit form</button>
+        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
 
     <script>
@@ -81,18 +81,31 @@
 	<?php
         if (isset($_POST['submitButton'])) {
     		try {
-    			$host     = "db.ist.utl.pt";
+    			    $host     = "db.ist.utl.pt";
            		$user     = "ist189559";
             	$password = "idxi1356";
             	$dbname   = $user;
-    		
+
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    		
-            	$query = makeQuery($_POST['email'], $_POST['number'], $_POST['text']);
+              $dateHour = $_POST['date'] . ' ' . $_POST['hour'];
 
-            	$result = $db->prepare($sql);
-                $result->execute();
+              //Gets correction proposal number for selected user.
+              $query = "SELECT MAX(pc_nro) as max FROM proposta_correcao WHERE u_email = :email;";
+              $result = $db->prepare($query);
+              $result->bindValue(':email', $_POST['email']);
+              $result->execute();
+              $row = $result->fetch(PDO::FETCH_ASSOC);
+              $number = $row['max'] + 1;
+
+              $query  = makeQuery();
+              $result = $db->prepare($query);
+              $result->bindValue(':cpNumber', $number);
+              $result->bindValue(':dateHour', $dateHour);
+              $result->bindValue(':cpText', $_POST['text']);
+              $result->bindValue(':email', $_COOKIE['userID']);
+
+              $result->execute();
 
             	$db = null;
     		}
@@ -101,10 +114,10 @@
             }
         }
 
-        function makeQuery($email, $number, $text) {
+        function makeQuery() {
             $date_hour = "";
-            $query = "INSERT INTO proposta_correcao(pc_nro, pc_data_hora, pc_texto, u_email) values 
-            ($number, $date_hour, $text, $email);";
+            $query = "INSERT INTO proposta_correcao(pc_nro, pc_data_hora, pc_texto, u_email) values
+            (:cpNumber, :dateHour, :cpText, :email);";
             return $query;
         }
 	?>
