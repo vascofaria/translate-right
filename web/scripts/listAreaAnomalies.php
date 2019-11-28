@@ -17,9 +17,61 @@
       </form>
     </nav>
 
+    <h1 class="m-badge"><span class="badge badge-secondary">Anomalies List in the given area</span></h1>
+    <h4 class="m-badge">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
+
     <div id="anomalies-form-by-area">
 
-      <div class="alert alert-success">
+      <form 
+        id="anomalies-form"
+        class="needs-validation" 
+        method="POST"
+        action=""
+        novalidate
+      >
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">Latitude 1:</label>
+            <input type="text" class="form-control" placeholder="Latitude" value="" name="lat1" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">Longitude 1:</label>
+            <input type="text" class="form-control" placeholder="Longitude" value="" name="long1" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">Latitude 2:</label>
+            <input type="text" class="form-control" placeholder="Latitude" value="" name="lat2" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">Longitude 2:</label>
+            <input type="text" class="form-control" placeholder="Longitude" value="" name="long2" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- <div class="alert alert-success">
         <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
       </div>
       <form id="anomalies-form" action="" method="POST">
@@ -53,7 +105,7 @@
         </div>
 
         <button class="btn btn-primary m-submit-btn" type="submit" name="submit-area">List</button>
-      </form>
+      </form> -->
     </div>
 
     <div id="anomalies-table" class="m-table">
