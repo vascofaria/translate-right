@@ -56,7 +56,7 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $query = "SELECT * FROM anomalia WHERE a_ts >= ':since_time' AND a_ts <= ':to_time';";
+        $query = "SELECT * FROM anomalia WHERE a_ts >= :since_time AND a_ts <= :to_time;";
         $result = $db->prepare($query);
         $result->execute(array($since_time, $to_time));
 
