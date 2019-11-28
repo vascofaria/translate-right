@@ -100,25 +100,24 @@
               $dateHour = $_POST['date'] . ' ' . $_POST['hour'];
 
               //Gets correction proposal number for selected user.
-              $query = "SELECT MAX(pc_nro) as maximo FROM proposta_correcao WHERE u_email = :email";
+              $query = "SELECT MAX(pc_nro) as maximo FROM proposta_correcao WHERE u_email = :email;";
               $result = $db->prepare($query);
               $result->bindValue(':email', $_POST['email']);
               $result->execute();
               foreach($result as $row) {
-                  echo("<td>{$row['maximo']}</td>");
+                  $number = $row["maximo"] + 1;
+                  break;
               }
-
-              /*
               $query  = makeQuery();
               $result = $db->prepare($query);
 
-              $result->bindValue(':cpNumber', $_POST['number']);
+              $result->bindValue(':cpNumber', $number);
               $result->bindValue(':dateHour', $dateHour);
               $result->bindValue(':cpText', $_POST['text']);
               $result->bindValue(':email', $_POST['email']);
 
               $result->execute();
-              */
+
             	$db = null;
     		}
     		catch (PDOException $e) {
