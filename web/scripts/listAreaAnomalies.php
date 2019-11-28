@@ -20,10 +20,8 @@
     <h1 class="m-badge"><span class="badge badge-secondary">Anomalies List in the given area</span></h1>
     <h4 class="m-sub-badge">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
 
-    <div id="anomalies-form-by-area">
-
       <form 
-        id="anomalies-form"
+        id="anomalies-area-form"
         class="needs-validation list-form"
         method="POST"
         action=""
@@ -72,7 +70,7 @@
         <button class="btn btn-primary" type="submit">List Anomalies</button>
 
       </form>
-
+      <!-- <div id="anomalies-form-by-area"> -->
       <!-- <div class="alert alert-success">
         <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
       </div>
@@ -108,7 +106,7 @@
 
         <button class="btn btn-primary m-submit-btn" type="submit" name="submit-area">List</button>
       </form> -->
-    </div>
+    <!-- </div> -->
 
     <div id="anomalies-table" class="m-table">
       <?php

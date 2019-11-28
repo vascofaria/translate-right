@@ -17,15 +17,6 @@
   grid-template-columns: auto auto;
 }
 
-#anomalies-form-by-area {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 2%;
-}
-
 .m-submit-btn {
   height: 40px;
   width: 100px;
@@ -37,7 +28,7 @@
 }
 
 .m-sub-badge {
-  transform: translate(60%, 100%);
+  transform: translate(18%, 160%);
 }
 
 .list-form {
