@@ -21,11 +21,12 @@
     <h4 class="m-sub-badge">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
 
       <form 
-        id="anomalies-area-form"
+        
         class="needs-validation"
         method="POST"
         action=""
         novalidate
+        style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
       >
       
         <div class="form-group row">

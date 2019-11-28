@@ -24,7 +24,7 @@
 }
 
 .m-badge {
-  transform: translate(40%, 100%);
+  transform: translate(37%, 100%);
 }
 
 .m-sub-badge {
@@ -35,7 +35,7 @@
   display: grid;
   grid-template-columns: auto auto;
   align-self: center;
-  transform: translate(60%, 50%);
+  transform: translate(55%, 50%);
   width: 50%;
 }
 
