@@ -17,10 +17,10 @@
       </form>
     </nav>
 
-    <form 
-        class="needs-validation" 
+    <form
+        class="needs-validation"
         method="POST"
-        novalidate 
+        novalidate
         style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
         <div class="form-group row">
             <div class="col-sm-10">
@@ -88,16 +88,17 @@
     </script>
 
 	<?php
+        /*
         if (isset($_POST['submitButton'])) {
     		try {
     			$host     = "db.ist.utl.pt";
            		$user     = "ist189559";
             	$password = "idxi1356";
             	$dbname   = $user;
-    		
+
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    		
+
             	$query = "";
 
             	$result = pg_prepare("myQuery", $query);
@@ -110,10 +111,10 @@
         }
 
         function makeQuery($zone, $image, $language, $description) {
-            $query = "INSERT INTO anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao) values 
+            $query = "INSERT INTO anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao) values
             (1, '0034, 0012', $image, $language, $des, 'Cartaz com erro', false);";
             return null;
-        }
+        }*/
 	?>
 </body>
 
