@@ -35,3 +35,8 @@
   width: 100px;
   align-items: center;
 }
+
+#users-list {
+  align-self: center;
+  width: 20%;
+}

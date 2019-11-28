@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>TR - List Users</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
@@ -33,7 +34,7 @@
         $result = $db->prepare($query);
         $result->execute();
 
-        echo("<table class='table m-table'>");
+        echo("<table id='users-list' class='table m-table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
               echo("<th scope='col'>E-mail</th>");
