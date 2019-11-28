@@ -31,7 +31,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Latitude 1:</label>
-            <input type="text" class="form-control" placeholder="Latitude" value="" name="lat1" required>
+            <input type="text" class="form-control" placeholder="Latitude(-90, 90)" value="" name="lat1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -41,7 +41,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Longitude 1:</label>
-            <input type="text" class="form-control" placeholder="Longitude" value="" name="long1" required>
+            <input type="text" class="form-control" placeholder="Longitude(0, 180)" value="" name="long1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -51,7 +51,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Latitude 2:</label>
-            <input type="text" class="form-control" placeholder="Latitude" value="" name="lat2" required>
+            <input type="text" class="form-control" placeholder="Latitude(-90, 90)" value="" name="lat2" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -61,7 +61,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Longitude 2:</label>
-            <input type="text" class="form-control" placeholder="Longitude" value="" name="long2" required>
+            <input type="text" class="form-control" placeholder="Longitude(0, 180)" value="" name="long2" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -89,6 +89,10 @@
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+          $auxquery  = "SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
+          $auxresult = $db->prepare($auxquery);
+          $auxresult->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
+
           $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
           $result = $db->prepare($query);
           $result->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
@@ -107,11 +111,19 @@
             echo("<thead/>");
             echo("<tbody>");
               foreach($result as $row) {
+                $traducao = null;
+                foreach($auxresult as $traducao) {
+                  if ($traducao['a_id'] == $row['a_id']) break;
+                }
                 echo("<tr>");
                 echo("<td>{$row['a_id']}</td>");
                 echo("<td>{$row['a_zona']}</td>");
+                if ($traducao) echo("<td>{$traducao['at_zona2']}</td>")
+                else echo("<td>--</td>");
                 echo("<td>{$row['a_imagem']}</td>");
                 echo("<td>{$row['a_lingua']}</td>");
+                if ($traducao) echo("<td>{$traducao['at_lingua2']}</td>")
+                else echo("<td>--</td>");
                 echo("<td>{$row['a_ts']}</td>");
                 echo("<td>{$row['a_descricao']}</td>");
                 if ($row['a_tem_anomalia_redacao']){
