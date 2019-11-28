@@ -32,6 +32,10 @@
   align-items: center;
 }
 
+.m-badge {
+  transform: translate(40%, 100%);
+}
+
 #users-list {
   align-self: center;
   transform: translate(100%, 100%);
