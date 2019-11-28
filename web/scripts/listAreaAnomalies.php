@@ -71,18 +71,18 @@
           $result = $db->prepare($query);
 
           //$result->bindValue(':latitude1',  $_POST['lat1']);
-          $lat1  = $_POST['lat1'];
-          $long1 = $_POST['long1'];
-          $lat2  = $_POST['lat2'];
-          $long2 = $_POST['long2'];
-          echo("<p>{$lat1}</p>");
-          echo("<p>{$long1}</p>");
-          echo("<p>{$lat2}</p>");
-          echo("<p>{$long2}</p>");
+          $latitude1  = $_POST['lat1'];
+          $longitude1 = $_POST['long1'];
+          $latitude2  = $_POST['lat2'];
+          $longitude2 = $_POST['long2'];
+          echo("<p>{$latitude1}</p>");
+          echo("<p>{$longitude1}</p>");
+          echo("<p>{$latitude2}</p>");
+          echo("<p>{$longitude2}</p>");
           //$result->bindValue(':longitude1', $_POST['long1']);
           //$result->bindValue(':latitude2',  $_POST['lat2']);
           //$result->bindValue(':longitude2', $_POST['long2']);
-          $result->execute(array($lat1, $long1, $lat2, $long2));
+          $result->execute(array($latitude1, $longitude1, $latitude2, $longitude2));
 
           echo("<table class='table'>");
             echo("<thead class='thead-dark'>");
