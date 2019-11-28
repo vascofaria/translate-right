@@ -34,9 +34,6 @@
 #anomalies-area-form {
   display: grid;
   grid-template-columns: auto auto;
-  align-self: center;
-  transform: translate(55%, 50%);
-  width: 50%;
 }
 
 #anomaly-form-btn {
