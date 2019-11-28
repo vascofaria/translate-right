@@ -105,10 +105,9 @@
               $result->bindValue(':email', $_POST['email']);
               $result->execute();
               foreach($result as $row) {
-                  $number = $row["maximo"];
+                  $number = $row["maximo"] + 1;
                   break;
               }
-              /*
               $query  = makeQuery();
               $result = $db->prepare($query);
 
@@ -118,7 +117,7 @@
               $result->bindValue(':email', $_POST['email']);
 
               $result->execute();
-              */
+
             	$db = null;
     		}
     		catch (PDOException $e) {
