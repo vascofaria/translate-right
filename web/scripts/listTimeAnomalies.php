@@ -73,7 +73,7 @@
       </form>
     </div> -->
 
-    <div class="m-table">
+    <div id="anomalies-table" class="m-table">
     <?php
     if (isset($_POST['submit-time'])) {
       try {
