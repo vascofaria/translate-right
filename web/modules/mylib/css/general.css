@@ -17,10 +17,6 @@
   grid-template-columns: auto auto;
 }
 
-.m-table {
-  margin: 5%;
-}
-
 #anomalies-form-by-area {
   display: grid;
   grid-template-columns: auto auto;
@@ -38,5 +34,6 @@
 
 #users-list {
   align-self: center;
-  width: 20%;
+  transform: translateX(35%);
+  width: 30%;
 }

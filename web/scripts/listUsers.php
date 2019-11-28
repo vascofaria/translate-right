@@ -34,7 +34,7 @@
         $result = $db->prepare($query);
         $result->execute();
 
-        echo("<table id='users-list' class='table m-table'>");
+        echo("<table id='users-list' class='table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
               echo("<th scope='col'>E-mail</th>");
