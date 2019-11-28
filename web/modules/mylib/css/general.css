@@ -28,20 +28,20 @@
 }
 
 .m-sub-badge {
-  transform: translate(18%, 160%);
+  transform: translate(20%, 160%);
 }
 
 #anomalies-area-form {
   display: grid;
   grid-template-columns: auto auto;
   align-self: center;
-  transform: translate(75%, 50%);
+  transform: translate(60%, 50%);
   width: 50%;
 }
 
 #anomaly-form-btn {
   width: 100%;
-  transform: translateX(40%);
+  transform: translateX(37%);
 }
 
 .list-form {

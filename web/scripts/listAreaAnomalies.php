@@ -13,7 +13,7 @@
         Translate Right
       </a>
       <form class="form-inline my-2 my-lg-0" action="../index.html">
-        <button id="anomaly-form-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Log out</button>
       </form>
     </nav>
 
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">List Anomalies</button>
+        <button id="anomaly-form-btn" class="btn btn-primary" type="submit">List Anomalies</button>
 
       </form>
       <!-- <div id="anomalies-form-by-area"> -->
