@@ -69,7 +69,7 @@
               echo("<th scope='col'>Lingua</th>");
               echo("<th scope='col'>TimeStamp</th>");
               echo("<th scope='col'>Descricao</th>");
-              echo("<th scope='col'>Redacao?</th>");
+              echo("<th scope='col'>Tem Redacao?</th>");
             echo("<tr/>");
           echo("<thead/>");
           echo("<tbody>");
@@ -81,7 +81,11 @@
               echo("<td>{$row['a_lingua']}</td>");
               echo("<td>{$row['a_ts']}</td>");
               echo("<td>{$row['a_descricao']}</td>");
-              echo("<td>{$row['a_tem_anomalia_redacao']}</td>");
+              if ($row['a_tem_anomalia_redacao']){
+                echo("<td>Sim</td>");
+              } else {
+                echo("<td>Não</td>");
+              }
               echo("<tr/>");
             }
           echo("<tbody/>");

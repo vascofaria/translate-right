@@ -24,7 +24,7 @@
                 $password = "idxi1356";
                 $dbname   = $user;
                 
-                $Email=$_POST['Email'];
+                $email=$_POST['email'];
                 $oldPcNro=$_POST['oldPcNro'];
                 $newPcNro=$_POST['newPcNro'];
                 $AId=$_POST['AId'];
@@ -32,11 +32,11 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-                $sql = "UPDATE correcao SET pc_nro=$newPcNro WHERE u_email='$Email' AND pc_nro=$oldPcNro AND a_id=$AId;";
-
-                $result = $db->prepare($sql);
-                $result->execute();
-
+                $query = "UPDATE correcao SET pc_nro=:newPcNro WHERE u_email=:email AND pc_nro=:oldPcNro AND a_id=:AId;";
+                $db->beginTransaction();
+                $result = $db->prepare($query);
+                $result->execute(array($newPcNro, $email, $oldPcNro, $AId));
+                $db->commit();
 
                 $db = null;
             }

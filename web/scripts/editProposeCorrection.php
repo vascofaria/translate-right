@@ -24,20 +24,20 @@
                 $password = "idxi1356";
                 $dbname   = $user;
                 
-                $PcNro=$_POST['PcNro'];
-                $DataHora=$_POST['DataHora'];
-                $Texto=$_POST['Texto'];
-                $UEmail=$_POST['UEmail'];
+                $pcNro=$_POST['PcNro'];
+                $dataHora=$_POST['DataHora'];
+                $texto=$_POST['Texto'];
+                $uEmail=$_POST['UEmail'];
 
 
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-                $sql = "UPDATE proposta_correcao SET pc_texto='$Texto' WHERE pc_nro=$PcNro AND pc_data_hora='$DataHora' AND u_email='$UEmail';";
-
-                $result = $db->prepare($sql);
-                $result->execute();
-
+                $query = "UPDATE proposta_correcao SET pc_texto=:texto WHERE pc_nro=:pcNro AND pc_data_hora=:dataHora AND u_email=:uEmail;";
+                $db->beginTransaction();
+                $result = $db->prepare($query);
+                $result->execute(array($texto, $pcNro, $dataHora, $uEmail));
+                $db->commit();
 
                 $db = null;
             }
