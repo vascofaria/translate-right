@@ -104,7 +104,8 @@
               $result = $db->prepare($query);
               $result->bindValue(':email', $_POST['email']);
               $result->execute();
-              echo ($result["maximo"]);
+              $row = pg_fetch_assoc($result);
+              echo ($row['maximo']);
               /**oreach($result as $row) {
                   echo("<td>{$row["maximo"]}</td>");
               }
