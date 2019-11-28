@@ -36,6 +36,15 @@
   transform: translate(40%, 100%);
 }
 
+.m-sub-badge {
+  transform: translate(60%, 100%);
+}
+
+.list-form {
+  align-self: center;
+  transform: translate(100%, 100%);
+}
+
 #users-list {
   align-self: center;
   transform: translate(100%, 100%);

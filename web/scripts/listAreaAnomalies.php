@@ -18,13 +18,13 @@
     </nav>
 
     <h1 class="m-badge"><span class="badge badge-secondary">Anomalies List in the given area</span></h1>
-    <h4 class="m-badge">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
+    <h4 class="m-sub-badge">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
 
     <div id="anomalies-form-by-area">
 
       <form 
         id="anomalies-form"
-        class="needs-validation" 
+        class="needs-validation list-form"
         method="POST"
         action=""
         novalidate
@@ -68,6 +68,8 @@
             </div>
           </div>
         </div>
+
+        <button class="btn btn-primary" type="submit">List Anomalies</button>
 
       </form>
 
