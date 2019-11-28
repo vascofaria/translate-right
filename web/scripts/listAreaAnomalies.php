@@ -17,8 +17,8 @@
       </form>
     </nav>
 
-    <h1 class="m-badge"><span class="badge badge-secondary">Anomalies List in the given area</span></h1>
-    <h4 class="m-sub-badge">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
+    <h1 style="margin-left: 35%; margin-top: 2%;"><span class="badge badge-secondary">Anomalies List in the given area</span></h1>
+    <h4 style="margin-left: 20%">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
 
       <form 
         id="anomalies-area-form"
