@@ -17,6 +17,8 @@
       </form>
     </nav>
 
+    <h1><span class="badge badge-secondary">List Users</span></h1>
+
     <?php
       //if (isset($_COOKIE['userID'])) {
       //  echo("<p>{$_COOKIE['userID']}</p>");
