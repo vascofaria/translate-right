@@ -34,6 +34,6 @@
 
 #users-list {
   align-self: center;
-  transform: translateX(35%);
+  transform: translate(100%, 100%);
   width: 30%;
 }
