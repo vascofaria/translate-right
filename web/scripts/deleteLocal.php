@@ -24,7 +24,7 @@
         style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
         <div class="form-group row">
             <div class="col-sm-10">
-                <label style="width:100%; text-align: center;"><h4>Insert Local</h4></label>
+                <label style="width:100%; text-align: center;"><h4>Delete Local</h4></label>
             </div>
         </div>
         <div class="form-group row">
