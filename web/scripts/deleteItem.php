@@ -36,7 +36,7 @@
         $result = $db->prepare($query);
         $result->execute();
 
-        echo("<table id='items-list' class='table'>");
+        echo("<table style='margin-top: 60px;' id='items-list' class='table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
               echo("<th scope='col'>Descrição</th>");
@@ -51,13 +51,12 @@
               echo("<tr>");
               echo("<td>{$row['i_descricao']}</td>");
               echo("<td>{$row['i_localizacao']}</td>");
-              echo("<td>{$row['i_latitude']}</td>");
-              echo("<td>{$row['i_longitude']}</td>");
+              echo("<td>{$row['lp_latitude']}</td>");
+              echo("<td>{$row['lp_longitude']}</td>");
               echo("<td><form class='form-inline my-2 my-lg-0' action='../index.html'>
-              <button class='btn my-2 my-sm-0' type='submit'>Delete</button>
+              <button class='btn btn-danger my-2 my-sm-0' type='submit'>Delete</button>
             </form></td>");
               echo("<tr/>");
-              print_r($row);
             }
           echo("<tbody/>");
         echo("<table/>");
