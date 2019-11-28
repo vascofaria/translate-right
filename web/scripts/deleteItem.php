@@ -57,11 +57,11 @@
               <button class='btn my-2 my-sm-0' type='submit'>Delete</button>
             </form></td>");
               echo("<tr/>");
+              print_r($row);
             }
           echo("<tbody/>");
         echo("<table/>");
 
-        print_r($result);
 
         $db = null;
 
