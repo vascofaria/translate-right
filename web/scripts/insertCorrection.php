@@ -30,15 +30,6 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label for="validationCustom01">Email</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Email" value="" name="email" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
                 <label for="validationCustom01">Number</label>
                 <input type="number" class="form-control" id="validationCustom01" placeholder="Number" value="" name="number" required>
                 <div class="valid-feedback">
@@ -93,7 +84,7 @@
             	$query = makeQuery();
             	$result = $db->prepare($query);
 
-                $result->bindValue(':email',     $_POST['email']);
+                $result->bindValue(':email',     $_COOKIE['userID']);
                 $result->bindValue(':num',       $_POST['number']);
                 $result->bindValue(':anomalyId', $_POST['anomalyId']);
 

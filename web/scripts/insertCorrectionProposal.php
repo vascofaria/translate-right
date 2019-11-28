@@ -29,15 +29,6 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label for="validationCustom01">Email</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Email" value="" name="email" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
                 <label for="validationCustom01">Date</label>
                 <input type="date" class="form-control" id="validationCustom01" placeholder="" value="" name="date" required>
                 <div class="valid-feedback">
@@ -107,13 +98,12 @@
               $row = $result->fetch(PDO::FETCH_ASSOC);
               $number = $row['max'] + 1;
 
-              
               $query  = makeQuery();
               $result = $db->prepare($query);
               $result->bindValue(':cpNumber', $number);
               $result->bindValue(':dateHour', $dateHour);
               $result->bindValue(':cpText', $_POST['text']);
-              $result->bindValue(':email', $_POST['email']);
+              $result->bindValue(':email', $_COOKIE['userID']);
 
               $result->execute();
 
