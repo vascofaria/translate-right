@@ -17,11 +17,41 @@
       </form>
     </nav>
 
-    <div id="anomalies-form-by-time">
+    <h1 style="margin-left: 35%; margin-top: 2%;"><span class="badge badge-secondary">Anomalies List in the given time</span></h1>
 
-      <div class="alert alert-success">
-        <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
-      </div>
+    <form 
+        id="anomalies-time-form"
+        class="needs-validation"
+        method="POST"
+        action=""
+        novalidate
+      >
+      
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">Since:</label>
+            <input type="text" class="form-control" placeholder="Since" value="" name="lat1" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">To:</label>
+            <input type="text" class="form-control" placeholder="To" value="" name="long1" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+
+        <button id="anomaly-form-btn" class="btn btn-primary" type="submit" name="submit-time">List Anomalies</button>
+
+      </form>
+
+    <!-- <div id="anomalies-form-by-time">
 
       <form id="anomalies-form" action="" method="POST">
 
@@ -41,7 +71,7 @@
 
         <button class="btn btn-primary m-submit-btn" type="submit" name="submit-time">List</button>
       </form>
-    </div>
+    </div> -->
 
     <div class="m-table">
     <?php

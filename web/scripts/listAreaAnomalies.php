@@ -71,43 +71,6 @@
         <button id="anomaly-form-btn" class="btn btn-primary" type="submit" name="submit-area">List Anomalies</button>
 
       </form>
-      <!-- <div id="anomalies-form-by-area"> -->
-      <!-- <div class="alert alert-success">
-        <p>Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</p>
-      </div>
-      <form id="anomalies-form" action="" method="POST">
-
-        <div class="input-group mb-3 m-anomaly-form-component">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Latitude 1:</>
-          </div>
-          <input type="text" class="form-control" name="lat1">
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Longitude 1:</>
-          </div>
-          <input type="text" class="form-control" name="long1">
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Latitude 2:</>
-          </div>
-          <input type="text" class="form-control" name="lat2">
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Longitude 2:</>
-          </div>
-          <input type="text" class="form-control" name="long2">
-        </div>
-
-        <button class="btn btn-primary m-submit-btn" type="submit" name="submit-area">List</button>
-      </form> -->
-    <!-- </div> -->
 
     <div id="anomalies-table" class="m-table">
       <?php

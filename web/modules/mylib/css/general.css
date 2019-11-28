@@ -39,6 +39,14 @@
   margin-top: 2%;
 }
 
+#anomalies-time-form {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2%;
+}
+
 #anomalies-table {
   width: 90%;
   margin-left: 5%;
