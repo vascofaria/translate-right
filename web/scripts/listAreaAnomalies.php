@@ -64,25 +64,17 @@
           $password = "idxi1356";
           $dbname = $user;
 
+          $latitude1  = $_POST['lat1'];
+          $latitude2  = $_POST['lat2'];
+          $longitude1 = $_POST['long1'];
+          $longitude2 = $_POST['long2'];
+
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
           $result = $db->prepare($query);
-
-          //$result->bindValue(':latitude1',  $_POST['lat1']);
-          $latitude1  = $_POST['lat1'];
-          $longitude1 = $_POST['long1'];
-          $latitude2  = $_POST['lat2'];
-          $longitude2 = $_POST['long2'];
-          echo("<p>{$latitude1}</p>");
-          echo("<p>{$longitude1}</p>");
-          echo("<p>{$latitude2}</p>");
-          echo("<p>{$longitude2}</p>");
-          //$result->bindValue(':longitude1', $_POST['long1']);
-          //$result->bindValue(':latitude2',  $_POST['lat2']);
-          //$result->bindValue(':longitude2', $_POST['long2']);
-          $result->execute(array($latitude1, $longitude1, $latitude2, $longitude2));
+          $result->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
 
           echo("<table class='table'>");
             echo("<thead class='thead-dark'>");
