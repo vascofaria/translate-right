@@ -22,7 +22,7 @@
 
       <form 
         id="anomalies-area-form"
-        class="needs-validation list-form"
+        class="needs-validation"
         method="POST"
         action=""
         novalidate
