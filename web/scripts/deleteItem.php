@@ -40,17 +40,9 @@
           echo("<thead class='thead-dark'>");
             echo("<tr>");
               echo("<th scope='col'>Descrição</th>");
-            echo("<tr/>");
-            echo("<tr>");
               echo("<th scope='col'>Localização</th>");
-            echo("<tr/>");
-            echo("<tr>");
               echo("<th scope='col'>Latitude</th>");
-            echo("<tr/>");
-            echo("<tr>");
               echo("<th scope='col'>Longitude</th>");
-            echo("<tr/>");
-            echo("<tr>");
               echo("<th scope='col'>Delete</th>");
             echo("<tr/>");
           echo("<thead/>");
@@ -58,19 +50,11 @@
             foreach($result as $row) {
               echo("<tr>");
               echo("<td>{$row['i_descricao']}</td>");
-              echo("<tr/>");
-              echo("<tr>");
               echo("<td>{$row['i_localizacao']}</td>");
-              echo("<tr/>");
-              echo("<tr>");
               echo("<td>{$row['i_latitude']}</td>");
-              echo("<tr/>");
-              echo("<tr>");
               echo("<td>{$row['i_longitude']}</td>");
-              echo("<tr/>");
-              echo("<tr>");
               echo("<form class='form-inline my-2 my-lg-0' action='../index.html'>
-              <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Delete</button>
+              <button class='btn my-2 my-sm-0' type='submit'>Delete</button>
             </form>");
               echo("<tr/>");
             }
