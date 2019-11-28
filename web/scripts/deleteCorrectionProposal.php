@@ -17,6 +17,8 @@
       </form>
     </nav>
 
+    <h1 class="m-badge"><span class="badge badge-secondary">Select the correction proposal to delete:</span></h1>
+
     <?php
         if (isset($_POST['deleteCorrection'])) {
             try {
@@ -55,7 +57,7 @@
             $result->execute();
 
 
-            echo("<table class='table'>");
+            echo("<table class='table' style='margin-top: 60px;'>");
             echo("<thead class='thead-dark'>");
             echo("<tr>");
             echo("<th scope='col'>Email</th>");

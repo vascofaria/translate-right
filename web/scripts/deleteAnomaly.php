@@ -17,6 +17,8 @@
       </form>
     </nav>
 
+    <h1 class="m-badge"><span class="badge badge-secondary">Select the anomaly to delete:</span></h1>
+
     <?php
         if (isset($_POST['deleteCorrection'])) {
             try {
@@ -53,7 +55,7 @@
             $result->execute();
 
 
-            echo("<table class='table'>");
+            echo("<table class='table' style='margin-top: 60px;'>");
             echo("<thead class='thead-dark'>");
             echo("<tr>");
             echo("<th scope='col'>Identification</th>");
@@ -75,7 +77,11 @@
                 echo("<td><input type='readonly'   name='a_lingua'   readonly style='border:none' value='"."{$row['a_lingua']}" ."'></td>");
                 echo("<td><input type='readonly'   name='a_ts'   readonly style='border:none' value='"."{$row['a_ts']}" ."'></td>");
                 echo("<td><input type='readonly'   name='a_descricao'   readonly style='border:none' value='"."{$row['a_descricao']}" ."'></td>");
-                echo("<td><input type='readonly'   name='a_tem_anomalia_redacao'   readonly style='border:none' value='"."{$row['a_tem_anomalia_redacao']}" ."'></td>");
+                if ($row['a_tem_anomalia_redacao']){
+                  echo("<td><input type='readonly'   name='a_tem_anomalia_redacao'   readonly style='border:none' value='YES'></td>");
+                } else {
+                  echo("<td><input type='readonly'   name='a_tem_anomalia_redacao'   readonly style='border:none' value='NO'></td>");
+                }
                 echo("<td>
                     <button class='btn btn-danger m-submit-btn' type='submit' name='deleteCorrection' >
                         Delete

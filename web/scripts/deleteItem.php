@@ -17,7 +17,7 @@
       </form>
     </nav>
 
-    <!--<h1 class="m-badge"><span class="badge badge-secondary">Select an item to delete:</span></h1>-->
+    <h1 class="m-badge"><span class="badge badge-secondary">Select an item to delete:</span></h1>
 
     <?php
     if (isset($_POST['deleteButton'])){
