@@ -104,16 +104,15 @@
               $result = $db->prepare($query);
               $result->bindValue(':email', $_POST['email']);
               $result->execute();
-              $row = pg_fetch_assoc($result);
-              echo ($row['maximo']);
-              /**oreach($result as $row) {
-                  echo("<td>{$row["maximo"]}</td>");
+              foreach($result as $row) {
+                  $number = $row["maximo"];
+                  break;
               }
               /*
               $query  = makeQuery();
               $result = $db->prepare($query);
 
-              $result->bindValue(':cpNumber', $_POST['number']);
+              $result->bindValue(':cpNumber', $number);
               $result->bindValue(':dateHour', $dateHour);
               $result->bindValue(':cpText', $_POST['text']);
               $result->bindValue(':email', $_POST['email']);
