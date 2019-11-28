@@ -30,7 +30,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Since:</label>
-            <input type="datetime-local" class="form-control" placeholder="Since" value="" name="lat1" required>
+            <input type="text" class="form-control" placeholder="Since" value="" name="lat1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -40,7 +40,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">To:</label>
-            <input type="datetime-local" class="form-control" placeholder="To" value="" name="long1" required>
+            <input type="text" class="form-control" placeholder="To" value="" name="long1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
