@@ -30,7 +30,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Since:</label>
-            <input type="text" class="form-control" placeholder="Since" value="" name="lat1" required>
+            <input type="datetime-local" class="form-control" placeholder="Since" value="" name="lat1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -40,7 +40,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">To:</label>
-            <input type="text" class="form-control" placeholder="To" value="" name="long1" required>
+            <input type="datetime-local" class="form-control" placeholder="To" value="" name="long1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -50,28 +50,6 @@
         <button id="anomaly-form-btn" class="btn btn-primary" type="submit" name="submit-time">List Anomalies</button>
 
       </form>
-
-    <!-- <div id="anomalies-form-by-time">
-
-      <form id="anomalies-form" action="" method="POST">
-
-        <div class="input-group mb-3 m-anomaly-form-component">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Since:</>
-          </div>
-          <input type="text" class="form-control" name="since_time">
-        </div>
-
-        <div class="input-group mb-3 m-anomaly-form-component">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">To:</>
-          </div>
-          <input type="text" class="form-control" name="to_time">
-        </div>
-
-        <button class="btn btn-primary m-submit-btn" type="submit" name="submit-time">List</button>
-      </form>
-    </div> -->
 
     <div id="anomalies-table" class="m-table">
     <?php
