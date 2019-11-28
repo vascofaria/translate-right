@@ -35,7 +35,8 @@
   display: grid;
   grid-template-columns: auto auto;
   align-self: center;
-  transform: translate(10%, 30%);
+  transform: translate(75%, 50%);
+  width: 50%;
 }
 
 .list-form {
