@@ -20,6 +20,27 @@
     <h1 class="m-badge"><span class="badge badge-secondary">Select an item to delete:</span></h1>
 
     <?php
+    if (isset($_POST['deleteButton'])){
+      try {
+        $host = "db.ist.utl.pt";
+        $user = "ist189559";
+        $password = "idxi1356";
+        $dbname = $user;
+
+        $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "DELETE FROM item WHERE i_id=:id;";
+        $result = $db->prepare($query);
+        $result->bindValue(':id',  $_POST['id']);
+        $result->execute();
+        $db = null;
+      } catch (PDOException $e) {
+        echo("<p>ERROR: {$e->getMessage()}</p>");
+      }
+    }
+    ?>
+
+    <?php
       //if (isset($_COOKIE['userID'])) {
       //  echo("<p>{$_COOKIE['userID']}</p>");
       //}
@@ -53,10 +74,7 @@
               echo("<td>{$row['i_localizacao']}</td>");
               echo("<td>{$row['lp_latitude']}</td>");
               echo("<td>{$row['lp_longitude']}</td>");
-              echo("<td><form class='form-inline my-2 my-lg-0' action=''>
-              <input type='hidden' name='i_id' value='{$row['i_id']}'>
-              <button name='deleteButton' method='POST' class='btn btn-danger my-2 my-sm-0' type='submit'>Delete</button>
-            </form></td>");
+              echo("<td><form action='' method='POST'><input type='hidden' name='id' value='{$row['i_id']}'><button class='btn btn-danger m-submit-btn'  type='submit' name='deleteButton'>Delete</button></form></td>");
               echo("<tr/>");
             }
           echo("<tbody/>");
@@ -69,27 +87,7 @@
         echo("<p>ERROR: {$e->getMessage()}</p>");
       }
 
-      if (isset($POST["deleteButton"])){
-        try {
-          $host = "db.ist.utl.pt";
-          $user = "ist189559";
-          $password = "idxi1356";
-          $dbname = $user;
-  
-          $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-          $query = "DELETE FROM item WHERE i_id=$POST['i_id'];";
-          $result = $db->prepare($query);
-          $result->execute();
-
-        } catch (PDOException $e) {
-          echo("<p>ERROR: {$e->getMessage()}</p>");
-        }
-
-      }
-
-    ?>
+      ?>
 
 
 </body>
