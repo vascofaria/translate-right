@@ -17,10 +17,10 @@
       </form>
     </nav>
 
-    <form 
-        class="needs-validation" 
-        method="POST" 
-        novalidate 
+    <form
+        class="needs-validation"
+        method="POST"
+        novalidate
         style="width: 50%; height: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -60%);">
         <div class="form-group row">
             <div class="col-sm-10">
@@ -85,10 +85,10 @@
                 $user     = "ist189559";
                 $password = "idxi1356";
                 $dbname   = $user;
-            
+
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-               
+
                 $query = makeQuery();
                 $result = $db->prepare($query);
 
@@ -106,7 +106,7 @@
         }
 
         function makeQuery() {
-            $query = "DELETE FROM local_publico WHERE lp_latitude=:latitude AND lp_longitude=:longitude AND lp_nome=:name);";
+            $query = "DELETE FROM local_publico WHERE lp_latitude=:latitude AND lp_longitude=:longitude AND lp_nome=:name;";
             return $query;
         }
     ?>
