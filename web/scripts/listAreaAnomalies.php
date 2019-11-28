@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <button id="anomaly-form-btn" class="btn btn-primary" type="submit">List Anomalies</button>
+        <button id="anomaly-form-btn" class="btn btn-primary" type="submit" name="submit-area">List Anomalies</button>
 
       </form>
       <!-- <div id="anomalies-form-by-area"> -->
