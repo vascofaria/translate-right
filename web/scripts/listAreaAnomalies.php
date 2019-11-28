@@ -27,16 +27,7 @@
         action=""
         novalidate
       >
-        <div class="form-group row">
-          <div class="col-sm-10">
-            <label style="width:100%; text-align: center;">
-              <h1>
-                <span class="badge badge-secondary">Anomalies List in the given area</span>
-              </h1>
-            </label>
-          </div>
-        </div>
-
+      
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Latitude 1:</label>
