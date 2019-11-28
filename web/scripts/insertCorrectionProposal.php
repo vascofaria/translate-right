@@ -100,14 +100,14 @@
               $dateHour = $_POST['date'] . ' ' . $_POST['hour'];
 
               //Gets correction proposal number for selected user.
-              $query = "SELECT MAX(pc_nro) as maximo FROM proposta_correcao WHERE u_email = :email";
+              $query = "SELECT MAX(pc_nro) as maximo FROM proposta_correcao WHERE u_email = :email;";
               $result = $db->prepare($query);
               $result->bindValue(':email', $_POST['email']);
               $result->execute();
-              foreach($result as $row) {
-                  echo("<td>{$row['maximo']}</td>");
+              echo ($result["maximo"]);
+              /**oreach($result as $row) {
+                  echo("<td>{$row["maximo"]}</td>");
               }
-
               /*
               $query  = makeQuery();
               $result = $db->prepare($query);
