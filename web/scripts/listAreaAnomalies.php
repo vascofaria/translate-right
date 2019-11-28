@@ -13,7 +13,7 @@
         Translate Right
       </a>
       <form class="form-inline my-2 my-lg-0" action="../index.html">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="width: 100%, transform: translateX(40%);">Log out</button>
+        <button id="anomaly-form-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
       </form>
     </nav>
 

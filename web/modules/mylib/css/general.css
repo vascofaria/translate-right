@@ -39,6 +39,11 @@
   width: 50%;
 }
 
+#anomaly-form-btn {
+  width: 100%;
+  transform: translateX(40%);
+}
+
 .list-form {
   align-self: center;
   transform: translate(100%, 100%);
