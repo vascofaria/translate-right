@@ -53,13 +53,15 @@
               echo("<td>{$row['i_localizacao']}</td>");
               echo("<td>{$row['i_latitude']}</td>");
               echo("<td>{$row['i_longitude']}</td>");
-              echo("<form class='form-inline my-2 my-lg-0' action='../index.html'>
+              echo("<td><form class='form-inline my-2 my-lg-0' action='../index.html'>
               <button class='btn my-2 my-sm-0' type='submit'>Delete</button>
-            </form>");
+            </form></td>");
               echo("<tr/>");
             }
           echo("<tbody/>");
         echo("<table/>");
+
+        print_r($result);
 
         $db = null;
 
