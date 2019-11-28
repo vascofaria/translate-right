@@ -30,7 +30,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">Since:</label>
-            <input type="text" class="form-control" placeholder="Since" value="" name="lat1" required>
+            <input type="text" class="form-control" placeholder="Since" value="2019-01-01 00:00:00" name="lat1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -40,7 +40,7 @@
         <div class="form-group row">
           <div class="col-sm-10">
             <label for="validationCustom01">To:</label>
-            <input type="text" class="form-control" placeholder="To" value="" name="long1" required>
+            <input type="text" class="form-control" placeholder="To" value="2019-01-01 00:00:00" name="long1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -62,6 +62,8 @@
 
         $since_time = $_POST['since_time'];
         $to_time    = $_POST['to_time'];
+
+        echo("<p>{$since_time} {$to_time}</p>");
 
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
