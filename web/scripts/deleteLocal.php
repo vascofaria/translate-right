@@ -106,7 +106,8 @@
         }
 
         function makeQuery() {
-            $query = "DELETE FROM local_publico WHERE lp_latitude=:latitude AND lp_longitude=:longitude AND lp_nome=:name);";
+            echo()
+            $query = "DELETE FROM local_publico WHERE lp_latitude=:latitude AND lp_longitude=:longitude);";
             return $query;
         }
     ?>

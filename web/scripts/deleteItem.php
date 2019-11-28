@@ -17,6 +17,73 @@
       </form>
     </nav>
 
+    <h1 class="m-badge"><span class="badge badge-secondary">Select an item to delete:</span></h1>
+
+    <?php
+      //if (isset($_COOKIE['userID'])) {
+      //  echo("<p>{$_COOKIE['userID']}</p>");
+      //}
+      try {
+        $host = "db.ist.utl.pt";
+        $user = "ist189559";
+        $password = "idxi1356";
+        $dbname = $user;
+
+        $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = "SELECT * FROM item;";
+        $result = $db->prepare($query);
+        $result->execute();
+
+        echo("<table id='items-list' class='table'>");
+          echo("<thead class='thead-dark'>");
+            echo("<tr>");
+              echo("<th scope='col'>Descrição</th>");
+            echo("<tr/>");
+            echo("<tr>");
+              echo("<th scope='col'>Localização</th>");
+            echo("<tr/>");
+            echo("<tr>");
+              echo("<th scope='col'>Latitude</th>");
+            echo("<tr/>");
+            echo("<tr>");
+              echo("<th scope='col'>Longitude</th>");
+            echo("<tr/>");
+            echo("<tr>");
+              echo("<th scope='col'>Delete</th>");
+            echo("<tr/>");
+          echo("<thead/>");
+          echo("<tbody>");
+            foreach($result as $row) {
+              echo("<tr>");
+              echo("<td>{$row['i_descricao']}</td>");
+              echo("<tr/>");
+              echo("<tr>");
+              echo("<td>{$row['i_localizacao']}</td>");
+              echo("<tr/>");
+              echo("<tr>");
+              echo("<td>{$row['i_latitude']}</td>");
+              echo("<tr/>");
+              echo("<tr>");
+              echo("<td>{$row['i_longitude']}</td>");
+              echo("<tr/>");
+              echo("<tr>");
+              echo("<form class='form-inline my-2 my-lg-0' action='../index.html'>
+              <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Delete</button>
+            </form>");
+              echo("<tr/>");
+            }
+          echo("<tbody/>");
+        echo("<table/>");
+
+        $db = null;
+
+      } catch (PDOException $e) {
+        echo("<p>ERROR: {$e->getMessage()}</p>");
+      }
+
+    ?>
 
 
 </body>
