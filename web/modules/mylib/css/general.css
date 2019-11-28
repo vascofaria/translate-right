@@ -34,6 +34,8 @@
 #anomalies-area-form {
   display: grid;
   grid-template-columns: auto auto;
+  width: 50%;
+  margin-left: 25%;
 }
 
 #anomaly-form-btn {
