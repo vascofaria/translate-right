@@ -89,11 +89,7 @@
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $auxquery  = "SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
-          $auxresult = $db->prepare($auxquery);
-          $auxresult->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
-
-          $query = "SELECT * FROM anomalia WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
+          $query = "SELECT * FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE SUBSTRING(a_zona, 1, 4)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 4)::int8 <= :latitude2 AND SUBSTRING(a_zona, 7, 4)::int8 >= :longitude1 AND SUBSTRING(a_zona, 7, 4)::int8 <= :longitude2;";
           $result = $db->prepare($query);
           $result->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
 
@@ -113,26 +109,19 @@
             echo("<thead/>");
             echo("<tbody>");
               foreach($result as $row) {
-                $traducao = null;
-                foreach($auxresult as $trad) {
-                  if ($trad['a_id'] == $row['a_id']) break;
-                }
                 echo("<tr>");
                 echo("<td>{$row['a_id']}</td>");
                 echo("<td>{$row['a_zona']}</td>");
-                if ($traducao != null) echo("<td>{$traducao['at_zona2']}</td>")
+                if ($row['at_zona']) echo("<td>{$row['at_zona2']}</td>");
                 else echo("<td>--</td>");
                 echo("<td>{$row['a_imagem']}</td>");
                 echo("<td>{$row['a_lingua']}</td>");
-                if ($traducao != null) echo("<td>{$traducao['at_lingua2']}</td>")
+                if ($row['at_lingua2']) echo("<td>{$row['at_lingua2']}</td>");
                 else echo("<td>--</td>");
                 echo("<td>{$row['a_ts']}</td>");
                 echo("<td>{$row['a_descricao']}</td>");
-                if ($row['a_tem_anomalia_redacao']){
-                  echo("<td>Sim</td>");
-                } else {
-                  echo("<td>Não</td>");
-                }
+                if ($row['a_tem_anomalia_redacao']) echo("<td>Sim</td>");
+                else echo("<td>Não</td>");
                 echo("<tr/>");
               }
             echo("<tbody/>");
