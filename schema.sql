@@ -51,14 +51,6 @@ create table anomalia (
 	constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= 0 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0)
 );
 
-/*
-constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
-*/
--- create function fn_Check_Zone (zone text)
--- RETURNS int AS $$
--- BEGIN
---     RETURN COUNT(*) FROM anomalia WHERE a_zona = zone
--- END; $$ LANGUAGE SQL;
 create function fn_Check_Zone (zone text)
 RETURNS integer AS $$ DECLARE a_count integer;
 BEGIN SELECT COUNT(*) into a_count
@@ -84,13 +76,6 @@ create table anomalia_traducao (
 	constraint ck_lingua_diff check (fn_Check_Lingua(at_lingua2) = 0)
 );
 
-/*	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 3)::int8 <= 90 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0 AND SUBSTRING(at_zona2, 6, 3)::int8 <= 180)
-		constraint ck_zone_diff   check NOT (SELECT anomalia.a_zona FROM anomalia WHERE EXISTS anomalia.a_zona=at_zona2),
-		constraint ck_lingua
-		constraint ck_lingua_diff check (EXISTS(SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE a_zona=at_zona2))
-			constraint ck_ck check (SELECT COUNT(*) FROM anomalia WHERE EXISTS(SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE a_zona=at_zona2));
-
-*/
 create table duplicado (
 	i_id1 smallint not null,
 	i_id2 smallint not null,
