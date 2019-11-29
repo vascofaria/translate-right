@@ -63,7 +63,8 @@ create table duplicado (
 	i_id2 smallint not null,
 	constraint pk_duplicado primary key (i_id1, i_id2),
 	constraint fk_d_item1   foreign key (i_id1) references item(i_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	constraint fk_d_item2   foreign key (i_id2) references item(i_id) ON DELETE CASCADE ON UPDATE CASCADE
+	constraint fk_d_item2   foreign key (i_id2) references item(i_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	constraint check_items  check   (i_id1 < i_id2)
 );
 
 create table utilizador (

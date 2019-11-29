@@ -50,7 +50,7 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $query = "SELECT * FROM item;";
+        $query = "SELECT i_descricao, i_localizacao, lp_latitude, lp_longitude, i_id FROM item;";
         $result = $db->prepare($query);
         $result->execute();
 
