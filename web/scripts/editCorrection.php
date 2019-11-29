@@ -106,7 +106,7 @@
         }
 	?>
     <?php
-        if (!isset($_POST['submit-anomalia']) AND isset($_POST['submit-edit'])) {
+        if (!isset($_POST['submit-anomalia']) AND !isset($_POST['submit-edit'])) {
             try {
                 $host     = "db.ist.utl.pt";
                 $user     = "ist189559";
