@@ -70,7 +70,7 @@ FROM anomalia WHERE a_zona = zone;
 RETURN a_count;
 END 
 $$ 
-LANGUAGE SQL;
+LANGUAGE plpgsql;
 
 create table anomalia_traducao (
 	a_id       smallint    not null unique,
