@@ -136,7 +136,7 @@
 
                 echo("<h1 class='m-badge'><span class='badge badge-secondary'>Select the item that is duplicated:</span></h1>");
 
-                echo("<table class='table'>");
+                echo("<table class='table' style='margin-top: 60px;'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
                 echo("<th scope='col'>Item ID</th>");
