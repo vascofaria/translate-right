@@ -59,7 +59,7 @@ BEGIN
     IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = zone)
         return 'True';
     return 'False';
-END $$
+END; $$
 
 create table anomalia_traducao (
 	a_id       smallint    not null unique,
