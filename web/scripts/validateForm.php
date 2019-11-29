@@ -31,7 +31,7 @@
 				//header("Location: ./index.html");
 				$cookieName = "userID";
 				$cookieValue = $email;
-				setcookie($cookieName, $cookieValue, time() + (86400), '/'); // 1 day
+				setcookie($cookieName, $cookieValue, time() + 86400, '/'); // 1 day
 
 			  try {
           $host = "db.ist.utl.pt";
@@ -47,14 +47,12 @@
 					$result->execute(array($email));
 					
 					$e = 0;
-					foreach($result as $row) { $e = 1; }
+					foreach($result as $row) $e = 1;
 					
-				print($e);
-				//setcookie("qualificated", sizeof($result[0]), time() + 86400, '/');
-				//  	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
-				//  	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
+					print($e);
+					setcookie("qualificated", $e, time() + 86400, '/');
 
-				  	$db = null;
+				  $db = null;
 
 				  } catch (PDOException $e) {
             echo("<p>ERROR: {$e->getMessage()}</p>");
