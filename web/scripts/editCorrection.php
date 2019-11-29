@@ -18,7 +18,7 @@
     </nav>
 
     <?php
-        if (isset($_POST['submit-edit'])) {
+        if (isset($_POST['submit-edit']) AND isset($_COOKIE['userID'])) {
             try {
 
                 $host     = "db.ist.utl.pt";
@@ -30,22 +30,30 @@
                 $pcNro=$_POST['pcNro'];
                 $aId=$_POST['aId'];
 
-                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-                $query = "UPDATE correcao SET a_id=:aId WHERE u_email=:email AND pc_nro=:pcNro;";
-                $db->beginTransaction();
-                $result = $db->prepare($query);
-                $result->execute(array($aId, $email, $pcNro));
-                $db->commit();
+                //$userToken=$_COOKIE['userID'];
 
-                echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
+                //if ($userToken == $email){
+                    $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
+                    $query = "UPDATE correcao SET a_id=:aId WHERE u_email=:email AND pc_nro=:pcNro;";
+                    $db->beginTransaction();
+                    $result = $db->prepare($query);
+                    $result->execute(array($aId, $email, $pcNro));
+                    $db->commit();
 
-                $db = null;
+                    echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
+
+                    $db = null;
+                //}else{
+                //    echo("<p>ERROR: No Permission</p>");
+                //}
             }
             catch (PDOException $e) {
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+        }else{
+            echo("<p>ERROR: Please Login</p>");
         }
     ?>
 	<?php
