@@ -42,12 +42,12 @@
 				 	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
 				 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-					$query = "SELECT u_email FROM utilizador_qualificado WHERE u_email =:email;";
+					$query = "SELECT EXISTS(SELECT u_email FROM utilizador_qualificado WHERE u_email =:email);";
 				  $result = $db->prepare($query);
 			  	$result->execute(array($email));
 					
-				  echo("<p>{length($result)}</p>")
-					
+				  	// echo("<p>{$result}</p>")
+					print_r($result);
 				//  	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
 				//  	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
 
