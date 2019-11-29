@@ -99,6 +99,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query = makeQuery();
+                $db->beginTransaction();
                 $result = $db->prepare($query);
 
                 $result->bindValue(':description', $_POST['description']);
@@ -107,6 +108,7 @@
                 $result->bindValue(':longitude',   floatval($_POST['longitude']));
 
                 $result->execute();
+                $db->commit();
 
                 $db = null;
             }

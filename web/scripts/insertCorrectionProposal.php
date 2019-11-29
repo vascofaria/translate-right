@@ -101,6 +101,7 @@
               $number = $row['max'] + 1;
 
               $query  = makeQuery();
+              $db->beginTransaction();
               $result = $db->prepare($query);
               $result->bindValue(':cpNumber', $number);
               $result->bindValue(':dateHour', $dateHour);
@@ -108,8 +109,9 @@
               $result->bindValue(':email', $_COOKIE['userID']);
 
               $result->execute();
-
-            	$db = null;
+              $db->commit();
+              
+              $db = null;
     		}
     		catch (PDOException $e) {
             	echo("<p>ERROR: {$e->getMessage()}</p>");

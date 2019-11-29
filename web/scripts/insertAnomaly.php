@@ -80,7 +80,39 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                 <label><h4>Translation Anomaly</h4></label>
+            </div>
+        </div>
+        <div class="form-group row" id="translate-zone-x">
+            <div class="col-sm-10">
+                <label for="validationCustom01">Zone</label>
+                <input type="text" class="form-control" placeholder="X" value="" name="x2">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" id="translate-zone-y">
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Y" value="" name="y2">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" id="translate-language">
+            <div class="col-sm-10">
+                <label for="validationCustom01">Language</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Language" value="" name="language2">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" name="submitButtonTA">Insert Translation Anomaly</button>
+        <button class="btn btn-primary" type="submit" name="submitButton">Insert Anomaly</button>
     </form>
 
     <script>
@@ -102,6 +134,12 @@
                 });
             }, false);
         })();
+
+        function toggleVisibility() {
+            document.getElementById('translate-zone-x').style.visibility   = 'visible';
+            document.getElementById('translate-zone-y').style.visibility   = 'visible';
+            document.getElementById('translate-language').style.visibility = 'visible';
+        }
     </script>
 
 	<?php
@@ -116,37 +154,92 @@
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-              $query  = makeQuery();
-              $result = $db->prepare($query);
+                $query  = makeQuery();
+                $result = $db->prepare($query);
 
-              $zone = $_POST['x'] . ", " . $_POST['y'];
+                $zone = $_POST['x'] . ", " . $_POST['y'];
 
-              if($_POST['hasRedaction'] == 'yes') {
-                  $hasRedaction = 1;
-              }
-              else {
+                if($_POST['hasRedaction'] == 'yes') {
+                    $hasRedaction = 1;
+                }
+                else {
                   $hasRedaction = 0;
-              }
+                }
 
-              $result->bindValue(':zone', $zone);
-              $result->bindValue(':image', $_POST["image"]);
-              $result->bindValue(':language', $_POST['language']);
-              $result->bindValue(':description', $_POST['description']);
-              $result->bindValue(':description', $_POST['description']);
-              $result->bindValue(':hasRedaction', $hasRedaction);
+                $result->bindValue(':zone', $zone);
+                $result->bindValue(':image', $_POST["image"]);
+                $result->bindValue(':language', $_POST['language']);
+                $result->bindValue(':description', $_POST['description']);
+                $result->bindValue(':description', $_POST['description']);
+                $result->bindValue(':hasRedaction', $hasRedaction);
 
-              $result->execute();
+                $result->execute();
 
-            	$db = null;
+              $db = null;
     		}
     		catch (PDOException $e) {
             	echo("<p>ERROR: {$e->getMessage()}</p>");
             }
         }
 
+        else if (isset($_POST['submitButtonTA'])) {
+            try {
+                $host     = "db.ist.utl.pt";
+                $user     = "ist189559";
+                $password = "idxi1356";
+                $dbname   = $user;
+
+                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $query  = makeQuery();
+                $db->beginTransaction();
+                $result = $db->prepare($query);
+
+                $zone = $_POST['x'] . ", " . $_POST['y'];
+
+                if($_POST['hasRedaction'] == 'yes') {
+                    $hasRedaction = 1;
+                }
+                else {
+                  $hasRedaction = 0;
+                }
+
+                $result->bindValue(':zone', $zone);
+                $result->bindValue(':image', $_POST["image"]);
+                $result->bindValue(':language', $_POST['language']);
+                $result->bindValue(':description', $_POST['description']);
+                $result->bindValue(':description', $_POST['description']);
+                $result->bindValue(':hasRedaction', $hasRedaction);
+
+                $result->execute();
+
+                $row = $result->fetch(PDO::FETCH_ASSOC);
+                $id = $row['a_id'];
+
+                echo "string";
+                $query  = "INSERT INTO anomalia_traducao(a_id, at_zona2, at_lingua2) values (:id, :zone2, :language2);";
+                $result = $db->prepare($query);
+
+                $zone2 = $_POST['x2'] . ", " . $_POST['y2'];
+
+                $result->bindValue(':id', $id);
+                $result->bindValue(':zone2', $zone2);
+                $result->bindValue(':language2', $_POST['language2']);
+
+                $result->execute(); 
+                $db->commit();
+                
+                $db = null;
+            }
+            catch (PDOException $e) {
+                echo("<p>ERROR: {$e->getMessage()}</p>");
+            }
+        }
+
         function makeQuery($zone, $image, $language, $description) {
             $query = "INSERT INTO anomalia(a_zona, a_imagem, a_lingua, a_descricao, a_tem_anomalia_redacao) values
-            (:zone, :image, :language, :description, :hasRedaction);";
+            (:zone, :image, :language, :description, :hasRedaction) RETURNING a_id;";
             return $query;
         }
 	?>
