@@ -44,9 +44,12 @@
 
 					$query = "SELECT u_email FROM utilizador_qualificado WHERE u_email =:email;";
 				  $result = $db->prepare($query);
-			  	$result->execute(array($email));
+					$result->execute(array($email));
 					
-				print_r($result);
+					$e = false;
+					foreach($result as $row) { $e = true; }
+					
+				print($e);
 				//setcookie("qualificated", sizeof($result[0]), time() + 86400, '/');
 				//  	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
 				//  	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
