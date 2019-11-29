@@ -34,7 +34,7 @@ COUNT(*) = (
 SELECT DISTINCT u_email FROM (
   incidencia
   NATURAL JOIN
-  (SELECT * FROM item WHERE lp_latitude > 39.336775) as locals
+  (SELECT MAX(i_id) AS i_id, lp_latitude, lp_longitude FROM item WHERE lp_latitude > 39.336775 GROUP BY lp_latitude, lp_longitude) as locals
   NATURAL JOIN
   (SELECT * FROM anomalia WHERE a_ts >= '2019-01-01 00:00:00' AND a_ts < '2020-01-01 00:00:00') as dates
 ) AS A GROUP BY (u_email)
@@ -42,9 +42,6 @@ HAVING
 COUNT(*) = (
   SELECT COUNT(*) as cnt FROM local_publico WHERE lp_latitude > 39.336775
 );
-
-
-
 
 -- 4.
 SELECT A.u_email FROM 
