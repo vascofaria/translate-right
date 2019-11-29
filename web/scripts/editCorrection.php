@@ -124,6 +124,7 @@
                 echo("<tr>");
                 echo("<th scope='col'>Anomalia ID</th>");
                 echo("<th scope='col'>Descricao</th>");
+                echo("<th scope='col'>Edit</th>");
                 echo("<tr/>");
                 echo("<thead/>");
                 echo("<tbody>");
@@ -132,7 +133,7 @@
                     echo("<td><input type='readonly' name='AId'  style='border:none' value='"."{$row['a_id']}"."'></td>");
                     echo("<td><input type='readonly' name='ADescricao' style='border:none' value='"."{$row['a_descricao']}" ."'>");
                     echo("<td>
-                        <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
+                        <button class='btn btn-primary m-submit-btn' type='submit' name='submit-anomalia' >
                             Edit
                         </button>
                         </td>");
