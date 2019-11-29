@@ -28,10 +28,10 @@
 			}
 
 			if (!$emailErr && !$passwordErr) {
-				header("Location: ./index.html");
-				$cookieName = "userID";
-				$cookieValue = $email;
-				setcookie($cookieName, $cookieValue, time() + (86400), '/'); // 1 day
+				//header("Location: ./index.html");
+				//$cookieName = "userID";
+				//$cookieValue = $email;
+				//setcookie($cookieName, $cookieValue, time() + (86400), '/'); // 1 day
 
 				try {
           $host = "db.ist.utl.pt";
@@ -44,10 +44,12 @@
 
 					$query = "SELECT u_email FROM utilizador_qualificado WHERE u_email =:email;";
 					$result = $db->prepare($query);
-          $result->execute(array($email));
+					$result->execute(array($email));
 					
-					if (count($result) == 0) setcookie("userQualificated", false, time() + (86400), '/'); // 1 day
-					else setcookie("userQualificated", true, time() + (86400), '/'); // 1 day
+					echo("<p>{$result}</p>")
+					
+					if (count($result) == 0) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
+					else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
 
 					$db = null;
 
