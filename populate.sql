@@ -63,7 +63,7 @@ insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomal
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('024, 052', 'menu.jpg', 'pt', '2019-05-15 09:45:22', 'Erro ortográfico', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('342, 039', 'livro.png', 'eng', '2019-07-15 12:00:06', 'Erro ortográfico', false);
+	values ('042, 039', 'livro.png', 'eng', '2019-07-15 12:00:06', 'Erro ortográfico', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('054, 063', 'carta.jpg', 'fr', '2019-05-17 15:03:43', 'Frase sem sentido', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)

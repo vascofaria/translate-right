@@ -30,8 +30,8 @@
       
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">Latitude 1:</label>
-            <input type="text" class="form-control" placeholder="Latitude(-90, 90)" value="" name="lat1" required>
+            <label for="validationCustom01">X 1:</label>
+            <input type="text" class="form-control" placeholder="X(0, 999)" value="" name="x1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -40,8 +40,8 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">Longitude 1:</label>
-            <input type="text" class="form-control" placeholder="Longitude(0, 180)" value="" name="long1" required>
+            <label for="validationCustom01">Y 1:</label>
+            <input type="text" class="form-control" placeholder="Y(0, 999)" value="" name="y1" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -50,8 +50,8 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">Latitude 2:</label>
-            <input type="text" class="form-control" placeholder="Latitude(-90, 90)" value="" name="lat2" required>
+            <label for="validationCustom01">X 2:</label>
+            <input type="text" class="form-control" placeholder="X(0, 999)" value="" name="x2" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -60,8 +60,8 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">Longitude 2:</label>
-            <input type="text" class="form-control" placeholder="Longitude(0, 180)" value="" name="long2" required>
+            <label for="validationCustom01">Y 2:</label>
+            <input type="text" class="form-control" placeholder="Y(0, 999)" value="" name="y2" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -81,18 +81,18 @@
           $password = "idxi1356";
           $dbname = $user;
 
-          $latitude1  = $_POST['lat1'];
-          $latitude2  = $_POST['lat2'];
-          $longitude1 = $_POST['long1'];
-          $longitude2 = $_POST['long2'];
+          $x1  = $_POST['x1'];
+          $x2  = $_POST['x2'];
+          $y1 = $_POST['y1'];
+          $y2 = $_POST['y2'];
 
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           $query = "SELECT anomalia.a_id, anomalia.a_zona, anomalia_traducao.at_zona2, anomalia.a_imagem, anomalia.a_lingua, anomalia_traducao.at_lingua2, anomalia.a_ts, anomalia.a_descricao, anomalia.a_tem_anomalia_redacao
-           FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE SUBSTRING(a_zona, 1, 3)::int8 >= :latitude1 AND SUBSTRING(a_zona, 1, 3)::int8 <= :latitude2 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >= :longitude1 AND SUBSTRING(a_zona, 6, 3)::int8 <= :longitude2;";
+           FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE SUBSTRING(a_zona, 1, 3)::int8 >= :x1 AND SUBSTRING(a_zona, 1, 3)::int8 <= :x2 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >= :y1 AND SUBSTRING(a_zona, 6, 3)::int8 <= :y2;";
           $result = $db->prepare($query);
-          $result->execute(array($latitude1, $latitude2, $longitude1, $longitude2));
+          $result->execute(array($x1, $x2, $y1, $y2));
 
           echo("<table class='table'>");
             echo("<thead class='thead-dark'>");
