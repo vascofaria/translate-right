@@ -54,11 +54,9 @@ create table anomalia (
 constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
 */
 create function fn_Check_Zone (zone text)
-RETURNS VARCHAR(5) AS $$
+RETURNS Table AS $$
 BEGIN
-    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = zone)
-        return 'True';
-    return 'False';
+    RETURN (SELECT COUNT(*) FROM anomalia WHERE a_zona = zone);
 END; $$ LANGUAGE SQL;
 
 create table anomalia_traducao (
