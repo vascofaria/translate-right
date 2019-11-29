@@ -82,24 +82,18 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Translation anomaly</a>
-                <div class="form-group row">
-            <div class="col-sm-10 collapse multi-collapse">
                 <label for="validationCustom01">Zone</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="X" value="" name="x" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="X" value="" name="x2" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
-        </div>
-        <div class="form-group row collapse multi-collapse">
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Y" value="" name="y" required>
+                <label for="validationCustom01">Zone</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Y" value="" name="y2" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
-            </div>
-        </div>
             </div>
         </div>
         <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
