@@ -53,11 +53,11 @@ create table anomalia (
 /*
 constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
 */
-create function fn_Check_Zone (@zone VARCHAR(8))
+create function fn_Check_Zone (zone text)
 RETURNS VARCHAR(5)
 AS
 BEGIN
-    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = @zone)
+    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = zone)
         return 'True'
     return 'False'
 END
@@ -116,7 +116,7 @@ create table incidencia (
 );
 
 create table proposta_correcao (
-	pc_nro       smallint    not null unique,
+	pc_nro       smallint    not null,
 	pc_data_hora varchar(80) not null,
 	pc_texto     varchar(80) not null,
 	u_email      varchar(80) not null,
