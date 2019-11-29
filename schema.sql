@@ -98,7 +98,7 @@ create table incidencia (
 );
 
 create table proposta_correcao (
-	pc_nro       smallint    not null unique,
+	pc_nro       smallint    not null,
 	pc_data_hora varchar(80) not null,
 	pc_texto     varchar(80) not null,
 	u_email      varchar(80) not null,
