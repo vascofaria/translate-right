@@ -39,6 +39,8 @@
                 $result->execute(array($aId, $email, $pcNro));
                 $db->commit();
 
+
+
                 $db = null;
             }
             catch (PDOException $e) {
@@ -104,7 +106,7 @@
         }
 	?>
     <?php
-        if (!isset($_POST['submit-anomalia']) AND !isset($_POST['submit-edit'])) {
+        if (!isset($_POST['submit-anomalia'])) {
             try {
                 $host     = "db.ist.utl.pt";
                 $user     = "ist189559";
