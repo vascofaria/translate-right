@@ -18,42 +18,44 @@
     </nav>
 
     <?php
-        if (isset($_POST['submit-edit']) AND isset($_COOKIE['userID'])) {
-            try {
+        if (isset($_POST['submit-edit'])) {
+            if (isset($_COOKIE['userID'])) {
+                try {
 
-                $host     = "db.ist.utl.pt";
-                $user     = "ist189559";
-                $password = "idxi1356";
-                $dbname   = $user;
-                
-                $email=$_POST['e-mail'];
-                $pcNro=$_POST['pcNro'];
-                $aId=$_POST['aId'];
+                    $host     = "db.ist.utl.pt";
+                    $user     = "ist189559";
+                    $password = "idxi1356";
+                    $dbname   = $user;
+                    
+                    $email=$_POST['e-mail'];
+                    $pcNro=$_POST['pcNro'];
+                    $aId=$_POST['aId'];
 
-                //$userToken=$_COOKIE['userID'];
+                    //$userToken=$_COOKIE['userID'];
 
-                //if ($userToken == $email){
-                    $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
-                    $query = "UPDATE correcao SET a_id=:aId WHERE u_email=:email AND pc_nro=:pcNro;";
-                    $db->beginTransaction();
-                    $result = $db->prepare($query);
-                    $result->execute(array($aId, $email, $pcNro));
-                    $db->commit();
+                    //if ($userToken == $email){
+                        $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                        $query = "UPDATE correcao SET a_id=:aId WHERE u_email=:email AND pc_nro=:pcNro;";
+                        $db->beginTransaction();
+                        $result = $db->prepare($query);
+                        $result->execute(array($aId, $email, $pcNro));
+                        $db->commit();
 
-                    echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
+                        echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
 
-                    $db = null;
-                //}else{
-                //    echo("<p>ERROR: No Permission</p>");
-                //}
+                        $db = null;
+                    //}else{
+                    //    echo("<p>ERROR: No Permission</p>");
+                    //}
+                }
+                catch (PDOException $e) {
+                    echo("<p>ERROR: {$e->getMessage()}</p>");
+                }
+            }else{
+                echo("<p>ERROR: Please Login</p>");
             }
-            catch (PDOException $e) {
-                echo("<p>ERROR: {$e->getMessage()}</p>");
-            }
-        }else{
-            echo("<p>ERROR: Please Login</p>");
         }
     ?>
 	<?php

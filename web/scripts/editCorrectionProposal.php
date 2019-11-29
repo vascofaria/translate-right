@@ -18,40 +18,42 @@
     </nav>
 
     <?php
-        if (isset($_POST['submit-edit']) AND isset($_COOKIE['userID'])) {
-            try {
-                $host     = "db.ist.utl.pt";
-                $user     = "ist189559";
-                $password = "idxi1356";
-                $dbname   = $user;
-                
-                $pcNro=$_POST['PcNro'];
-                $dataHora=$_POST['DataHora'];
-                $texto=$_POST['Texto'];
-                $uEmail=$_POST['UEmail'];
+        if (isset($_POST['submit-edit'])) {
+            if (isset($_COOKIE['userID'])) {
+                try {
+                    $host     = "db.ist.utl.pt";
+                    $user     = "ist189559";
+                    $password = "idxi1356";
+                    $dbname   = $user;
+                    
+                    $pcNro=$_POST['PcNro'];
+                    $dataHora=$_POST['DataHora'];
+                    $texto=$_POST['Texto'];
+                    $uEmail=$_POST['UEmail'];
 
-                $userToken=$_COOKIE['userID'];
+                    $userToken=$_COOKIE['userID'];
 
-                if ($userToken == $uEmail){
-                    $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
-                    $query = "UPDATE proposta_correcao SET pc_texto=:texto WHERE pc_nro=:pcNro AND pc_data_hora=:dataHora AND u_email=:uEmail;";
-                    $db->beginTransaction();
-                    $result = $db->prepare($query);
-                    $result->execute(array($texto, $pcNro, $dataHora, $uEmail));
-                    $db->commit();
+                    if ($userToken == $uEmail){
+                        $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                        $query = "UPDATE proposta_correcao SET pc_texto=:texto WHERE pc_nro=:pcNro AND pc_data_hora=:dataHora AND u_email=:uEmail;";
+                        $db->beginTransaction();
+                        $result = $db->prepare($query);
+                        $result->execute(array($texto, $pcNro, $dataHora, $uEmail));
+                        $db->commit();
 
-                    $db = null;
-                }else{
-                    echo("<p>ERROR: No Permission</p>");
+                        $db = null;
+                    }else{
+                        echo("<p>ERROR: No Permission</p>");
+                    }
                 }
+                catch (PDOException $e) {
+                    echo("<p>ERROR: {$e->getMessage()}</p>");
+                }
+            }else{
+                echo("<p>ERROR: Please Login</p>");
             }
-            catch (PDOException $e) {
-                echo("<p>ERROR: {$e->getMessage()}</p>");
-            }
-        }else{
-            echo("<p>ERROR: Please Login</p>");
         }
     ?>
 	<?php
