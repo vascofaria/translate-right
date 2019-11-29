@@ -226,12 +226,16 @@
 
                 $result->execute();
 
+                $row = $result->fetch(PDO::FETCH_ASSOC);
+                $id = $row['a_id'];
+
                 echo "string";
-                $query  = "INSERT INTO anomalia_traducao(at_zona2, at_lingua2) values (:zone2, :language2);";
+                $query  = "INSERT INTO anomalia_traducao(a_id, at_zona2, at_lingua2) values (:id, :zone2, :language2);";
                 $result = $db->prepare($query);
 
                 $zone2 = $_POST['x2'] . ", " . $_POST['y2'];
 
+                $result->bindValue(':id', $id);
                 $result->bindValue(':zone2', $zone2);
                 $result->bindValue(':language2', $_POST['language2']);
 
@@ -246,7 +250,7 @@
 
         function makeQuery($zone, $image, $language, $description) {
             $query = "INSERT INTO anomalia(a_zona, a_imagem, a_lingua, a_descricao, a_tem_anomalia_redacao) values
-            (:zone, :image, :language, :description, :hasRedaction);";
+            (:zone, :image, :language, :description, :hasRedaction) RETURNING a_id;";
             return $query;
         }
 	?>
