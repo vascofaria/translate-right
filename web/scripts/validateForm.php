@@ -28,7 +28,7 @@
 			}
 
 			if (!$emailErr && !$passwordErr) {
-				header("Location: ./index.html");
+				//header("Location: ./index.html");
 				$cookieName = "userID";
 				$cookieValue = $email;
 				setcookie($cookieName, $cookieValue, time() + (86400), '/'); // 1 day
@@ -46,8 +46,8 @@
 				  $result = $db->prepare($query);
 			  	$result->execute(array($email));
 					
-						// echo("<p>{$result}</p>")
-					setcookie("qualificated", sizeof($result[0]), time() + 86400, '/');
+					echo("<p>{$result}</p>")
+				//setcookie("qualificated", sizeof($result[0]), time() + 86400, '/');
 				//  	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
 				//  	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
 
