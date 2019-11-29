@@ -18,7 +18,7 @@
     </nav>
 
     <h1 style="margin-left: 35%; margin-top: 2%;"><span class="badge badge-secondary">Anomalies List in the given area</span></h1>
-    <h4 style="margin-left: 20%">Insert your area, by writing the coordinates of the left top corner (1) and right bottom corner (2).</h4>
+    <h4 style="margin-left: 20%">Insert your area, by writing the latitude, longitude and dX, dY.</h4>
 
       <form 
         id="anomalies-area-form"
@@ -30,8 +30,8 @@
       
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">X 1:</label>
-            <input type="text" class="form-control" placeholder="X(0, 999)" value="" name="x1" required>
+            <label for="validationCustom01">Latitude(X):</label>
+            <input type="text" class="form-control" placeholder="X(-90, 90)" value="" name="x" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -40,8 +40,8 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">Y 1:</label>
-            <input type="text" class="form-control" placeholder="Y(0, 999)" value="" name="y1" required>
+            <label for="validationCustom01">Longitude(Y):</label>
+            <input type="text" class="form-control" placeholder="Y(0, 180)" value="" name="y" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -50,8 +50,8 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">X 2:</label>
-            <input type="text" class="form-control" placeholder="X(0, 999)" value="" name="x2" required>
+            <label for="validationCustom01">dX:</label>
+            <input type="text" class="form-control" placeholder="dX(0, 90)" value="" name="dx" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -60,8 +60,8 @@
 
         <div class="form-group row">
           <div class="col-sm-10">
-            <label for="validationCustom01">Y 2:</label>
-            <input type="text" class="form-control" placeholder="Y(0, 999)" value="" name="y2" required>
+            <label for="validationCustom01">dY:</label>
+            <input type="text" class="form-control" placeholder="dY(0, 90)" value="" name="dy" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -81,16 +81,16 @@
           $password = "idxi1356";
           $dbname = $user;
 
-          $x1  = $_POST['x1'];
-          $x2  = $_POST['x2'];
-          $y1 = $_POST['y1'];
-          $y2 = $_POST['y2'];
+          $x1  = $_POST['x'] - $_POST['dx'];
+          $x2  = $_POST['x'] + $_POST['dx'];
+          $y1  = $_POST['y'] - $_POST['dy'];
+          $y2  = $_POST['y'] + $_POST['dy'];
 
           $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           $query = "SELECT anomalia.a_id, anomalia.a_zona, anomalia_traducao.at_zona2, anomalia.a_imagem, anomalia.a_lingua, anomalia_traducao.at_lingua2, anomalia.a_ts, anomalia.a_descricao, anomalia.a_tem_anomalia_redacao
-           FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE SUBSTRING(a_zona, 1, 3)::int8 >= :x1 AND SUBSTRING(a_zona, 1, 3)::int8 <= :x2 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >= :y1 AND SUBSTRING(a_zona, 6, 3)::int8 <= :y2;";
+           FROM anomalia NATURAL JOIN incidencia NATURAL JOIN item FULL OUTER JOIN anomalia_traducao WHERE item.lp_latitude >= :x1 AND item.lp_latitude <= :x2 AND item.lp_longitude >= :y1 AND item.lp_longitude <= :y2;";
           $result = $db->prepare($query);
           $result->execute(array($x1, $x2, $y1, $y2));
 
