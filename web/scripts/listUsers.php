@@ -20,9 +20,6 @@
     <h1 class="m-badge"><span class="badge badge-secondary">Users List</span></h1>
 
     <?php
-      //if (isset($_COOKIE['userID'])) {
-      //  echo("<p>{$_COOKIE['userID']}</p>");
-      //}
       try {
         $host = "db.ist.utl.pt";
         $user = "ist189559";
@@ -32,7 +29,7 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $query = "SELECT * FROM utilizador;";
+        $query = "SELECT u_email FROM utilizador;";
         $result = $db->prepare($query);
         $result->execute();
 

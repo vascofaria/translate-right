@@ -41,9 +41,6 @@
     ?>
 
     <?php
-      //if (isset($_COOKIE['userID'])) {
-      //  echo("<p>{$_COOKIE['userID']}</p>");
-      //}
       try {
         $host = "db.ist.utl.pt";
         $user = "ist189559";
@@ -53,15 +50,15 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $query = "SELECT * FROM item;";
+        $query = "SELECT i_descricao, i_localizacao, lp_latitude, lp_longitude, i_id FROM item;";
         $result = $db->prepare($query);
         $result->execute();
 
         echo("<table style='margin-top: 60px;' id='items-list' class='table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
-              echo("<th scope='col'>Descrição</th>");
-              echo("<th scope='col'>Localização</th>");
+              echo("<th scope='col'>Description</th>");
+              echo("<th scope='col'>Location</th>");
               echo("<th scope='col'>Latitude</th>");
               echo("<th scope='col'>Longitude</th>");
               echo("<th scope='col'>Delete</th>");

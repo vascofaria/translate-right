@@ -20,7 +20,7 @@
     <h1 class="m-badge"><span class="badge badge-secondary">Select the correction proposal to delete:</span></h1>
 
     <?php
-        if (isset($_POST['deleteCorrection'])) {
+        if (isset($_POST['deleteCorrectionProposal'])) {
             try {
                 $host     = "db.ist.utl.pt";
                 $user     = "ist189559";
@@ -62,8 +62,8 @@
             echo("<tr>");
             echo("<th scope='col'>Email</th>");
             echo("<th scope='col'>Correction Proposal Number</th>");
-            echo("<th scope='col'>Texto</th>");
-            echo("<th scope='col'>Data e Hora</th>");
+            echo("<th scope='col'>Text</th>");
+            echo("<th scope='col'>Date Time</th>");
             echo("<th scope='col'>Delete</th>");
             echo("<tr/>");
             echo("<thead/>");
@@ -75,7 +75,7 @@
                 echo("<td><input type='readonly'   name='pc_texto'      readonly style='border:none' value='"."{$row['pc_texto']}"   ."'></td>");
                 echo("<td><input type='readonly'   name='pc_data_hora'      readonly style='border:none' value='"."{$row['pc_data_hora']}"   ."'></td>");
                 echo("<td>
-                    <button class='btn btn-danger m-submit-btn' type='submit' name='deleteCorrection' >
+                    <button class='btn btn-danger m-submit-btn' type='submit' name='deleteCorrectionProposal' >
                         Delete
                     </button>
                     </td>");

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>TR - Delete Anamaly</title>
+    <title>TR - Delete Anomaly</title>
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
@@ -20,7 +20,7 @@
     <h1 class="m-badge"><span class="badge badge-secondary">Select the anomaly to delete:</span></h1>
 
     <?php
-        if (isset($_POST['deleteCorrection'])) {
+        if (isset($_POST['deleteAnomaly'])) {
             try {
                 $host     = "db.ist.utl.pt";
                 $user     = "ist189559";
@@ -64,7 +64,7 @@
             echo("<th scope='col'>Language</th>");
             echo("<th scope='col'>Timestamp</th>");
             echo("<th scope='col'>Description</th>");
-            echo("<th scope='col'>Has Redaction</th>");
+            echo("<th scope='col'>Has Redaction?</th>");
             echo("<th scope='col'>Delete</th>");
             echo("<tr/>");
             echo("<thead/>");
@@ -83,7 +83,7 @@
                   echo("<td><input type='readonly'   name='a_tem_anomalia_redacao'   readonly style='border:none' value='NO'></td>");
                 }
                 echo("<td>
-                    <button class='btn btn-danger m-submit-btn' type='submit' name='deleteCorrection' >
+                    <button class='btn btn-danger m-submit-btn' type='submit' name='deleteAnomaly' >
                         Delete
                     </button>
                     </td>");

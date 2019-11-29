@@ -27,22 +27,22 @@ insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
 	values ('Aula de Código', 'Alameda', 35.123543, 120.749342);
 
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('0034, 0012', '$$%%&&$', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
+	values ('034, 012', 'cartaz.jpg', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('0012, 0054', '&&%#', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
+	values ('012, 054', 'poster.png', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('0004, 0006', '##$#$', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
+	values ('004, 006', 'trad.jpg', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('0010, 0078', '$$#$', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
+	values ('010, 078', 'publicidade.jpg', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('0003, 0059', '#$$#$', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
+	values ('003, 059', 'frase.png', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('0007, 0038', '#$##$', 'pt', '2019-01-01 10:00:00', 'Frase', false);
+	values ('007, 038', 'foto.jpg', 'pt', '2019-01-01 10:00:00', 'Frase', false);
 
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (2, '0031, 0048', 'pt');
+	values (2, '031, 048', 'pt');
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (3, '0046, 0064', 'pt');
+	values (3, '046, 064', 'pt');
 
 insert into duplicado(i_id1, i_id2)
 	values (1, 4);

@@ -62,7 +62,7 @@
           echo("<tr>");
           echo("<th scope='col'>Email</th>");
           echo("<th scope='col'>Correction Proposal Number</th>");
-          echo("<th scope='col'>Anomalia ID</th>");
+          echo("<th scope='col'>Anomaly ID</th>");
           echo("<th scope='col'>Delete</th>");
           echo("<tr/>");
           echo("<thead/>");

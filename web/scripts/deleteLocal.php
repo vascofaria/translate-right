@@ -20,7 +20,7 @@
     <h1 class="m-badge"><span class="badge badge-secondary">Select the Local to delete:</span></h1>
 
     <?php
-        if (isset($_POST['deleteCorrection'])) {
+        if (isset($_POST['deleteLocal'])) {
             try {
                 $host     = "db.ist.utl.pt";
                 $user     = "ist189559";
@@ -51,7 +51,7 @@
         	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $sql = "SELECT * FROM local_publico;";
+          $sql = "SELECT lp_latitude, lp_longitude, lp_nome FROM local_publico;";
           $result = $db->prepare($sql);
           $result->execute();
 
@@ -61,7 +61,7 @@
           echo("<tr>");
           echo("<th scope='col'>Latitude</th>");
           echo("<th scope='col'>Longitude</th>");
-          echo("<th scope='col'>Nome</th>");
+          echo("<th scope='col'>Name</th>");
           echo("<th scope='col'>Delete</th>");
           echo("<tr/>");
           echo("<thead/>");
@@ -72,7 +72,7 @@
               echo("<td><input type='readonly'   name='lp_longitude'   readonly style='border:none' value='"."{$row['lp_longitude']}" ."'></td>");
               echo("<td><input type='readonly'   name='lp_nome'      readonly style='border:none' value='"."{$row['lp_nome']}"   ."'></td>");
               echo("<td>
-                  <button class='btn btn-danger m-submit-btn' type='submit' name='deleteCorrection' >
+                  <button class='btn btn-danger m-submit-btn' type='submit' name='deleteLocal' >
                       Delete
                   </button>
                   </td>");

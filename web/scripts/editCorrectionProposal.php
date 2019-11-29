@@ -19,32 +19,40 @@
 
     <?php
         if (isset($_POST['submit-edit'])) {
-            try {
+            if (isset($_COOKIE['userID'])) {
+                try {
+                    $host     = "db.ist.utl.pt";
+                    $user     = "ist189559";
+                    $password = "idxi1356";
+                    $dbname   = $user;
+                    
+                    $pcNro=$_POST['PcNro'];
+                    $dataHora=$_POST['DataHora'];
+                    $texto=$_POST['Texto'];
+                    $uEmail=$_POST['UEmail'];
 
-                $host     = "db.ist.utl.pt";
-                $user     = "ist189559";
-                $password = "idxi1356";
-                $dbname   = $user;
-                
-                $pcNro=$_POST['PcNro'];
-                $dataHora=$_POST['DataHora'];
-                $texto=$_POST['Texto'];
-                $uEmail=$_POST['UEmail'];
+                    $userToken=$_COOKIE['userID'];
 
+                    if ($userToken == $uEmail){
+                        $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                        $query = "UPDATE proposta_correcao SET pc_texto=:texto WHERE pc_nro=:pcNro AND pc_data_hora=:dataHora AND u_email=:uEmail;";
+                        $db->beginTransaction();
+                        $result = $db->prepare($query);
+                        $result->execute(array($texto, $pcNro, $dataHora, $uEmail));
+                        $db->commit();
 
-                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-                $query = "UPDATE proposta_correcao SET pc_texto=:texto WHERE pc_nro=:pcNro AND pc_data_hora=:dataHora AND u_email=:uEmail;";
-                $db->beginTransaction();
-                $result = $db->prepare($query);
-                $result->execute(array($texto, $pcNro, $dataHora, $uEmail));
-                $db->commit();
-
-                $db = null;
-            }
-            catch (PDOException $e) {
-                echo("<p>ERROR: {$e->getMessage()}</p>");
+                        $db = null;
+                    }else{
+                        echo("<p>ERROR: No Permission</p>");
+                    }
+                }
+                catch (PDOException $e) {
+                    echo("<p>ERROR: {$e->getMessage()}</p>");
+                }
+            }else{
+                echo("<p>ERROR: Please Login</p>");
             }
         }
     ?>
@@ -58,13 +66,14 @@
         	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		
-        	$sql = "SELECT * FROM proposta_correcao;";
+        	$sql = "SELECT proposta_correcao.pc_nro, proposta_correcao.pc_data_hora,proposta_correcao.pc_texto,proposta_correcao.u_email FROM proposta_correcao;";
 
             $result = $db->prepare($sql);
             $result->execute();
 
+            echo("<h1 class='m-badge'><span class='badge badge-secondary'>Edit your Correction Proposal:</span></h1>");
 
-            echo("<table class='table'>");
+            echo("<table class='table' style='margin-top: 60px;'>");
             echo("<thead class='thead-dark'>");
             echo("<tr>");
             echo("<th scope='col'>Numero Proposta de Correcao</th>");
