@@ -47,9 +47,12 @@ create table anomalia (
 	a_ts                   timestamp    default current_timestamp,
 	a_descricao            varchar(80)  not null,
 	a_tem_anomalia_redacao boolean      not null,
-	constraint pk_anomalia primary key (a_id),
-	constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
+	constraint pk_anomalia primary key (a_id)
 );
+
+/*
+constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
+*/
 
 create table anomalia_traducao (
 	a_id       smallint    not null unique,
