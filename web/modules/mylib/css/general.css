@@ -24,7 +24,8 @@
 }
 
 .m-badge {
-  transform: translate(37%, 100%);
+  margin-left: 35%;
+  margin-top: 2%;
 }
 
 .m-sub-badge {
