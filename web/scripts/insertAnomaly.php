@@ -134,12 +134,6 @@
                 });
             }, false);
         })();
-
-        function toggleVisibility() {
-            document.getElementById('translate-zone-x').style.visibility   = 'visible';
-            document.getElementById('translate-zone-y').style.visibility   = 'visible';
-            document.getElementById('translate-language').style.visibility = 'visible';
-        }
     </script>
 
 	<?php
@@ -229,7 +223,7 @@
 
                 $result->execute(); 
                 $db->commit();
-                
+
                 $db = null;
             }
             catch (PDOException $e) {
