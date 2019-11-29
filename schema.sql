@@ -35,7 +35,7 @@ create table item (
 	lp_longitude  decimal(9, 6)      not null,
 	constraint    pk_item            primary key (i_id),
 	constraint    fk_i_local_publico foreign key (lp_latitude, lp_longitude) references local_publico(lp_latitude, lp_longitude)
-	ON DELETE CASCADE 
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -95,7 +95,7 @@ create table incidencia (
 );
 
 create table proposta_correcao (
-	pc_nro       smallint    not null unique,
+	pc_nro       smallint    not null,
 	pc_data_hora varchar(80) not null,
 	pc_texto     varchar(80) not null,
 	u_email      varchar(80) not null,
@@ -108,6 +108,6 @@ create table correcao (
 	pc_nro  smallint    not null,
 	a_id    smallint    not null,
 	constraint pk_correcao            primary key (u_email, pc_nro, a_id),
-	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro) ON DELETE CASCADE ON UPDATE CASCADE,
-	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id) ON DELETE CASCADE ON UPDATE CASCADE
+	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro) ON DELETE CASCADE,
+	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id) ON DELETE CASCADE
 );
