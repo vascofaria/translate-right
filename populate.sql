@@ -135,16 +135,16 @@ insert into utilizador_regular(u_email)
 insert into utilizador_regular(u_email)
 	values ('beatriz@gmail.com');
 
-insert into incidencia(a_id, i_id, u_email) values (1,  2, 'nikoletta@gmail.com' );
-insert into incidencia(a_id, i_id, u_email) values (2,  4, 'zemanel@gmail.com'   );
-insert into incidencia(a_id, i_id, u_email) values (3,  5, 'bruno@gmail.com'     );
-insert into incidencia(a_id, i_id, u_email) values (4,  3, 'vasco@gmail.com'     );
-insert into incidencia(a_id, i_id, u_email) values (5,  1, 'rui@gmail.com'       );
-insert into incidencia(a_id, i_id, u_email) values (6,  6, 'vasco@gmail.com'     );
+insert into incidencia(a_id, i_id, u_email) values (1,   2, 'nikoletta@gmail.com' );
+insert into incidencia(a_id, i_id, u_email) values (2,   4, 'zemanel@gmail.com'   );
+insert into incidencia(a_id, i_id, u_email) values (3,   5, 'bruno@gmail.com'     );
+insert into incidencia(a_id, i_id, u_email) values (4,   3, 'vasco@gmail.com'     );
+insert into incidencia(a_id, i_id, u_email) values (5,   1, 'rui@gmail.com'       );
+insert into incidencia(a_id, i_id, u_email) values (6,   6, 'vasco@gmail.com'     );
 insert into incidencia(a_id, i_id, u_email) values (10,  9, 'professor@gmail.com');
 insert into incidencia(a_id, i_id, u_email) values (7,   7, 'professor@gmail.com');
 insert into incidencia(a_id, i_id, u_email) values (12,  8, 'professor@gmail.com');
-insert into incidencia(a_id, i_id, u_email) values (10, 5, 'rute@gmail.com'     );
+insert into incidencia(a_id, i_id, u_email) values ( 9,  10, 'rute@gmail.com'     );
 insert into incidencia(a_id, i_id, u_email) values (11, 10, 'stallman@gmail.com' );
 insert into incidencia(a_id, i_id, u_email) values (8,  11, 'nikoletta@gmail.com');
 
