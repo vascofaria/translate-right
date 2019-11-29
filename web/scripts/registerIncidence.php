@@ -17,7 +17,7 @@
       </form>
     </nav>
 
-  
+
 
     <?php
         if (isset($_POST['submit-edit'])) {
@@ -79,8 +79,9 @@
                 $result = $db->prepare($sql);
                 $result->execute();
 
+                echo("<h1 class='m-badge'><span class='badge badge-secondary'>Select an item for the incidence:</span></h1>");
 
-                echo("<table class='table'>");
+                echo("<table class='table' style='margin-top: 60px;'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
                 echo("<th scope='col'>Item ID</th>");
@@ -135,7 +136,9 @@
                 $result = $db->prepare($sql);
                 $result->execute();
 
-                echo("<table class='table'>");
+                echo("<h1 class='m-badge'><span class='badge badge-secondary'>Select an anomalia for the incidence:</span></h1>");
+
+                echo("<table class='table' style='margin-top: 60px;'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
                 echo("<th scope='col'>Anomalia ID</th>");
