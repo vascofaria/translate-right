@@ -26,14 +26,16 @@
                 $password = "idxi1356";
                 $dbname   = $user;
                 
-                $email=$_POST['email'];
-                $PcNro=$_POST['PcNro'];
-                $AId=$_POST['AId'];
+                $email=$_POST['e-mail'];
+                $pcNro=$_POST['pcNro'];
+                $data=$_POST['data'];
+                $texto=$_POST['texto'];
+                $aId=$_POST['aId'];
 
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-                $query = "UPDATE correcao SET pc_nro=:newPcNro WHERE u_email=:email AND pc_nro=:oldPcNro AND a_id=:AId;";
+                $query = "UPDATE correcao SET a_id=:aId WHERE u_email=:email AND pc_nro=:pcNro;";
                 $db->beginTransaction();
                 $result = $db->prepare($query);
                 $result->execute(array($newPcNro, $email, $oldPcNro, $AId));
@@ -60,28 +62,30 @@
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		
-                echo("<p>$aId</p>");
-            	$sql = "SELECT correcao.u_email, correcao.pc_nro, correcao.a_id FROM correcao WHERE correcao.a_id=:aId;";
+            	$sql = "SELECT proposta_correcao.pc_nro, proposta_correcao.pc_data_hora, proposta_correcao.pc_texto, proposta_correcao.u_email FROM proposta_correcao ;";
 
                 $result = $db->prepare($sql);
-                $result->execute(array($aId));
+                $result->execute();
 
 
                 echo("<table class='table'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
-                echo("<th scope='col'>Utilizador e-mail</th>");
                 echo("<th scope='col'>Numero Proposta de Correcao</th>");
-                echo("<th scope='col'>Anomalia ID</th>");
+                echo("<th scope='col'>Data</th>");
+                echo("<th scope='col'>Texto</th>");
+                echo("<th scope='col'>Utilizador e-mail</th>");
                 echo("<th scope='col'>Select</th>");
-                echo("<tr/>");
                 echo("<thead/>");
+                echo("<tr/>");
                 echo("<tbody>");
                   foreach($result as $row) {
                     echo("<tr><form action='' method='POST'>");
-                    echo("<td><input type='readonly'   name='Email'    readonly style='border:none' value='"."{$row['u_email']}"."'></td>");
-                    echo(    "<input type='readonly'       name='PcNro'                              value='"."{$row['pc_nro']}" ."'></td>");
-                    echo("<td><input type='readonly'   name='AId'      readonly style='border:none' value='"."{$row['a_id']}"   ."'></td>");
+                    echo("<td><input type='hidden' name='aId'  readonly style='border:none' value='"."{$aId}"."'></td>");
+                    echo("<td><input type='readonly' name='pcNro'  readonly style='border:none' value='"."{$row['pc_nro']}"."'></td>");
+                    echo(    "<input type='readonly' name='data'   readonly style='border:none' value='"."{$row['pc_data_hora']}" ."'></td>");
+                    echo("<td><input type='readonly' name='texto'  readonly style='border:none' value='"."{$row['pc_texto']}"   ."'></td>");
+                    echo("<td><input type='readonly' name='e-mail' readonly style='border:none' value='"."{$row['u_email']}"   ."'></td>");
                     echo("<td>
                         <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
                             Select
