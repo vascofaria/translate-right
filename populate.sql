@@ -74,17 +74,17 @@ insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomal
 	values ('023, 023', 'manuscrito.jpg', 'uk', '2019-02-26 12:30:40', 'Erro ortográfico', true);
 
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (2, '031, 048', 'pt');
+	values (2, '031, 048', 'germ');
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (3, '046, 064', 'pt');
+	values (3, '046, 064', 'esp');
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (5, '146, 264', 'pt');
+	values (5, '146, 264', 'germ');
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (9, '445, 753', 'pt');
+	values (9, '445, 753', 'esp');
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (10, '429, 231', 'pt');
+	values (10, '429, 231', 'germ');
 insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
-	values (11, '123, 123', 'pt');
+	values (11, '123, 123', 'esp');
 
 insert into duplicado(i_id1, i_id2)
 	values (1, 4);
