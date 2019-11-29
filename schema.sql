@@ -53,6 +53,16 @@ create table anomalia (
 /*
 constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
 */
+create function fn_Check_Zone (
+    @zone VARCHAR(8)
+)
+RETURNS VARCHAR(10)
+AS
+BEGIN
+    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = @zone)
+        return 'True'
+    return 'False'
+END
 
 create table anomalia_traducao (
 	a_id       smallint    not null unique,
@@ -60,8 +70,9 @@ create table anomalia_traducao (
 	at_lingua2 varchar(80) not null,
 	constraint pk_anomalia_traducao primary key (a_id),
 	constraint fk_at_anomalia       foreign key (a_id) references anomalia(a_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	constraint ck_ck check (SELECT COUNT(*) FROM anomalia WHERE EXISTS(a_zona=at_zona2)) = 0
+	constraint ck_ck check (fn_Check_zone(at_zona2) = 'True')
 );
+
 /*	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 3)::int8 <= 90 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0 AND SUBSTRING(at_zona2, 6, 3)::int8 <= 180)
 		constraint ck_zone_diff   check NOT (SELECT anomalia.a_zona FROM anomalia WHERE EXISTS anomalia.a_zona=at_zona2),
 		constraint ck_lingua
