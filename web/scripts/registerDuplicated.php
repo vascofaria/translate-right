@@ -31,9 +31,6 @@
                     $i_id2=$_POST['iId2'];
                     $i_id1=$_POST['iId1'];
 
-                    //$userToken=$_COOKIE['userID'];
-
-                    //if ($userToken == $email){
                         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     
@@ -46,9 +43,7 @@
                         echo("<div class='alert alert-success' role='alert'>Registed Sucessfully!</div>");
 
                         $db = null;
-                    //}else{
-                    //    echo("<p>ERROR: No Permission</p>");
-                    //}
+
                 }
                 catch (PDOException $e) {
                     echo("<p>ERROR: {$e->getMessage()}</p>");

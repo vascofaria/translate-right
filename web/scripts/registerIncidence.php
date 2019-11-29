@@ -149,8 +149,8 @@
                 echo("<tbody>");
                   foreach($result as $row) {
                     echo("<tr><form action='' method='POST'>");
-                    echo("<td><input type='readonly' name='aId'  style='border:none' value='"."{$row['a_id']}"."'></td>");
-                    echo("<td><input type='readonly' name='aDescricao' style='border:none' value='"."{$row['a_descricao']}" ."'>");
+                    echo("<td><input type='readonly' readonly name='aId'  style='border:none' value='"."{$row['a_id']}"."'></td>");
+                    echo("<td><input type='readonly' readonly name='aDescricao' style='border:none' value='"."{$row['a_descricao']}" ."'>");
                     echo("<td>
                         <button class='btn btn-primary m-submit-btn' type='submit' name='submit-anomalia' >
                             Select
