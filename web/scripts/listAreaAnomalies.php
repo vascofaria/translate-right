@@ -90,7 +90,7 @@
           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           $query = "SELECT anomalia.a_id, anomalia.a_zona, anomalia_traducao.at_zona2, anomalia.a_imagem, anomalia.a_lingua, anomalia_traducao.at_lingua2, anomalia.a_ts, anomalia.a_descricao, anomalia.a_tem_anomalia_redacao
-           FROM anomalia NATURAL JOIN incidencia NATURAL JOIN item FULL OUTER JOIN anomalia_traducao WHERE item.lp_latitude >= :x1 AND item.lp_latitude <= :x2 AND item.lp_longitude >= :y1 AND item.lp_longitude <= :y2;";
+           FROM anomalia NATURAL JOIN incidencia NATURAL JOIN item FULL OUTER JOIN anomalia_traducao ON anomalia.a_id=anomalia_traducao.a_id WHERE item.lp_latitude >= :x1 AND item.lp_latitude <= :x2 AND item.lp_longitude >= :y1 AND item.lp_longitude <= :y2;";
           $result = $db->prepare($query);
           $result->execute(array($x1, $x2, $y1, $y2));
 
