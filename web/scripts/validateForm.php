@@ -33,29 +33,29 @@
 				$cookieValue = $email;
 				setcookie($cookieName, $cookieValue, time() + (86400), '/'); // 1 day
 
-				 try {
-          $host = "db.ist.utl.pt";
-          $user = "ist189559";
-          $pass = "idxi1356";
-				 	$dbname = $user;
+				//  try {
+        //   $host = "db.ist.utl.pt";
+        //   $user = "ist189559";
+        //   $pass = "idxi1356";
+				//  	$dbname = $user;
 
-				 	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-				 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				//  	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
+				//  	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				 	$query = "SELECT EXISTS(SELECT u_email FROM utilizador_qualificado WHERE u_email =:email);";
-				 	$result = $db->prepare($query);
-				 	$result->execute(array($email));
+				//  	$query = "SELECT EXISTS(SELECT u_email FROM utilizador_qualificado WHERE u_email =:email);";
+				//  	$result = $db->prepare($query);
+				//  	$result->execute(array($email));
 					
-				 	echo("<p>{$result['exists']}</p>")
+				//  	echo("<p>{$result['exists']}</p>")
 					
-				 	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
-				 	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
+				//  	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
+				//  	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
 
-				 	$db = null;
+				//  	$db = null;
 
-				 } catch (PDOException $e) {
-           echo("<p>ERROR: {$e->getMessage()}</p>");
-				 }
+				//  } catch (PDOException $e) {
+        //    echo("<p>ERROR: {$e->getMessage()}</p>");
+				//  }
 			}
 		}
 
