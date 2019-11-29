@@ -79,7 +79,7 @@ create table anomalia_traducao (
 	constraint pk_anomalia_traducao primary key (a_id),
 	constraint fk_at_anomalia       foreign key (a_id) references anomalia(a_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= 0 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0),
-	constraint ck_zone_diff check (fn_Check_Zone(at_zona2) = 0);
+	constraint ck_zone_diff check (fn_Check_Zone(at_zona2) = 0)
 );
 
 /*	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 3)::int8 <= 90 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0 AND SUBSTRING(at_zona2, 6, 3)::int8 <= 180)
