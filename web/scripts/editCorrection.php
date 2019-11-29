@@ -83,7 +83,7 @@
                     echo("<tr><form action='' method='POST'>");
                     echo("<td><input type='hidden' name='aId'  readonly style='border:none' value='"."{$aId}"."'>");
                     echo("<input type='readonly' name='pcNro'  readonly style='border:none' value='"."{$row['pc_nro']}"."'></td>");
-                    echo(    "<input type='readonly' name='data'   readonly style='border:none' value='"."{$row['pc_data_hora']}" ."'></td>");
+                    echo("<td><input type='readonly' name='data'   readonly style='border:none' value='"."{$row['pc_data_hora']}" ."'></td>");
                     echo("<td><input type='readonly' name='texto'  readonly style='border:none' value='"."{$row['pc_texto']}"   ."'></td>");
                     echo("<td><input type='readonly' name='e-mail' readonly style='border:none' value='"."{$row['u_email']}"   ."'></td>");
                     echo("<td>
