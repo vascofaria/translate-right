@@ -82,7 +82,7 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button class="btn btn-primary" name="translactionAnomaly">Translaction Anomaly</button>
+                <button class="btn btn-primary" type="button" name="translactionAnomaly">Translaction Anomaly</button>
             </div>
         </div>
         <div class="form-group row">
