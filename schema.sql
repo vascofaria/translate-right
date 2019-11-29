@@ -48,7 +48,7 @@ create table anomalia (
 	a_descricao            varchar(80)  not null,
 	a_tem_anomalia_redacao boolean      not null,
 	constraint pk_anomalia primary key (a_id),
-	constraint ck_zone     check   (SUBSTRING(a_zona, 1, 4)::int8 >= -90 AND SUBSTRING(a_zona, 1, 4)::int8 <= 90 AND SUBSTRING(a_zona, 7, 4)::int8 >=0 AND SUBSTRING(a_zona, 7, 4)::int8 <= 180)
+	constraint ck_zone     check   (SUBSTRING(a_zona, 1, 4)::int8 >= -90 AND SUBSTRING(a_zona, 1, 4)::int8 <= 90 AND SUBSTRING(a_zona, 5, 2) = ', ' AND SUBSTRING(a_zona, 7, 4)::int8 >=0 AND SUBSTRING(a_zona, 7, 4)::int8 <= 180)
 );
 
 create table anomalia_traducao (
@@ -57,9 +57,9 @@ create table anomalia_traducao (
 	at_lingua2 varchar(80) not null,
 	constraint pk_anomalia_traducao primary key (a_id),
 	constraint fk_at_anomalia       foreign key (a_id) references anomalia(a_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 4)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 4)::int8 <= 90 AND SUBSTRING(at_zona2, 7, 4)::int8 >=0 AND SUBSTRING(at_zona2, 7, 4)::int8 <= 180),
-	constraint ck_zone_diff   check anomalia.a_zona != at_zona2,
-	constraint ck_lingua_diff check anomalia.a_lingua != at_lingua2
+	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 4)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 4)::int8 <= 90 AND SUBSTRING(at_zona2, 5, 2) = ', ' AND SUBSTRING(at_zona2, 7, 4)::int8 >=0 AND SUBSTRING(at_zona2, 7, 4)::int8 <= 180),
+	constraint ck_zone_diff   check a_zona != at_zona2,
+	constraint ck_lingua_diff check a_lingua != at_lingua2
 );
 
 create table duplicado (
