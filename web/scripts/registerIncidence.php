@@ -45,7 +45,7 @@
                         $result->execute(array($a_id, $i_id, $u_email));
                         $db->commit();
 
-                        echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
+                        echo("<div class='alert alert-success' role='alert'>Registed Sucessfully!</div>");
 
                         $db = null;
                     //}else{
