@@ -44,8 +44,8 @@ COUNT(*) = (
 );
 
 -- 4.
-SELECT A.u_email FROM 
-  (correcao NATURAL JOIN proposta_correcao) AS correcoes INNER JOIN 
+SELECT A.u_email FROM
+  (correcao NATURAL JOIN proposta_correcao) AS correcoes INNER JOIN
   (SELECT * FROM (
     incidencia NATURAL JOIN anomalia NATURAL JOIN utilizador_qualificado NATURAL JOIN item
   ) WHERE lp_latitude < 39.336775 AND a_ts >= '2019-01-01 00:00:00' AND a_ts < '2020-01-01 00:00:00') as A

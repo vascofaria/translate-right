@@ -30,7 +30,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Zone</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Zone" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="X" value="" name="x" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -38,17 +38,22 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label for="validationCustom01">Image</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Image" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Y" value="" name="y" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <label for="validationCustom01">Image</label>
+            <input type="file" class="form-control-file" id="validationCustom01" name="image" required>
+          </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Language</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Language" value="" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Language" value="" name="language" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -57,13 +62,25 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Description</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Description" value="" required>
-                <div class="valid-feedback">
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Description" value="" name="description" required>
+                <div class="valid-feedback"insertAnomaly.php>
                     Looks good!
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <label for="validationCustom01">Has redaction?</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="hasRedaction">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <div class="valid-feedback"insertAnomaly.php>
+                    Looks good!
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
 
     <script>
@@ -88,7 +105,7 @@
     </script>
 
 	<?php
-        /*
+
         if (isset($_POST['submitButton'])) {
     		try {
     			$host     = "db.ist.utl.pt";
@@ -99,9 +116,26 @@
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            	$query = "";
+              $query  = makeQuery();
+              $result = $db->prepare($query);
 
-            	$result = pg_prepare("myQuery", $query);
+              $zone = $_POST['x'] . ", " . $_POST['y'];
+
+              if($_POST['hasRedaction'] == 'yes') {
+                  $hasRedaction = 1;
+              }
+              else {
+                  $hasRedaction = 0;
+              }
+
+              $result->bindValue(':zone', $zone);
+              $result->bindValue(':image', $_POST["image"]);
+              $result->bindValue(':language', $_POST['language']);
+              $result->bindValue(':description', $_POST['description']);
+              $result->bindValue(':description', $_POST['description']);
+              $result->bindValue(':hasRedaction', $hasRedaction);
+
+              $result->execute();
 
             	$db = null;
     		}
@@ -111,10 +145,10 @@
         }
 
         function makeQuery($zone, $image, $language, $description) {
-            $query = "INSERT INTO anomalia(a_id, a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao) values
-            (1, '0034, 0012', $image, $language, $des, 'Cartaz com erro', false);";
-            return null;
-        }*/
+            $query = "INSERT INTO anomalia(a_zona, a_imagem, a_lingua, a_descricao, a_tem_anomalia_redacao) values
+            (:zone, :image, :language, :description, :hasRedaction);";
+            return $query;
+        }
 	?>
 </body>
 
