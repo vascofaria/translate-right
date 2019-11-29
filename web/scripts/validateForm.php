@@ -46,8 +46,8 @@
 				  $result = $db->prepare($query);
 					$result->execute(array($email));
 					
-					$e = false;
-					foreach($result as $row) { $e = true; }
+					$e = 0;
+					foreach($result as $row) { $e = 1; }
 					
 				print($e);
 				//setcookie("qualificated", sizeof($result[0]), time() + 86400, '/');
