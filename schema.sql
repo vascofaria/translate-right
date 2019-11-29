@@ -130,3 +130,5 @@ create table correcao (
 	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro) ON DELETE CASCADE,
 	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id) ON DELETE CASCADE
 );
+
+CREATE ASSERTION ck_zone CHECK (NOT EXISTS(SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE at_zona2 = a_zona));
