@@ -227,7 +227,7 @@
                 $result->execute();
 
                 echo "string";
-                $query  = "INSERT INTO anomalia_traducao(a_zona a_lingua) values (:zone2, :language2);";
+                $query  = "INSERT INTO anomalia_traducao(a_zona, a_lingua) values (:zone2, :language2);";
                 $result = $db->prepare($query);
 
                 $zone2 = $_POST['x2'] . ", " . $_POST['y2'];
