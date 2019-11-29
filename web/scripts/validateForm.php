@@ -46,16 +46,16 @@
 				 	$result = $db->prepare($query);
 				 	$result->execute(array($email));
 					
-				 	echo("<p>{$result}</p>")
+				 	echo("<p>{$result['exists']}</p>")
 					
-				 	if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
-				 	else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
+				 	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
+				 	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
 
 				 	$db = null;
 
 				 } catch (PDOException $e) {
            echo("<p>ERROR: {$e->getMessage()}</p>");
-         }
+				 }
 			}
 		}
 
