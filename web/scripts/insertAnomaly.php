@@ -156,7 +156,7 @@
                 $query  = makeQuery();
                 $result = $db->prepare($query);
 
-                $zone = '146, 264';
+                $zone = $_POST['x'] . ", " . $_POST['y'];
 
                 if($_POST['hasRedaction'] == 'yes') {
                     $hasRedaction = 1;
