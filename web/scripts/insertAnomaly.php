@@ -80,37 +80,6 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button class="btn btn-primary" type="button" onclick="toggleVisibility()" name="translactionAnomaly">Translaction Anomaly</button>
-            </div>
-        </div>
-        <div class="form-group row" id="translate-zone-x" style="visibility: hidden;">
-            <div class="col-sm-10">
-                <label for="validationCustom01">Zone</label>
-                <input type="text" class="form-control" placeholder="X" value="" name="x2">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-        <div class="form-group row" id="translate-zone-y" style="visibility: hidden;">
-            <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Y" value="" name="y2">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-        <div class="form-group row" id="translate-language" style="visibility: hidden;">
-            <div class="col-sm-10">
-                <label for="validationCustom01">Language</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Language" value="" name="language2">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
         <button class="btn btn-primary" type="submit" name="submitButton">Submit form</button>
     </form>
 
@@ -133,12 +102,6 @@
                 });
             }, false);
         })();
-
-        function toggleVisibility() {
-            document.getElementById('translate-zone-x').style.visibility   = 'visible';
-            document.getElementById('translate-zone-y').style.visibility   = 'visible';
-            document.getElementById('translate-language').style.visibility = 'visible';
-        }
     </script>
 
 	<?php
@@ -153,41 +116,28 @@
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $query  = makeQuery();
-                $result = $db->prepare($query);
+              $query  = makeQuery();
+              $result = $db->prepare($query);
 
-                $zone = $_POST['x'] . ", " . $_POST['y'];
+              $zone = $_POST['x'] . ", " . $_POST['y'];
 
-                if($_POST['hasRedaction'] == 'yes') {
-                    $hasRedaction = 1;
-                }
-                else {
+              if($_POST['hasRedaction'] == 'yes') {
+                  $hasRedaction = 1;
+              }
+              else {
                   $hasRedaction = 0;
-                }
+              }
 
-                $result->bindValue(':zone', $zone);
-                $result->bindValue(':image', $_POST["image"]);
-                $result->bindValue(':language', $_POST['language']);
-                $result->bindValue(':description', $_POST['description']);
-                $result->bindValue(':description', $_POST['description']);
-                $result->bindValue(':hasRedaction', $hasRedaction);
+              $result->bindValue(':zone', $zone);
+              $result->bindValue(':image', $_POST["image"]);
+              $result->bindValue(':language', $_POST['language']);
+              $result->bindValue(':description', $_POST['description']);
+              $result->bindValue(':description', $_POST['description']);
+              $result->bindValue(':hasRedaction', $hasRedaction);
 
-                $result->execute();
+              $result->execute();
 
-                if (isset($_POST['translactionAnomaly'])) {
-                    echo "string";
-                    $query  = "INSERT INTO anomalia_traducao(a_zona a_lingua) values (:zone2, :language2);";
-                    $result = $db->prepare($query);
-
-                    $zone2 = $_POST['x2'] . ", " . $_POST['y2'];
-
-                    $result->bindValue(':zone2', $zone2);
-                    $result->bindValue(':language2', $_POST['language2']);
-
-                    $result->execute(); 
-                }
-
-              $db = null;
+            	$db = null;
     		}
     		catch (PDOException $e) {
             	echo("<p>ERROR: {$e->getMessage()}</p>");
