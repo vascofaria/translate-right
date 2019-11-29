@@ -42,9 +42,9 @@
 				 	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
 				 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				//  	$query = "SELECT EXISTS(SELECT u_email FROM utilizador_qualificado WHERE u_email =:email);";
-				//  	$result = $db->prepare($query);
-				//  	$result->execute(array($email));
+					$query = "SELECT EXISTS(SELECT u_email FROM utilizador_qualificado WHERE u_email =:email);";
+				  $result = $db->prepare($query);
+			  	$result->execute(array($email));
 					
 				//  	echo("<p>{$result['exists']}</p>")
 					
