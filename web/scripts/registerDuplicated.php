@@ -74,7 +74,7 @@
               $sql =  "SELECT item.i_id, item.i_descricao, item.i_localizacao, item.lp_latitude, item.lp_longitude FROM item WHERE item.i_id>:iId1;";
 
                 $result = $db->prepare($sql);
-                $result->execute();
+                $result->execute(array($i_id1));
 
                 echo("<table class='table'>");
                 echo("<thead class='thead-dark'>");
