@@ -53,13 +53,11 @@ create table anomalia (
 /*
 constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
 */
-create function fn_Check_Zone (
-    :zone VARCHAR(8)
-)
+create function fn_Check_Zone (@zone VARCHAR(8))
 RETURNS VARCHAR(5)
 AS
 BEGIN
-    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = :zone)
+    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = @zone)
         return 'True'
     return 'False'
 END
