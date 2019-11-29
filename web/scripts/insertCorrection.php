@@ -84,6 +84,7 @@
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             	$query = makeQuery();
+                $db->beginTransaction();
             	$result = $db->prepare($query);
 
                 $result->bindValue(':email',     $_COOKIE['userID']);
@@ -91,6 +92,7 @@
                 $result->bindValue(':anomalyId', $_POST['anomalyId']);
 
                 $result->execute();
+                $db->commit();
 
             	$db = null;
     		}

@@ -90,6 +90,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query = makeQuery();
+                $db->beginTransaction();
                 $result = $db->prepare($query);
 
                 $result->bindValue(':latitude',  $_POST['latitude']);
@@ -97,7 +98,7 @@
                 $result->bindValue(':name',      $_POST['name']);
 
                 $result->execute();
-
+                $db->commit();
                 $db = null;
             }
             catch (PDOException $e) {

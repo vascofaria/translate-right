@@ -175,19 +175,6 @@
 
                 $result->execute();
 
-                if (isset($_POST['translactionAnomaly'])) {
-                    echo "string";
-                    $query  = "INSERT INTO anomalia_traducao(a_zona a_lingua) values (:zone2, :language2);";
-                    $result = $db->prepare($query);
-
-                    $zone2 = $_POST['x2'] . ", " . $_POST['y2'];
-
-                    $result->bindValue(':zone2', $zone2);
-                    $result->bindValue(':language2', $_POST['language2']);
-
-                    $result->execute(); 
-                }
-
               $db = null;
     		}
     		catch (PDOException $e) {
@@ -206,6 +193,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query  = makeQuery();
+                $db->beginTransaction();
                 $result = $db->prepare($query);
 
                 $zone = $_POST['x'] . ", " . $_POST['y'];
@@ -240,7 +228,8 @@
                 $result->bindValue(':language2', $_POST['language2']);
 
                 $result->execute(); 
-
+                $db->commit();
+                
                 $db = null;
             }
             catch (PDOException $e) {
