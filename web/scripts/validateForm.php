@@ -46,7 +46,7 @@
 				  $result = $db->prepare($query);
 			  	$result->execute(array($email));
 					
-				  	echo("<p>{$result['exists']}</p>")
+				  	echo("<p>{$result[0]['exists']}</p>")
 					
 				//  	//if ($result['exists']) setcookie("userQualificated", 0, time() + (86400), '/'); // 1 day
 				//  	//else setcookie("userQualificated", 1, time() + (86400), '/'); // 1 day
