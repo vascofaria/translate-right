@@ -144,7 +144,7 @@ insert into incidencia(a_id, i_id, u_email) values (6,  6, 'vasco@gmail.com'    
 insert into incidencia(a_id, i_id, u_email) values (10,  9, 'professor@gmail.com');
 insert into incidencia(a_id, i_id, u_email) values (7,   7, 'professor@gmail.com');
 insert into incidencia(a_id, i_id, u_email) values (12,  8, 'professor@gmail.com');
-insert into incidencia(a_id, i_id, u_email) values (10, 9 , 'rute@gmail.com'     );
+insert into incidencia(a_id, i_id, u_email) values (10, 5, 'rute@gmail.com'     );
 insert into incidencia(a_id, i_id, u_email) values (11, 10, 'stallman@gmail.com' );
 insert into incidencia(a_id, i_id, u_email) values (8,  11, 'nikoletta@gmail.com');
 
