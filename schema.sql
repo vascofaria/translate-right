@@ -44,7 +44,7 @@ create table anomalia (
 	a_zona                 varchar(8)   not null,
 	a_imagem               varchar(80)  not null,
 	a_lingua               varchar(80)  not null,
-	a_ts                   timestamp(0)     default current_timestamp,
+	a_ts                   timestamp    default current_timestamp(0),
 	a_descricao            varchar(80)  not null,
 	a_tem_anomalia_redacao boolean      not null,
 	constraint pk_anomalia primary key (a_id)
