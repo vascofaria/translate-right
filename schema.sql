@@ -60,7 +60,7 @@ constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRI
 --     RETURN COUNT(*) FROM anomalia WHERE a_zona = zone
 -- END; $$ LANGUAGE SQL;
 create function fn_Check_Zone (zone text)
-RETURNS table 
+RETURNS int 
 AS 
 $$
 DECLARE a_count integer;
