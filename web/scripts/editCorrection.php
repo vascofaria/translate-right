@@ -28,8 +28,6 @@
                 
                 $email=$_POST['e-mail'];
                 $pcNro=$_POST['pcNro'];
-                $data=$_POST['data'];
-                $texto=$_POST['texto'];
                 $aId=$_POST['aId'];
 
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
@@ -38,7 +36,7 @@
                 $query = "UPDATE correcao SET a_id=:aId WHERE u_email=:email AND pc_nro=:pcNro;";
                 $db->beginTransaction();
                 $result = $db->prepare($query);
-                $result->execute(array($newPcNro, $email, $oldPcNro, $AId));
+                $result->execute(array($aId, $email, $pcNro));
                 $db->commit();
 
                 $db = null;
