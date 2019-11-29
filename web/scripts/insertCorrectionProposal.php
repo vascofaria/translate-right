@@ -80,6 +80,8 @@
 
 	<?php
         if (isset($_POST['submitButton'])) {
+            if (isset($_COOKIE['qualificated']) && isset($_COOKIE['userID'])) {
+            if ($_COOKIE['qualificated']) {
     		try {
     			    $host     = "db.ist.utl.pt";
            		$user     = "ist189559";
@@ -111,6 +113,12 @@
     		}
     		catch (PDOException $e) {
             	echo("<p>ERROR: {$e->getMessage()}</p>");
+            }
+            } else {
+                echo("<p>ERROR: No Permission</p>");
+            }
+            } else {
+                echo("<p>ERROR: Please Login</p>");
             }
         }
 

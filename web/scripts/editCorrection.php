@@ -31,9 +31,9 @@
                     $pcNro=$_POST['pcNro'];
                     $aId=$_POST['aId'];
 
-                    //$userToken=$_COOKIE['userID'];
+                    $userToken=$_COOKIE['userID'];
 
-                    //if ($userToken == $email){
+                    if ($userToken == $email){
                         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     
@@ -46,9 +46,9 @@
                         echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
 
                         $db = null;
-                    //}else{
-                    //    echo("<p>ERROR: No Permission</p>");
-                    //}
+                    } else {
+                        echo("<p>ERROR: No Permission</p>");
+                    }
                 }
                 catch (PDOException $e) {
                     echo("<p>ERROR: {$e->getMessage()}</p>");
