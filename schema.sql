@@ -55,7 +55,7 @@ constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRI
 */
 create function fn_Check_Zone (zone text)
 RETURNS VARCHAR(5)
-AS $$
+AS result
 BEGIN
     IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = zone)
         return 'True'
