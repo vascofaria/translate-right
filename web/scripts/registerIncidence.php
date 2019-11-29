@@ -141,8 +141,8 @@
                 echo("<table class='table' style='margin-top: 60px;'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
-                echo("<th scope='col'>Anomalia ID</th>");
-                echo("<th scope='col'>Descricao</th>");
+                echo("<th scope='col'>Anomaly ID</th>");
+                echo("<th scope='col'>Description</th>");
                 echo("<th scope='col'>Select</th>");
                 echo("<tr/>");
                 echo("<thead/>");

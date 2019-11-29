@@ -61,7 +61,7 @@
           echo("<tr>");
           echo("<th scope='col'>Latitude</th>");
           echo("<th scope='col'>Longitude</th>");
-          echo("<th scope='col'>Nome</th>");
+          echo("<th scope='col'>Name</th>");
           echo("<th scope='col'>Delete</th>");
           echo("<tr/>");
           echo("<thead/>");

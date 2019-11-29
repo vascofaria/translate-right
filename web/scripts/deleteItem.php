@@ -57,8 +57,8 @@
         echo("<table style='margin-top: 60px;' id='items-list' class='table'>");
           echo("<thead class='thead-dark'>");
             echo("<tr>");
-              echo("<th scope='col'>Descrição</th>");
-              echo("<th scope='col'>Localização</th>");
+              echo("<th scope='col'>Description</th>");
+              echo("<th scope='col'>Location</th>");
               echo("<th scope='col'>Latitude</th>");
               echo("<th scope='col'>Longitude</th>");
               echo("<th scope='col'>Delete</th>");

@@ -77,14 +77,15 @@
                 $result = $db->prepare($sql);
                 $result->execute();
 
+                echo("<h1 class='m-badge'><span class='badge badge-secondary'>Select the correction you want to apply:</span></h1>");
 
-                echo("<table class='table'>");
+                echo("<table class='table' style='margin-top: 60px;'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
-                echo("<th scope='col'>Numero Proposta de Correcao</th>");
-                echo("<th scope='col'>Data</th>");
-                echo("<th scope='col'>Texto</th>");
-                echo("<th scope='col'>Utilizador e-mail</th>");
+                echo("<th scope='col'>Proposal Correction Number</th>");
+                echo("<th scope='col'>Date</th>");
+                echo("<th scope='col'>Text</th>");
+                echo("<th scope='col'>User e-mail</th>");
                 echo("<th scope='col'>Select</th>");
                 echo("<thead/>");
                 echo("<tr/>");
@@ -131,7 +132,9 @@
                 $result = $db->prepare($sql);
                 $result->execute();
 
-                echo("<table class='table'>");
+                echo("<h1 class='m-badge'><span class='badge badge-secondary'>Select the Anomaly to correct:</span></h1>");
+
+                echo("<table class='table' style='margin-top: 60px;'>");
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
                 echo("<th scope='col'>Anomalia ID</th>");

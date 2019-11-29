@@ -71,8 +71,9 @@
             $result = $db->prepare($sql);
             $result->execute();
 
+            echo("<h1 class='m-badge'><span class='badge badge-secondary'>Edit your Correction Proposal:</span></h1>");
 
-            echo("<table class='table'>");
+            echo("<table class='table' style='margin-top: 60px;'>");
             echo("<thead class='thead-dark'>");
             echo("<tr>");
             echo("<th scope='col'>Numero Proposta de Correcao</th>");

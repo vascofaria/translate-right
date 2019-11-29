@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>TR - Delete Anamaly</title>
+    <title>TR - Delete Anomaly</title>
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="../modules/bootstrap-4.3.1-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../modules/mylib/css/general.css">
@@ -64,7 +64,7 @@
             echo("<th scope='col'>Language</th>");
             echo("<th scope='col'>Timestamp</th>");
             echo("<th scope='col'>Description</th>");
-            echo("<th scope='col'>Has Redaction</th>");
+            echo("<th scope='col'>Has Redaction?</th>");
             echo("<th scope='col'>Delete</th>");
             echo("<tr/>");
             echo("<thead/>");

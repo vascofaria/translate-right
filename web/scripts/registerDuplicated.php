@@ -82,8 +82,8 @@
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
                 echo("<th scope='col'>Item ID</th>");
-                echo("<th scope='col'>Descricao</th>");
-                echo("<th scope='col'>Localizacao</th>");
+                echo("<th scope='col'>Description</th>");
+                echo("<th scope='col'>Location</th>");
                 echo("<th scope='col'>Latitude</th>");
                 echo("<th scope='col'>Longitude</th>");
                 echo("<th scope='col'>Select</th>");
@@ -140,8 +140,8 @@
                 echo("<thead class='thead-dark'>");
                 echo("<tr>");
                 echo("<th scope='col'>Item ID</th>");
-                echo("<th scope='col'>Descricao</th>");
-                echo("<th scope='col'>Localizacao</th>");
+                echo("<th scope='col'>Description</th>");
+                echo("<th scope='col'>Location</th>");
                 echo("<th scope='col'>Latitude</th>");
                 echo("<th scope='col'>Longitude</th>");
                 echo("<th scope='col'>Select</th>");

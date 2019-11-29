@@ -62,8 +62,8 @@
             echo("<tr>");
             echo("<th scope='col'>Email</th>");
             echo("<th scope='col'>Correction Proposal Number</th>");
-            echo("<th scope='col'>Texto</th>");
-            echo("<th scope='col'>Data e Hora</th>");
+            echo("<th scope='col'>Text</th>");
+            echo("<th scope='col'>Date Time</th>");
             echo("<th scope='col'>Delete</th>");
             echo("<tr/>");
             echo("<thead/>");
