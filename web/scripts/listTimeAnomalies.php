@@ -68,7 +68,8 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $query = "SELECT * FROM anomalia WHERE a_ts >= :since_time AND a_ts <= :to_time;";
+        $query = "SELECT anomalia.a_id, anomalia.a_zona, anomalia_traducao.at_zona2, anomalia.a_imagem, anomalia.a_lingua, anomalia_traducao.at_lingua2, anomalia.a_ts, anomalia.a_descricao, anomalia.a_tem_anomalia_redacao
+         FROM anomalia FULL OUTER JOIN anomalia_traducao ON anomalia.a_id = anomalia_traducao.a_id WHERE a_ts >= :since_time AND a_ts <= :to_time;";
         $result = $db->prepare($query);
         $result->execute(array($since_time, $to_time));
 
@@ -77,8 +78,10 @@
             echo("<tr>");
               echo("<th scope='col'>ID</th>");
               echo("<th scope='col'>Zona</th>");
+              echo("<th scope='col'>Zona 2</th>");
               echo("<th scope='col'>Imagem</th>");
               echo("<th scope='col'>Lingua</th>");
+              echo("<th scope='col'>Língua 2</th>");
               echo("<th scope='col'>TimeStamp</th>");
               echo("<th scope='col'>Descricao</th>");
               echo("<th scope='col'>Tem Redacao?</th>");
@@ -89,15 +92,16 @@
               echo("<tr>");
               echo("<td>{$row['a_id']}</td>");
               echo("<td>{$row['a_zona']}</td>");
+              if ($row['at_zona2']) echo("<td>{$row['at_zona2']}</td>");
+              else echo("<td>--</td>");
               echo("<td>{$row['a_imagem']}</td>");
               echo("<td>{$row['a_lingua']}</td>");
+              if ($row['at_lingua2']) echo("<td>{$row['at_lingua2']}</td>");
+              else echo("<td>--</td>");
               echo("<td>{$row['a_ts']}</td>");
               echo("<td>{$row['a_descricao']}</td>");
-              if ($row['a_tem_anomalia_redacao']){
-                echo("<td>Sim</td>");
-              } else {
-                echo("<td>Não</td>");
-              }
+              if ($row['a_tem_anomalia_redacao']) echo("<td>Sim</td>");
+              else echo("<td>Não</td>");
               echo("<tr/>");
             }
           echo("<tbody/>");
