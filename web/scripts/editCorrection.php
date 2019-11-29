@@ -55,13 +55,14 @@
             	$password = "idxi1356";
             	$dbname   = $user;
     		
-                $AId=$_POST['AId'];
-                $ADescricao=$_POST['ADescricao'];
+                $aId=$_POST['aId'];
+                $aDescricao=$_POST['aDescricao'];
 
             	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     		
-            	$sql = "SELECT correcao.u_email, correcao.pc_nro, correcao.a_id FROM correcao WHERE correcao.a_id=$AId;";
+                echo("<p>$aId</p>");
+            	$sql = "SELECT correcao.u_email, correcao.pc_nro, correcao.a_id FROM correcao WHERE correcao.a_id=$aId;";
 
                 $result = $db->prepare($sql);
                 $result->execute();
@@ -130,8 +131,8 @@
                 echo("<tbody>");
                   foreach($result as $row) {
                     echo("<tr><form action='' method='POST'>");
-                    echo("<td><input type='readonly' name='AId'  style='border:none' value='"."{$row['a_id']}"."'></td>");
-                    echo("<td><input type='readonly' name='ADescricao' style='border:none' value='"."{$row['a_descricao']}" ."'>");
+                    echo("<td><input type='readonly' name='aId'  style='border:none' value='"."{$row['a_id']}"."'></td>");
+                    echo("<td><input type='readonly' name='aDescricao' style='border:none' value='"."{$row['a_descricao']}" ."'>");
                     echo("<td>
                         <button class='btn btn-primary m-submit-btn' type='submit' name='submit-anomalia' >
                             Edit
