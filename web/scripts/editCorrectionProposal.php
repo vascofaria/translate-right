@@ -58,7 +58,7 @@
         	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		
-        	$sql = "SELECT * FROM proposta_correcao;";
+        	$sql = "SELECT proposta_correcao.pc_nro, proposta_correcao.pc_data_hora,proposta_correcao.pc_texto,proposta_correcao.u_email FROM proposta_correcao;";
 
             $result = $db->prepare($sql);
             $result->execute();
