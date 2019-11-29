@@ -97,7 +97,7 @@
                     echo("<td><input type='readonly' name='iLatitude' readonly style='border:none' value='"."{$row['lp_latitude']}" ."'></td>");
                     echo("<td><input type='readonly' name='iLongitude' readonly style='border:none' value='"."{$row['lp_longitude']}" ."'></td>");
                     echo("<td>
-                        <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
+                        <button class='btn btn-primary m-submit-btn' type='submit' name='submit-item2' >
                             Select
                         </button>
                         </td>");
@@ -152,7 +152,7 @@
                     echo("<td><input type='readonly' name='iLatitude' readonly style='border:none' value='"."{$row['lp_latitude']}" ."'></td>");
                     echo("<td><input type='readonly' name='iLongitude' readonly style='border:none' value='"."{$row['lp_longitude']}" ."'></td>");
                     echo("<td>
-                        <button class='btn btn-primary m-submit-btn' type='submit' name='submit-edit' >
+                        <button class='btn btn-primary m-submit-btn' type='submit' name='submit-item1' >
                             Select
                         </button>
                         </td>");
