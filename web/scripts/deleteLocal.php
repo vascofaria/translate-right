@@ -56,7 +56,7 @@
           $result->execute();
 
 
-          echo("<table class='table' style='margin-top: 60px;'>");
+          echo("<table class='table m-general-table' style='margin-top: 60px;'>");
           echo("<thead class='thead-dark'>");
           echo("<tr>");
           echo("<th scope='col'>Latitude</th>");
