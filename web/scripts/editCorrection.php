@@ -39,7 +39,7 @@
                 $result->execute(array($aId, $email, $pcNro));
                 $db->commit();
 
-                echo("<div class='alert alert-success' role='alert'>A simple success alert—check it out!</div>");
+                echo("<div class='alert alert-success' role='alert'>Updated Sucessfully!</div>");
 
                 $db = null;
             }
