@@ -82,10 +82,9 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <label><h4>Translation Anomaly</h4></label>
+                <button class="btn btn-primary" name="translactionAnomaly">Translaction Anomaly</button>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" name="submitButton">Translaction Anomaly</button>
         <div class="form-group row">
             <div class="col-sm-10">
                 <label for="validationCustom01">Zone</label>
