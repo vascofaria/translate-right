@@ -82,10 +82,10 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button class="btn btn-primary" type="button" name="translactionAnomaly">Translaction Anomaly</button>
+                <button class="btn btn-primary" type="button" onclick="toggleVisibility()" name="translactionAnomaly">Translaction Anomaly</button>
             </div>
         </div>
-        <div class="form-group row" style="visibility: hidden;">
+        <div class="form-group row" id="translate-zone-x" style="visibility: hidden;">
             <div class="col-sm-10">
                 <label for="validationCustom01">Zone</label>
                 <input type="text" class="form-control" placeholder="X" value="" name="x2">
@@ -94,7 +94,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row" style="visibility: hidden;">
+        <div class="form-group row" id="translate-zone-y" style="visibility: hidden;">
             <div class="col-sm-10">
                 <input type="text" class="form-control" placeholder="Y" value="" name="y2">
                 <div class="valid-feedback">
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row" style="visibility: hidden;">
+        <div class="form-group row" id="translate-language" style="visibility: hidden;">
             <div class="col-sm-10">
                 <label for="validationCustom01">Language</label>
                 <input type="text" class="form-control" id="validationCustom01" placeholder="Language" value="" name="language2">
@@ -133,6 +133,12 @@
                 });
             }, false);
         })();
+
+        function toggleVisibility() {
+            document.getElementById('translate-zone-x').style.visibility   = 'visible';
+            document.getElementById('translate-zone-y').style.visibility   = 'visible';
+            document.getElementById('translate-language').style.visibility = 'visible';
+        }
     </script>
 
 	<?php
