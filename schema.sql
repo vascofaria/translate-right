@@ -35,7 +35,7 @@ create table item (
 	lp_longitude  decimal(9, 6)      not null,
 	constraint    pk_item            primary key (i_id),
 	constraint    fk_i_local_publico foreign key (lp_latitude, lp_longitude) references local_publico(lp_latitude, lp_longitude)
-	ON DELETE CASCADE 
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -44,12 +44,23 @@ create table anomalia (
 	a_zona                 varchar(8)   not null,
 	a_imagem               varchar(80)  not null,
 	a_lingua               varchar(80)  not null,
-	a_ts                   timestamp    default current_timestamp,
+	a_ts                   timestamp    default current_timestamp(0),
 	a_descricao            varchar(80)  not null,
 	a_tem_anomalia_redacao boolean      not null,
-	constraint pk_anomalia primary key (a_id),
-	constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
+	constraint pk_anomalia primary key (a_id)
 );
+
+/*
+constraint ck_zone     check   (SUBSTRING(a_zona, 1, 3)::int8 >= -90 AND SUBSTRING(a_zona, 1, 3)::int8 <= 90 AND SUBSTRING(a_zona, 4, 2) = ', ' AND SUBSTRING(a_zona, 6, 3)::int8 >=0 AND SUBSTRING(a_zona, 6, 3)::int8 <= 180)
+*/
+create function fn_Check_Zone (zone text)
+RETURNS VARCHAR(5)
+AS result
+BEGIN
+    IF EXISTS (SELECT a_zona FROM anomalia WHERE a_zona = zone)
+        return 'True'
+    return 'False'
+END
 
 create table anomalia_traducao (
 	a_id       smallint    not null unique,
@@ -57,9 +68,16 @@ create table anomalia_traducao (
 	at_lingua2 varchar(80) not null,
 	constraint pk_anomalia_traducao primary key (a_id),
 	constraint fk_at_anomalia       foreign key (a_id) references anomalia(a_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 3)::int8 <= 90 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0 AND SUBSTRING(at_zona2, 6, 3)::int8 <= 180)
+	constraint ck_ck check (fn_Check_zone(at_zona2) = 'True')
 );
 
+/*	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= -90 AND SUBSTRING(at_zona2, 1, 3)::int8 <= 90 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0 AND SUBSTRING(at_zona2, 6, 3)::int8 <= 180)
+		constraint ck_zone_diff   check NOT (SELECT anomalia.a_zona FROM anomalia WHERE EXISTS anomalia.a_zona=at_zona2),
+		constraint ck_lingua
+		constraint ck_lingua_diff check (EXISTS(SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE a_zona=at_zona2))
+			constraint ck_ck check (SELECT COUNT(*) FROM anomalia WHERE EXISTS(SELECT * FROM anomalia NATURAL JOIN anomalia_traducao WHERE a_zona=at_zona2));
+
+*/
 create table duplicado (
 	i_id1 smallint not null,
 	i_id2 smallint not null,
@@ -111,6 +129,6 @@ create table correcao (
 	pc_nro  smallint    not null,
 	a_id    smallint    not null,
 	constraint pk_correcao            primary key (u_email, pc_nro, a_id),
-	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro) ON DELETE CASCADE ON UPDATE CASCADE,
-	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id) ON DELETE CASCADE ON UPDATE CASCADE
+	constraint fk_c_proposta_correcao foreign key (u_email, pc_nro) references proposta_correcao(u_email, pc_nro) ON DELETE CASCADE,
+	constraint fk_c_anomalia          foreign key (a_id)            references incidencia(a_id) ON DELETE CASCADE
 );
