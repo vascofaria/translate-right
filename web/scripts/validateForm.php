@@ -28,10 +28,6 @@
 			}
 
 			if (!$emailErr && !$passwordErr) {
-				//header("Location: ./index.html");
-				$cookieName = "userID";
-				$cookieValue = $email;
-				setcookie($cookieName, $cookieValue, time() + 86400, '/'); // 1 day
 
 			  try {
           $host = "db.ist.utl.pt";
@@ -40,19 +36,36 @@
 					$dbname = $user;
 
 				 	$db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-				 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-					$query = "SELECT u_email FROM utilizador_qualificado WHERE u_email =:email;";
-				  $result = $db->prepare($query);
+					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					 
+					$query = "SELECT u_email, u_password FROM utilizador WHERE u_email=:email";
+					$result = $db->prepare($query);
 					$result->execute(array($email));
-					
-					$e = 0;
-					foreach($result as $row) $e = 1;
-					
-					print($e);
-					setcookie("qualificated", $e, time() + 86400, '/');
 
-				  $db = null;
+					foreach($result as $row) {
+						$emailQuery = $row['u_email'];
+						$passQuery  = $row['u_password'];
+					}
+
+					if ($emailQuery == $email && $passQuery == $password) {
+
+						$query = "SELECT u_email FROM utilizador_qualificado WHERE u_email =:email;";
+				  	$result = $db->prepare($query);
+						$result->execute(array($email));
+					
+						$e = 0;
+						foreach($result as $row) $e = 1;
+
+						header("Location: ./index.html");
+						setcookie("userID", $email, time() + 86400, '/'); // 1 day
+						setcookie("qualificated", $e, time() + 86400, '/');
+
+						$db = null;
+					} else {
+						header("Location: ../index.html");
+						setcookie("userID", "", time() + 86400, '/'); // 1 day
+						setcookie("qualificated", "", time() + 86400, '/');
+					}
 
 				  } catch (PDOException $e) {
             echo("<p>ERROR: {$e->getMessage()}</p>");
