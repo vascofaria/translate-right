@@ -104,7 +104,7 @@ CREATE OR REPLACE FUNCTION TriggerUtilizadorQualificado() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ri_5 AFTER INSERT ON utilizador
+CREATE TRIGGER ri_5 AFTER INSERT ON utilizador_qualificado
 	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorQualificado();
 
 CREATE OR REPLACE FUNCTION TriggerUtilizadorRegular() RETURNS trigger as $$
@@ -117,7 +117,7 @@ CREATE OR REPLACE FUNCTION TriggerUtilizadorRegular() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ri_6 AFTER INSERT ON utilizador
+CREATE TRIGGER ri_6 AFTER INSERT ON utilizador_regular
 	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorRegular();
 
 
