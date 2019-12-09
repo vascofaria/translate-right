@@ -44,7 +44,7 @@ CREATE OR REPLACE FUNCTION TriggerZonasSobrepostas() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER pedro AFTER INSERT ON anomalia_traducao
+CREATE TRIGGER triggeredZones AFTER INSERT ON anomalia_traducao
 	FOR EACH ROW EXECUTE PROCEDURE TriggerZonasSobrepostas();
 
 insert into anomalia(a_zona, a_tem_anomalia_redacao)
@@ -54,5 +54,53 @@ insert into anomalia(a_zona, a_tem_anomalia_redacao)
 
 insert into anomalia_traducao(a_id, at_zona2) 
 	values (1, '031, 048');
-insert into anomalia_traducao(a_id, at_zona2) 
-	values (2, '012, 054');
+/*insert into anomalia_traducao(a_id, at_zona2) 
+	values (2, '012, 054');*/
+
+drop table utilizador             cascade;
+drop table utilizador_qualificado cascade;
+drop table utilizador_regular     cascade;
+
+create table utilizador (
+	u_email    varchar(80)   not null unique,
+	constraint pk_utilizador primary key (u_email)
+);
+
+create table utilizador_qualificado (
+	u_email varchar(80)                  not null unique,
+	constraint pk_utilizador_qualificado primary key (u_email),
+	constraint fk_uq_utilizador          foreign key (u_email) references utilizador(u_email) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table utilizador_regular (
+	u_email varchar(80)              not null unique,
+	constraint pk_utilizador_regular primary key (u_email),
+	constraint fk_ur_utilizador      foreign key (u_email) references utilizador(u_email) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE OR REPLACE FUNCTION TriggerEmailUtilizador() RETURNS trigger as $$
+	BEGIN
+		if not exists(SELECT * FROM utilizador NATURAL JOIN utilizador_regular WHERE NEW.u_email = utilizador_regular.u_email)
+			or not exists(SELECT * FROM utilizador NATURAL JOIN utilizador_qualificado WHERE NEW.u_email = utilizador_qualificado.u_email)
+		then
+			raise exception 'Utilizador sem funcao';
+		end if;
+		RETURN NEW;
+	END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER triggeredUsers AFTER INSERT ON utilizador
+	FOR EACH ROW EXECUTE PROCEDURE TriggerEmailUtilizador();
+
+insert into utilizador_qualificado(u_email)
+	values ('nikoletta@gmail.com');
+	
+insert into utilizador(u_email) 
+	values ('nikoletta@gmail.com');
+insert into utilizador(u_email) 
+	values ('vasco@gmail.com');
+
+
+
+/*insert into utilizador_regular(u_email)
+	values ('zemanel@gmail.com');*/
