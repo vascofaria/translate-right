@@ -44,7 +44,7 @@ CREATE OR REPLACE FUNCTION TriggerZonasSobrepostas() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ri_1 AFTER INSERT / UPDATE ON anomalia_traducao
+CREATE TRIGGER ri_1 AFTER INSERT ON anomalia_traducao
 	FOR EACH ROW EXECUTE PROCEDURE TriggerZonasSobrepostas();
 
 insert into anomalia(a_zona, a_tem_anomalia_redacao)
@@ -89,7 +89,7 @@ CREATE OR REPLACE FUNCTION TriggerEmailUtilizador() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ri_4 AFTER INSERT / UPDATE ON utilizador
+CREATE TRIGGER ri_4 AFTER INSERT ON utilizador
 	FOR EACH ROW EXECUTE PROCEDURE TriggerEmailUtilizador();
 */
 
@@ -104,7 +104,7 @@ CREATE OR REPLACE FUNCTION TriggerUtilizadorQualificado() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ri_5 AFTER INSERT / UPDATE ON utilizador
+CREATE TRIGGER ri_5 AFTER INSERT ON utilizador
 	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorQualificado();
 
 CREATE OR REPLACE FUNCTION TriggerUtilizadorRegular() RETURNS trigger as $$
@@ -117,7 +117,7 @@ CREATE OR REPLACE FUNCTION TriggerUtilizadorRegular() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ri_6 AFTER INSERT / UPDATE ON utilizador
+CREATE TRIGGER ri_6 AFTER INSERT ON utilizador
 	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorRegular();
 
 
