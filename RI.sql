@@ -34,16 +34,6 @@ create table anomalia_traducao (
 	constraint ck_zone2       check (SUBSTRING(at_zona2, 1, 3)::int8 >= 0 AND SUBSTRING(at_zona2, 4, 2) = ', ' AND SUBSTRING(at_zona2, 6, 3)::int8 >=0)
 );
 
-insert into anomalia(a_zona, a_tem_anomalia_redacao)
-	values ('034, 012', false);
-insert into anomalia(a_zona, a_tem_anomalia_redacao)
-	values ('012, 054', false);
-
-insert into anomalia_traducao(a_id, at_zona2) 
-	values (1, '031, 048');
-insert into anomalia_traducao(a_id, at_zona2) 
-	values (2, '012, 054');
-
 CREATE OR REPLACE FUNCTION TriggerZonasSobrepostas() RETURNS trigger as $$
 	BEGIN
 		if exists(SELECT * FROM anomalia WHERE a_zona = NEW.at_zona2 and a_id = NEW.a_id)
@@ -56,3 +46,13 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER pedro AFTER INSERT ON anomalia_traducao
 	FOR EACH ROW EXECUTE PROCEDURE TriggerZonasSobrepostas();
+
+insert into anomalia(a_zona, a_tem_anomalia_redacao)
+	values ('034, 012', false);
+insert into anomalia(a_zona, a_tem_anomalia_redacao)
+	values ('012, 054', false);
+
+insert into anomalia_traducao(a_id, at_zona2) 
+	values (1, '031, 048');
+insert into anomalia_traducao(a_id, at_zona2) 
+	values (2, '012, 054');
