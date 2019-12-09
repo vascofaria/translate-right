@@ -44,7 +44,7 @@ CREATE OR REPLACE FUNCTION TriggerZonasSobrepostas() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER triggeredZones AFTER INSERT ON anomalia_traducao
+CREATE TRIGGER ri_1 AFTER INSERT, UPDATE ON anomalia_traducao
 	FOR EACH ROW EXECUTE PROCEDURE TriggerZonasSobrepostas();
 
 insert into anomalia(a_zona, a_tem_anomalia_redacao)
@@ -69,7 +69,8 @@ create table utilizador (
 create table utilizador_qualificado (
 	u_email varchar(80)                  not null unique,
 	constraint pk_utilizador_qualificado primary key (u_email),
-	constraint fk_uq_utilizador          foreign key (u_email) references utilizador(u_email) ON DELETE CASCADE ON UPDATE CASCADE
+	constraint fk_uq_utilizador          foreign key (u_email) references utilizador(u_email) ON DELETE CASCADE ON UPDATE CASCADE,
+	deferrable 
 );
 
 create table utilizador_regular (
@@ -77,11 +78,11 @@ create table utilizador_regular (
 	constraint pk_utilizador_regular primary key (u_email),
 	constraint fk_ur_utilizador      foreign key (u_email) references utilizador(u_email) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
+/*
 CREATE OR REPLACE FUNCTION TriggerEmailUtilizador() RETURNS trigger as $$
 	BEGIN
-		if not exists(SELECT * FROM utilizador NATURAL JOIN utilizador_regular WHERE NEW.u_email = utilizador_regular.u_email)
-			or not exists(SELECT * FROM utilizador NATURAL JOIN utilizador_qualificado WHERE NEW.u_email = utilizador_qualificado.u_email)
+		if not exists(SELECT * FROM  utilizador_regular WHERE NEW.u_email = utilizador_regular.u_email)
+			or not exists(SELECT * FROM utilizador_qualificado WHERE NEW.u_email = utilizador_qualificado.u_email)
 		then
 			raise exception 'Utilizador sem funcao';
 		end if;
@@ -89,18 +90,53 @@ CREATE OR REPLACE FUNCTION TriggerEmailUtilizador() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER triggeredUsers AFTER INSERT ON utilizador
+CREATE TRIGGER ri_4 AFTER INSERT, UPDATE ON utilizador
 	FOR EACH ROW EXECUTE PROCEDURE TriggerEmailUtilizador();
+*/
 
-insert into utilizador_qualificado(u_email)
-	values ('nikoletta@gmail.com');
-	
+
+CREATE OR REPLACE FUNCTION TriggerUtilizadorQualificado() RETURNS trigger as $$
+	BEGIN
+		if exists(SELECT * FROM  utilizador_regular WHERE NEW.u_email = utilizador_regular.u_email)
+		then
+			raise exception 'Utilizador existe em regular';
+		end if;
+		RETURN NEW;
+	END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER ri_5 AFTER INSERT, UPDATE ON utilizador
+	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorQualificado();
+
+CREATE OR REPLACE FUNCTION TriggerUtilizadorRegular() RETURNS trigger as $$
+	BEGIN
+		if exists(SELECT * FROM  utilizador_qualificado WHERE NEW.u_email = utilizador_qualificado.u_email)
+		then
+			raise exception 'Utilizador existe em qualificado';
+		end if;
+		RETURN NEW;
+	END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER ri_6 AFTER INSERT, UPDATE ON utilizador
+	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorRegular();
+
+
 insert into utilizador(u_email) 
 	values ('nikoletta@gmail.com');
 insert into utilizador(u_email) 
 	values ('vasco@gmail.com');
 
 
+insert into utilizador_qualificado(u_email)
+	values ('nikoletta@gmail.com');
 
-/*insert into utilizador_regular(u_email)
-	values ('zemanel@gmail.com');*/
+
+insert into utilizador_regular(u_email)
+	values ('vasco@gmail.com');
+
+insert into utilizador_regular(u_email)
+	values ('nikoletta@gmail.com');
+
+insert into utilizador_qualificado(u_email)
+	values ('vasco@gmail.com');
