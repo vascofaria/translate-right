@@ -8,7 +8,7 @@ create table d_utilizador (
 	du_id       serial        not null,
 	du_email    varchar(80)   not null,
 	du_tipo     varchar(80)   not null,
-	constraint pk_utilizador primary key (du_email)
+	constraint pk_utilizador primary key (du_id)
 );
 
 create table d_tempo (
