@@ -15,8 +15,8 @@ create table d_tempo (
 	dt_id           serial      not null,
 	dt_dia          integer     not null,
 	dt_dia_semana   integer     not null,
-	dt_semana       varchar(20) not null,
-	dt_mes          varchar(20) not null,
+	dt_semana       integer     not null,
+	dt_mes          integer     not null,
 	dt_trimestre    integer     not null,
 	dt_ano          integer     not null,
 	constraint pk_d_tempo primary key (dt_id)
