@@ -136,9 +136,9 @@ insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_prop
 		(select dt_id from d_tempo where dt_dia = DATE_PART('day', a_ts) and dt_dia_semana = DATE_PART('dow',a_ts) and dt_semana = DATE_PART('week',a_ts) and dt_mes = DATE_PART('month',a_ts) and dt_trimestre = DATE_PART('quarter',a_ts)	and dt_ano = DATE_PART('year',a_ts)) dt_id,
 		(select dlocal_id from d_local where dlocal_latitude = lp_latitude and dlocal_longitude = lp_longitude) dlocal_id,
 		(select dlingua_id from d_lingua where dlingua_lingua = a_lingua) dlingua_id,
-		(case when exists(select a_id from anomalia_traducao where a_id = anomalia_traducao.a_id) and not a_tem_anomalia_redacao then 'traducao'
-			when exists(select a_id from anomalia_traducao where a_id = anomalia_traducao.a_id) and a_tem_anomalia_redacao then 'redacao/traducao'
+		(case when exists(select anomalia_traducao.a_id from anomalia_traducao where anomalia.a_id = anomalia_traducao.a_id) and not a_tem_anomalia_redacao then 'traducao'
+			when exists(select anomalia_traducao.a_id from anomalia_traducao where anomalia.a_id = anomalia_traducao.a_id) and a_tem_anomalia_redacao then 'redacao/traducao'
 			else 'redacao' end) fa_tipo,
-		(case when exists (select correcao.a_id from correcao where a_id = correcao.a_id) then true else false end) fa_com_proposta
+		(case when exists (select correcao.a_id from correcao where anomalia.a_id = correcao.a_id) then true else false end) fa_com_proposta
 			from anomalia natural join incidencia natural join item
 				natural join local_publico natural join utilizador;
