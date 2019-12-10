@@ -8,6 +8,7 @@ create table d_utilizador (
 	du_id       serial        not null,
 	du_email    varchar(80)   not null,
 	du_password varchar(80)   not null,
+	du_tipo     varchar(80)   not null,
 	constraint pk_utilizador primary key (du_email)
 );
 
@@ -49,4 +50,14 @@ create table f_anomalia (
 
 /* INSERTS - MIGRATION*/
 
-insert into d_utilizador(du_email, du_password)
+insert into d_utilizador(du_email, du_password, du_tipo)
+	Select u_email, u_password, 'qulificado' from (Select * from utilizador natural join utilizador_qualificado)
+
+insert into d_tempo(dt_id, du_password, du_tipo)
+	select * from utilizador natural join
+
+insert into d_utilizador(du_email, du_password, du_tipo)
+	select * from utilizador natural join
+
+insert into d_utilizador(du_email, du_password, du_tipo)
+	select * from utilizador natural join
