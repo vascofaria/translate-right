@@ -132,7 +132,7 @@ insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_prop
 
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_proposta)
-	select (select du_id from d_utilizador where du_email = u_email) du_id, 
+	select (select du_id from d_utilizador where du_email = u_email) du_id,
 		(select dt_id from d_tempo where dt_dia = DATE_PART('day', a_ts) and dt_dia_semana = DATE_PART('dow',a_ts) and dt_semana = DATE_PART('week',a_ts) and dt_mes = DATE_PART('month',a_ts) and dt_trimestre = DATE_PART('quarter',a_ts)	and dt_ano = DATE_PART('year',a_ts)) dt_id,
 		(select dlocal_id from d_local where dlocal_latitude = lp_latitude and dlocal_longitude = lp_longitude) dlocal_id,
 		(select dlingua_id from d_lingua where dlingua_lingua = a_lingua) dlingua_id,

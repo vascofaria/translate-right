@@ -1,5 +1,5 @@
 ----------------------------------------
--- Populate Relations 
+-- Populate Relations
 ----------------------------------------
 
 insert into local_publico(lp_latitude, lp_longitude, lp_nome)
@@ -49,21 +49,21 @@ insert into item(i_descricao, i_localizacao, lp_latitude, lp_longitude)
 	values ('Suite Presidencial', 'Praceta das Avelãs', 37.090337, 69.889873);
 
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('034, 012', 'cartaz.jpg', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', false);
+	values ('034, 012', 'cartaz.jpg', 'pt', '2019-11-10 05:43:22', 'Cartaz com erro', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('012, 054', 'poster.png', 'eng', '2019-01-15 12:50:56', 'Mal traduzido', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('004, 006', 'trad.jpg', 'fr', '2019-12-16 14:02:06', 'Mal traduzido', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('010, 078', 'publicidade.jpg', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', false);
+	values ('010, 078', 'publicidade.jpg', 'pt', '2019-12-18 16:45:25', 'Erro ortográfico', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('003, 059', 'frase.png', 'pt', '2019-12-20 08:25:26', 'Frase sem sentido', false);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('007, 038', 'foto.jpg', 'pt', '2019-01-01 10:00:00', 'Frase', false);	
+	values ('007, 038', 'foto.jpg', 'pt', '2019-01-01 10:00:00', 'Frase', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('024, 052', 'menu.jpg', 'pt', '2019-05-15 09:45:22', 'Erro ortográfico', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
-	values ('042, 039', 'livro.png', 'eng', '2019-07-15 12:00:06', 'Erro ortográfico', false);
+	values ('042, 039', 'livro.png', 'eng', '2019-07-15 12:00:06', 'Erro ortográfico', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('054, 063', 'carta.jpg', 'fr', '2019-05-17 15:03:43', 'Frase sem sentido', true);
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
@@ -73,17 +73,17 @@ insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomal
 insert into anomalia(a_zona, a_imagem, a_lingua, a_ts, a_descricao, a_tem_anomalia_redacao)
 	values ('023, 023', 'manuscrito.jpg', 'uk', '2019-02-26 12:30:40', 'Erro ortográfico', true);
 
-insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
+insert into anomalia_traducao(a_id, at_zona2, at_lingua2)
 	values (2, '031, 048', 'germ');
-insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
+insert into anomalia_traducao(a_id, at_zona2, at_lingua2)
 	values (3, '046, 064', 'esp');
-insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
+insert into anomalia_traducao(a_id, at_zona2, at_lingua2)
 	values (5, '146, 264', 'germ');
-insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
+insert into anomalia_traducao(a_id, at_zona2, at_lingua2)
 	values (9, '445, 753', 'esp');
-insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
+insert into anomalia_traducao(a_id, at_zona2, at_lingua2)
 	values (10, '429, 231', 'germ');
-insert into anomalia_traducao(a_id, at_zona2, at_lingua2) 
+insert into anomalia_traducao(a_id, at_zona2, at_lingua2)
 	values (11, '123, 123', 'esp');
 
 insert into duplicado(i_id1, i_id2)
@@ -96,19 +96,19 @@ insert into duplicado(i_id1, i_id2)
 	values (3, 11);
 
 
-insert into utilizador(u_email, u_password) 
+insert into utilizador(u_email, u_password)
 	values ('nikoletta@gmail.com', 'nika');
-insert into utilizador(u_email, u_password) 
+insert into utilizador(u_email, u_password)
 	values ('vasco@gmail.com', 'vasco');
-insert into utilizador(u_email, u_password) 
+insert into utilizador(u_email, u_password)
 	values ('bruno@gmail.com', 'bruno');
-insert into utilizador(u_email, u_password) 
+insert into utilizador(u_email, u_password)
 	values ('rui@gmail.com', 'rui');
 insert into utilizador(u_email, u_password)
 	values ('zemanel@gmail.com', 'ze');
 insert into utilizador(u_email, u_password)
 	values ('professor@gmail.com', 'professor');
-insert into utilizador(u_email, u_password) 
+insert into utilizador(u_email, u_password)
 	values ('rute@gmail.com', 'rute');
 insert into utilizador(u_email, u_password)
 	values ('stallman@gmail.com', 'gnu');
@@ -173,4 +173,3 @@ insert into correcao(u_email, pc_nro, a_id) values ('professor@gmail.com', 3, 10
 insert into correcao(u_email, pc_nro, a_id) values ('nikoletta@gmail.com', 2, 7);
 insert into correcao(u_email, pc_nro, a_id) values ('rui@gmail.com'      , 2, 9);
 insert into correcao(u_email, pc_nro, a_id) values ('rute@gmail.com'     , 1, 8);
-
