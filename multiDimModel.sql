@@ -56,7 +56,7 @@ insert into d_utilizador(du_email, du_tipo)
 	select u_email, 'regular' from (select u_email from utilizador natural join utilizador_regular) as ur;
 
 insert into d_tempo(dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestre, dt_ano)
-	select DATEPART(day,a_ts),DATEPART(weekday,a_ts),DATEPART(week,a_ts),DATEPART(mounth,a_ts),DATEPART(quarter,a_ts),DATEPART(year,a_ts) from anomalia;
+	select DATE_PART(day,a_ts),DATE_PART(weekday,a_ts),DATE_PART(week,a_ts),DATE_PART(mounth,a_ts),DATE_PART(quarter,a_ts),DATE_PART(year,a_ts) from anomalia;
 
 insert into d_local(dlocal_latitude, dlocal_longitude, dlocal_nome)
 	select lp_latitude, lp_longitude, lp_nome from local_publico;
