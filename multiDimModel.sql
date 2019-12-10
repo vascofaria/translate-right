@@ -64,3 +64,10 @@ insert into d_local(dlocal_latitude, dlocal_longitude, dlocal_nome)
 insert into d_lingua(dlingua_lingua)
 	select distinct lingua from
 		(select a_lingua as lingua from anomalia) as anom UNION (select at_lingua2 as lingua from anomalia_traducao);
+
+insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id)
+	select du_id, dt_id, dlocal_id, dlingua_id from (select du_id FROM d_utilizador WHERE u_email = du_email);
+
+
+SELECT u_email, a_lingua, a_ts, lp_latitude, lp_longitude from
+	item NATURAL JOIN local_publico NATURAL JOIN incidencia NATURAL JOIN utilizador NATURAL JOIN anomalia;
