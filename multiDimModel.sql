@@ -50,16 +50,16 @@ create table f_anomalia (
 /* INSERTS - MIGRATION*/
 
 insert into d_utilizador(du_email, du_password, du_tipo)
-	Select u_email, u_password, 'qualificado' from (Select u_email, u_password from utilizador natural join utilizador_qualificado)
+	Select u_email, u_password, 'qualificado' from (Select u_email, u_password from utilizador natural join utilizador_qualificado);
 
 insert into d_utilizador(du_email, du_password, du_tipo)
-	Select u_email, u_password, 'regular' from (Select u_email, u_password from utilizador natural join utilizador_regular)
+	Select u_email, u_password, 'regular' from (Select u_email, u_password from utilizador natural join utilizador_regular);
 
 insert into d_tempo(dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestre, dt_ano)
-	Select DATEPART(day,a_ts),DATEPART(weekday,a_ts),DATEPART(week,a_ts),DATEPART(mounth,a_ts),DATEPART(quarter,a_ts),DATEPART(year,a_ts) from anomalia
+	Select DATEPART(day,a_ts),DATEPART(weekday,a_ts),DATEPART(week,a_ts),DATEPART(mounth,a_ts),DATEPART(quarter,a_ts),DATEPART(year,a_ts) from anomalia;
 
 insert into d_local(dlocal_latitude, dlocal_longitude, dlocal_nome)
-	Select lp_latitude, lp_longitude, lp_nome From local_publico
+	Select lp_latitude, lp_longitude, lp_nome From local_publico;
 
 insert into d_lingua(dlingua_lingua)
 	select distinct lingua from
