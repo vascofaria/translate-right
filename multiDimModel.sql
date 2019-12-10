@@ -23,10 +23,10 @@ create table d_tempo (
 );
 
 create table d_local (
-	dlocal_id           serial      not null,
-	dlocal_latitude     integer     not null,
-	dlocal_longitude    integer     not null,
-	dlocal_nome         varchar(80) not null,
+	dlocal_id           serial        not null,
+	dlocal_latitude     decimal(8, 6) not null,
+	dlocal_longitude    decimal(9, 6) not null,
+	dlocal_nome         varchar(80)   not null,
 	constraint pk_d_local primary key (dlocal_id)
 );
 
@@ -68,6 +68,8 @@ insert into d_lingua(dlingua_lingua)
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id)
 	SELECT du_id, dt_id, dlocal_id, dlingua_id FROM
-	item NATURAL JOIN local_publico NATURAL JOIN incidencia NATURAL JOIN utilizador NATURAL JOIN anomalia NATURAL JOIN d_utilizador NATURAL JOIN d_tempo NATURAL JOIN d_local NATURAL JOIN d_lingua
-		WHERE du_email = u_email AND dt_dia = DATE_PART('day', a_ts) AND dt_dia_semana = DATE_PART('dow',a_ts) AND dt_semana = DATE_PART('week',a_ts) AND dt_mes = DATE_PART('month',a_ts) AND dt_trimestre = DATE_PART('quarter',a_ts) AND dt_ano = DATE_PART('year',a_ts)
-			AND dlocal_latitude = lp_latitude AND dlocal_longitude = lp_longitude AND dlingua_lingua = a_lingua;
+	item NATURAL JOIN local_publico NATURAL JOIN incidencia NATURAL JOIN utilizador
+	NATURAL JOIN anomalia NATURAL JOIN d_utilizador NATURAL JOIN d_tempo NATURAL JOIN d_local NATURAL JOIN d_lingua
+		WHERE du_email = u_email AND dt_dia = DATE_PART('day', a_ts) AND dt_dia_semana = DATE_PART('dow',a_ts)
+			AND dt_semana = DATE_PART('week',a_ts) AND dt_mes = DATE_PART('month',a_ts) AND dt_trimestre = DATE_PART('quarter',a_ts)
+			AND dt_ano = DATE_PART('year',a_ts)	AND dlocal_latitude = lp_latitude AND dlocal_longitude = lp_longitude AND dlingua_lingua = a_lingua;
