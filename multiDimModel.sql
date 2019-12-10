@@ -90,7 +90,7 @@ insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id)
 */
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_proposta)
-	select du_id, dt_id, dlocal_id, dlingua_id, 'redacao', 1 from
+	select du_id, dt_id, dlocal_id, dlingua_id, 'redacao', true from
 		item natural join local_publico natural join incidencia natural join utilizador
 		natural join anomalia natural join d_utilizador natural join d_tempo natural join d_local
 		natural join d_lingua natural join correcao
@@ -100,7 +100,7 @@ insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_prop
 				and a_tem_anomalia_redacao;
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_proposta)
-	select du_id, dt_id, dlocal_id, dlingua_id, 'redacao', 0 from
+	select du_id, dt_id, dlocal_id, dlingua_id, 'redacao', false from
 		item natural join local_publico natural join incidencia natural join utilizador
 		natural join anomalia natural join d_utilizador natural join d_tempo natural join d_local
 		natural join d_lingua
@@ -110,7 +110,7 @@ insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_prop
 				and a_tem_anomalia_redacao and not exists(select correcao.a_id from correcao where a_id = correcao.a_id);
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_proposta)
-	select du_id, dt_id, dlocal_id, dlingua_id, 'traducao', 1 from
+	select du_id, dt_id, dlocal_id, dlingua_id, 'traducao', true from
 		item natural join local_publico natural join incidencia natural join utilizador
 		natural join anomalia natural join d_utilizador natural join d_tempo natural join d_local
 		natural join d_lingua natural join anomalia_traducao natural join correcao
@@ -119,7 +119,7 @@ insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_prop
 				and dt_ano = DATE_PART('year',a_ts)	and dlocal_latitude = lp_latitude and dlocal_longitude = lp_longitude and dlingua_lingua = a_lingua;
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id, fa_tipo, fa_com_proposta)
-	select du_id, dt_id, dlocal_id, dlingua_id, 'traducao', 0 from
+	select du_id, dt_id, dlocal_id, dlingua_id, 'traducao', false from
 		item natural join local_publico natural join incidencia natural join utilizador
 		natural join anomalia natural join d_utilizador natural join d_tempo natural join d_local
 		natural join d_lingua natural join anomalia_traducao
