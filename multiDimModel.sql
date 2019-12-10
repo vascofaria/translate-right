@@ -63,4 +63,4 @@ insert into d_local(dlocal_latitude, dlocal_longitude, dlocal_nome)
 
 insert into d_lingua(dlingua_lingua)
 	select distinct lingua from
-		(select a_lingua as lingua from anomalia) as anom UNION (select at_lingua2 as lingua from anomalia_traducao) as anom_trad;
+		(select a_lingua as lingua from anomalia) as anom UNION (select at_lingua2 as lingua from anomalia_traducao);
