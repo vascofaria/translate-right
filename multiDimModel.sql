@@ -67,8 +67,7 @@ insert into d_lingua(dlingua_lingua)
 		(select a_lingua as lingua from anomalia) as anom UNION (select at_lingua2 as lingua from anomalia_traducao);
 
 insert into f_anomalia(du_id, dt_id, dlocal_id, dlingua_id)
-	select du_id, dt_id, dlocal_id, dlingua_id from (select du_id FROM d_utilizador WHERE u_email = du_email);
-
-
-SELECT u_email, a_lingua, a_ts, lp_latitude, lp_longitude from
-	item NATURAL JOIN local_publico NATURAL JOIN incidencia NATURAL JOIN utilizador NATURAL JOIN anomalia;
+	SELECT du_id, dt_id, dlocal_id, dlingua_id FROM
+	item NATURAL JOIN local_publico NATURAL JOIN incidencia NATURAL JOIN utilizador NATURAL JOIN anomalia NATURAL JOIN d_utilizador NATURAL JOIN d_tempo NATURAL JOIN d_local NATURAL JOIN d_lingua
+		WHERE du_email = u_email AND dt_dia = DATE_PART('day', a_ts) AND dt_dia_semana = DATE_PART('dow',a_ts) AND dt_semana = DATE_PART('week',a_ts) AND dt_mes = DATE_PART('month',a_ts) AND dt_trimestre = DATE_PART('quarter',a_ts) AND dt_ano = DATE_PART('year',a_ts)
+			AND dlocal_latitude = lp_latitude AND dlocal_longitude = lp_longitude AND dlingua_lingua = a_lingua;
