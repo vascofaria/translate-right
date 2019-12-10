@@ -51,9 +51,12 @@ create table f_anomalia (
 /* INSERTS - MIGRATION*/
 
 insert into d_utilizador(du_email, du_password, du_tipo)
-	Select u_email, u_password, 'qulificado' from (Select * from utilizador natural join utilizador_qualificado)
+	Select u_email, u_password, 'qualificado' from (Select u_email, u_password from utilizador natural join utilizador_qualificado)
 
-insert into d_tempo(dt_id, du_password, du_tipo)
+insert into d_utilizador(du_email, du_password, du_tipo)
+	Select u_email, u_password, 'regular' from (Select u_email, u_password from utilizador natural join utilizador_regular)
+
+insert into d_tempo(du_password, du_tipo)
 	select * from utilizador natural join
 
 insert into d_utilizador(du_email, du_password, du_tipo)
