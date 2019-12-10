@@ -7,7 +7,6 @@ drop table f_anomalia           cascade;
 create table d_utilizador (
 	du_id       serial        not null,
 	du_email    varchar(80)   not null,
-	du_password varchar(80)   not null,
 	du_tipo     varchar(80)   not null,
 	constraint pk_utilizador primary key (du_email)
 );
@@ -56,9 +55,10 @@ insert into d_utilizador(du_email, du_password, du_tipo)
 insert into d_utilizador(du_email, du_password, du_tipo)
 	Select u_email, u_password, 'regular' from (Select u_email, u_password from utilizador natural join utilizador_regular)
 
-insert into d_tempo(dt_id, dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestre, dt_ano)
+insert into d_tempo(dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestre, dt_ano)
+	Select DATEPART(day,a_ts),DATEPART(weekday,a_ts),DATEPART(week,a_ts),DATEPART(mounth,a_ts),DATEPART(quarter,a_ts),DATEPART(year,a_ts) from anomalia
 
-insert into d_local(dlocal_id, dlocal_latitude, dlocal_longitude, dlocal_nome)
+insert into d_local(dlocal_latitude, dlocal_longitude, dlocal_nome)
 	Select lp_latitude, lp_longitude, lp_nome From local_publico
 
 insert into d_lingua(dlingua_lingua)
