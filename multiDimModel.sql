@@ -56,11 +56,9 @@ insert into d_utilizador(du_email, du_password, du_tipo)
 insert into d_utilizador(du_email, du_password, du_tipo)
 	Select u_email, u_password, 'regular' from (Select u_email, u_password from utilizador natural join utilizador_regular)
 
-insert into d_tempo(du_password, du_tipo)
-	select * from utilizador natural join
+insert into d_tempo(dt_id, dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestre, dt_ano)
 
-insert into d_utilizador(du_email, du_password, du_tipo)
-	select * from utilizador natural join
+insert into d_local(dlocal_id, dlocal_latitude, dlocal_longitude, dlocal_nome)
+	Select lp_latitude, lp_longitude, lp_nome From local_publico
 
-insert into d_utilizador(du_email, du_password, du_tipo)
-	select * from utilizador natural join
+insert into d_lingua(dlingua_id, dlingua_lingua)
