@@ -61,4 +61,6 @@ insert into d_tempo(dt_id, dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestr
 insert into d_local(dlocal_id, dlocal_latitude, dlocal_longitude, dlocal_nome)
 	Select lp_latitude, lp_longitude, lp_nome From local_publico
 
-insert into d_lingua(dlingua_id, dlingua_lingua)
+insert into d_lingua(dlingua_lingua)
+	select distinct lingua from
+		(select a_lingua as lingua from anomalia) as anom UNION (select at_lingua2 as lingua from anomalia_traducao);
