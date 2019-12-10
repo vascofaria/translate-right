@@ -120,6 +120,7 @@ insert into utilizador_qualificado(u_email)
 insert into utilizador_qualificado(u_email)
 	values ('vasco@gmail.com');
 insert into utilizador_qualificado(u_email)
+	
 	values ('bruno@gmail.com');
 insert into utilizador_qualificado(u_email)
 	values ('rui@gmail.com');
