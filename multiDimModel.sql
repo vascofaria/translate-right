@@ -41,10 +41,10 @@ create table f_anomalia (
 	dt_id   integer not null,
 	dlocal_id  integer not null,
 	dlingua_id  integer not null,
-	constraint fk_a_utilizador foreign key (du_id)      references utilizador(du_id),
-	constraint fk_a_tempo      foreign key (dt_id)      references tempo(dt_id),
-	constraint fk_a_local      foreign key (dlocal_id)  references local(dlocal_id),
-	constraint fk_a_lingua     foreign key (dlingua_id) references lingua(dlingua_id)
+	constraint fk_a_utilizador foreign key (du_id)      references d_utilizador(du_id),
+	constraint fk_a_tempo      foreign key (dt_id)      references d_tempo(dt_id),
+	constraint fk_a_local      foreign key (dlocal_id)  references d_local(dlocal_id),
+	constraint fk_a_lingua     foreign key (dlingua_id) references f_lingua(dlingua_id)
 );
 
 /* INSERTS - MIGRATION*/
@@ -54,12 +54,12 @@ insert into d_utilizador(du_email, du_tipo)
 
 insert into d_utilizador(du_email, du_tipo)
 	select u_email, 'regular' from (select u_email from utilizador natural join utilizador_regular) as ur;
-/*
+
 insert into d_tempo(dt_dia, dt_dia_semana, dt_semana, dt_mes, dt_trimestre, dt_ano)
 	select DATEPART(day,a_ts),DATEPART(weekday,a_ts),DATEPART(week,a_ts),DATEPART(mounth,a_ts),DATEPART(quarter,a_ts),DATEPART(year,a_ts) from anomalia;
 
 insert into d_local(dlocal_latitude, dlocal_longitude, dlocal_nome)
-	select lp_latitude, lp_longitude, lp_nome from local_publico;*/
+	select lp_latitude, lp_longitude, lp_nome from local_publico;
 
 insert into d_lingua(dlingua_lingua)
 	select distinct lingua from
