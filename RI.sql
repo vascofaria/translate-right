@@ -77,7 +77,7 @@ create table utilizador_regular (
 	constraint pk_utilizador_regular primary key (u_email),
 	constraint fk_ur_utilizador      foreign key (u_email) references utilizador(u_email) ON DELETE CASCADE ON UPDATE CASCADE
 );
-/*
+
 CREATE OR REPLACE FUNCTION TriggerEmailUtilizador() RETURNS trigger as $$
 	BEGIN
 		if not exists(SELECT * FROM  utilizador_regular WHERE NEW.u_email = utilizador_regular.u_email)
@@ -91,9 +91,9 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER ri_4 AFTER INSERT ON utilizador
 	FOR EACH ROW EXECUTE PROCEDURE TriggerEmailUtilizador();
-*/
 
 
+/*
 CREATE OR REPLACE FUNCTION TriggerUtilizadorQualificado() RETURNS trigger as $$
 	BEGIN
 		if exists(SELECT * FROM  utilizador_regular WHERE NEW.u_email = utilizador_regular.u_email)
@@ -104,9 +104,13 @@ CREATE OR REPLACE FUNCTION TriggerUtilizadorQualificado() RETURNS trigger as $$
 	END;
 $$ LANGUAGE plpgsql;
 
+
 CREATE TRIGGER ri_5 AFTER INSERT ON utilizador_qualificado
 	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorQualificado();
+*/
 
+
+/*
 CREATE OR REPLACE FUNCTION TriggerUtilizadorRegular() RETURNS trigger as $$
 	BEGIN
 		if exists(SELECT * FROM  utilizador_qualificado WHERE NEW.u_email = utilizador_qualificado.u_email)
@@ -119,6 +123,8 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER ri_6 AFTER INSERT ON utilizador_regular
 	FOR EACH ROW EXECUTE PROCEDURE TriggerUtilizadorRegular();
+
+*/
 
 
 insert into utilizador(u_email) 
